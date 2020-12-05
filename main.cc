@@ -32,7 +32,7 @@ int menuPrincipal(){
     }
 
   case 0:
-    if(comprobarAdmin==false){
+    if(comprobarAdmin() == false){
       cout<<"No tiene autorizacion para entrar al sistema como administrador. \n";
     }
     else{
@@ -40,9 +40,25 @@ int menuPrincipal(){
     }
 
   case 1:
-  if(comprobarMonitor==false){
+  if(comprobarMonitor() == false){
     cout<<"No tiene autorizacion para entrar al sistema como monitor. \n";
+  }bool comprobarAdmin(){
+  string password;
+  for (int i = 0; i<3; i++){
+    cout<<" Por favor, introduzca su contraseña.\n";
+    cin>>password;
+    if (password == admingestionJA){
+        cout<<"Contraseña correcta\n";
+        return true;
+    }
+    else {
+        cout<<" Contraseña incorrecta.";
+        printf("Quedan %d intentos", 3-i);
+    }
   }
+  cout<<"Maximo numero de intentos permitido alcanzado\n"
+  return false;
+}
   else{
     menuMonitor();
   }
@@ -115,17 +131,22 @@ int menuMonitor(){
   }
 }
 
-bool comprobarAdmin(bool es_Admin){
+bool comprobarAdmin(){
   string password;
-  es_Admin=false;
+  for (int i = 0; i<3; i++){
     cout<<" Por favor, introduzca su contraseña.\n";
     cin>>password;
-    while(password!=admingestionJA){
-      cout<<" Contraseña incorrecta. Por favor, introduzca su contraseña.\n";
-      cin>>password;
+    if (password == admingestionJA){
+        cout<<"Contraseña correcta\n";
+        return true;
     }
-es_Admin=true;
-return es_Admin;
+    else {
+        cout<<" Contraseña incorrecta.";
+        printf("Quedan %d intentos", 3-i);
+    }
+  }
+  cout<<"Maximo numero de intentos permitido alcanzado\n"
+  return false;
 }
 
 bool comprobarMonitor(bool es_Monitor){
