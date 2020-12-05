@@ -24,7 +24,7 @@ int main(){
 
   case 0:
     int opc;
-    char password;
+    string password;
       cout<<" Por favor, introduzca su contraseña.\n";
       cin>>password;
       while(password!=admingestionJA){
@@ -66,13 +66,12 @@ int main(){
 
   case 1:
   int seleccion;
-  char dni;
+  string dni;
     cout<<" Por favor, introduzca su DNI.\n";
-    cin>>password;
-    while(password!=admingestionJA){
-      cout<<" DNI incorrecta. Por favor, introduzca su contraseña.\n";
-      cin>>dni;
-    }
+    cin>>DNI;
+    //Funcion comprobacion DNI
+    //
+    //
     cout<<" DNI correcto. Bienvenido al sistema. \n";
     cout<<" Por favor, seleccione a que gestion desea acceder. \n";
     cout<<"--- 0) Gestion de Rutas. ---\n";
