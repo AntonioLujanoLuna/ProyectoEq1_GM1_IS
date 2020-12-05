@@ -4,5 +4,5 @@
 #include <senderos.h>
 
 void main(){
-  
+  cin<<"veamos si funciona correctamente";
 }
