@@ -26,7 +26,7 @@ int menuPrincipal(){
   cin<<login;
 
   switch(login){
-    while(login<0||login>3){
+    while(login<0||login>2){
       cout<<"Opcion invalida. Por favor, seleccione una opcion valida. \n";
       cin<<login;
     }
