@@ -1,0 +1,42 @@
+//parques.h
+//proyecto IS
+
+#ifndef PARQUES_H
+#define PARQUES_H
+
+#include <string>
+#include <list>
+
+using namespace std;
+
+class parques {
+    private:
+        string nombre_;
+        //list <sendero> senderos_;
+        string fechaNombramientoParque_;
+        int tamaño_;
+        string premios_;
+        string descripcion_;
+        bool disponibilidad_;
+    public:
+        /*parques(string nombre, list <sendero> senderos=NULL, string fechaNombramientoParque="",
+            int tamaño=0, string premios="", string descripcion="", bool disponibilidad=TRUE); */
+        inline string getNombre()const{return nombre_;};
+        inline void setNombre(string nombre){nombre_=nombre;};
+        //list <sendero> getSenderos()const{return senderos_;};
+        //void setSenderos(list<senderos> senderos){senderos_=senderos;};
+        //void addSendero(sendero newSendero){senderos_.push_back(newSendero);};
+        inline string getFechaNombramientoParque()const{return fechaNombramientoParque_;};
+        inline void setFechaNombramientoParque(string fechaNombramiento){fechaNombramientoParque_=fechaNombramiento;};
+        inline int getTamaño()const{return tamaño_;};
+        inline void setTamaño(int tamaño){tamaño_=tamaño;};
+        inline string getPremios()const{return premios_;};
+        inline void setPremios(string premios){premios_=premios;};
+        inline string getDescripcion()const{return descripcion_;};
+        inline void setDescripcion(string descripcion){descripcion_=descripcion;};
+        inline bool getDisponibilidad()const{return disponibilidad_;};
+        inline void setDisponibilidad(bool disponibilidad){disponibilidad_=disponibilidad;};
+
+};
+
+#endif
