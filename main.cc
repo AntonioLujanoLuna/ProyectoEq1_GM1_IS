@@ -109,11 +109,11 @@ int menuAdmin(){
 
 int menuMonitor(){
   int seleccion;
-    cout<<"--- DNI correcto. Bienvenido al sistema. ---\n";
-    cout<<"--- Por favor, seleccione a que gestion desea acceder. ---\n";
-    cout<<"--- 0) Gestion de Rutas. ---\n";
-    cout<<"--- 1) Salir del menu ---\n";
-    cin<<seleccion;
+  cout<<"--- DNI correcto. Bienvenido al sistema. ---\n";
+  cout<<"--- Por favor, seleccione a que gestion desea acceder. ---\n";
+  cout<<"--- 0) Gestion de Rutas. ---\n";
+  cout<<"--- 1) Salir del menu ---\n";
+  cin<<seleccion;
 
     switch(seleccion){
       while(seleccion<0||seleccion>1){
@@ -210,4 +210,228 @@ int menuParques(){
   case 5:
     return 0;
   break;
+}
+
+int menuSenderos(){
+  int i;
+
+  cout<<"   --- Gestion de Senderos --- \n";
+  cout<<"--- Seleccione la opcion a la que desee acceder. --- \n";
+  cout<<"--- 0) Añadir un nuevo Sendero. --- \n";
+  cout<<"--- 1) Modificar los datos de un Sendero ya introducido. --- \n";
+  cout<<"--- 2) Cambiar la disponibilidad de un Sendero. --- \n";
+  cout<<"--- 3) Eliminar un Sendero. --- \n";
+  cout<<"--- 4) Mostrar los datos de un Sendero ya introducido. --- \n";
+  cout<<"--- 5) Salir del programa. --- \n";
+
+  cin<<i;
+
+  while(i<0||i>5){
+  cout<<" Opcion invalida. Por favor, seleccione una opcion valida.\n";
+  cin<<i;
+  }
+
+
+case 0:
+//
+//
+//
+break;
+
+case 1:
+//
+//
+//
+break;
+
+case 2:
+//
+//
+//
+break;
+
+case 3:
+//
+//
+//
+break;
+
+case 4:
+//
+//
+//
+break;
+
+case 5:
+  return 0;
+break;
+
+}
+
+int menuVisitantes(){
+  int i;
+
+  cout<<"   --- Gestion de Visitantes --- \n";
+  cout<<"--- Seleccione la opcion a la que desee acceder. --- \n";
+  cout<<"--- 0) Añadir un nuevo visitante. --- \n";
+  cout<<"--- 1) Modificar los datos de un visitante ya introducido. --- \n";
+  cout<<"--- 2) Cancelar la visita asociada a un visitante concreto. --- \n";
+  cout<<"--- 3) Eliminar un visitante. --- \n";
+  cout<<"--- 4) Mostrar los datos de un visitante ya introducido. --- \n";
+  cout<<"--- 5) Salir del programa. --- \n";
+
+  cin<<i;
+
+  while(i<0||i>5){
+  cout<<" Opcion invalida. Por favor, seleccione una opcion valida.\n";
+  cin<<i;
+  }
+
+
+case 0:
+//
+//
+//
+break;
+
+case 1:
+//
+//
+//
+break;
+
+case 2:
+//
+//
+//
+break;
+
+case 3:
+//
+//
+//
+break;
+
+case 4:
+//
+//
+//
+break;
+
+case 5:
+  return 0;
+break;
+
+}
+
+int menuMonitores(){
+  int i;
+
+  cout<<"   --- Gestion de Monitores --- \n";
+  cout<<"--- Seleccione la opcion a la que desee acceder. --- \n";
+  cout<<"--- 0) Añadir un nuevo monitor. --- \n";
+  cout<<"--- 1) Modificar los datos de un monitor ya introducido. --- \n";
+  cout<<"--- 2) Cambiar la disponibilidad de un monitor. --- \n";
+  cout<<"--- 3) Eliminar los datos de un monitor. --- \n";
+  cout<<"--- 4) Mostrar los datos de un monitor ya introducido. --- \n";
+  cout<<"--- 5) Salir del programa. --- \n";
+
+  cin<<i;
+
+  while(i<0||i>5){
+  cout<<" Opcion invalida. Por favor, seleccione una opcion valida.\n";
+  cin<<i;
+  }
+
+
+  case 0:
+  //
+  //
+  //
+  break;
+
+  case 1:
+  //
+  //
+  //
+  break;
+
+  case 2:
+  //
+  //
+  //
+  break;
+
+  case 3:
+  //
+  //
+  //
+  break;
+
+  case 4:
+  //
+  //
+  //
+  break;
+
+  case 5:
+  return 0;
+  break;
+
+}
+
+int menuRutas(){
+  int i;
+
+  cout<<"   --- Gestion de Rutas --- \n";
+  cout<<"--- Seleccione la opcion a la que desee acceder. --- \n";
+  cout<<"--- 0) Añadir una nueva ruta. --- \n";
+  cout<<"--- 1) Modificar los datos de una ruta ya introducida. --- \n";
+  cout<<"--- 2) Cambiar la disponibilidad de una ruta. --- \n";
+  cout<<"--- 3) Eliminar una ruta. --- \n";
+  cout<<"--- 4) Mostrar los datos de un ruta ya programada. --- \n";
+  cout<<"--- 5) Salir del programa. --- \n";
+
+  cin<<i;
+
+  while(i<0||i>5){
+  cout<<" Opcion invalida. Por favor, seleccione una opcion valida.\n";
+  cin<<i;
+  }
+
+
+  case 0:
+  //
+  //
+  //
+  break;
+
+  case 1:
+  //
+  //
+  //
+  break;
+
+  case 2:
+  //
+  //
+  //
+  break;
+
+  case 3:
+  //
+  //
+  //
+  break;
+
+  case 4:
+  //
+  //
+  //
+  break;
+
+  case 5:
+  return 0;
+  break;
+
 }
