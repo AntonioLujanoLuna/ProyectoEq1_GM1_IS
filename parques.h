@@ -20,7 +20,7 @@ class parques {
         bool disponibilidad_;
     public:
         parques(string nombre, list <sendero> senderos=NULL, string fechaNombramientoParque="",
-            int tamano=0, string premios="", string descripcion="", bool disponibilidad=TRUE);
+            int tamano=0, string premios="", string descripcion="", bool disponibilidad=true);
         inline string getNombre()const{return nombre_;};
         inline void setNombre(string nombre){nombre_=nombre;};
         inline list <senderos> getSenderos()const{return senderos_;};

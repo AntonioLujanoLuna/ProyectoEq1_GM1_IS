@@ -20,7 +20,7 @@ class senderos {
 
     public:
         /*senderos(string nombre, int longitud=0, string descripcion="", 
-            bool disponibilidad=TRUE, string parqueAsociado="", list <rutas> senderos=NULL); */
+            bool disponibilidad=true, string parqueAsociado="", list <rutas> senderos=NULL); */
         inline string getNombre()const{return nombre_;};
         inline void setNombre(string nombre){nombre_=nombre;};
         inline int getLongitud()const{return longitud_;};
