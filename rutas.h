@@ -13,7 +13,7 @@
 
 using namespace std;
 
-class rutas {
+class ruta {
     private:
         int identificador_;
         string senderoAsociado_;
@@ -26,7 +26,7 @@ class rutas {
         list <visitante> grupoVisitantes_;
 
     public:
-        rutas(int id, string sendero = "", int dificultad = 2, string monitor = "", 
+        ruta(int id, string sendero = "", int dificultad = 2, string monitor = "", 
             string fecha = "", string hora = "", int duracion = 0, bool bici = true,
             list <visitante> visitantes = NULL);
         inline int getIdentificador()const{return identificador_;};
