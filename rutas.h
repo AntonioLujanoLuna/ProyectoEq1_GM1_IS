@@ -16,7 +16,7 @@ using namespace std;
 class ruta {
     private:
         int identificador_;
-        string senderoAsociado_;
+        sendero senderoAsociado_;
         int dificultad_;
         string monitorAsociado_;
         string fecha_;
@@ -31,8 +31,8 @@ class ruta {
             list <visitante> visitantes = NULL);
         inline int getIdentificador()const{return identificador_;};
         inline void setIdentidicador(int id){identificador_=id;};
-        inline string getSenderoAsociado()const{return senderoAsociado_;};
-        inline void setSenderoAsociado(string sendero){senderoAsociado_=sendero;};
+        inline sendero getSenderoAsociado()const{return senderoAsociado_;};
+        inline void setSenderoAsociado(sendero sendero){senderoAsociado_=sendero;};
         inline int getDificultad()const{return dificultad_;};
         inline void setDificultad(int dificultad){dificultad_=dificultad;};
         inline string getMonitorAsociado()const{return monitorAsociado_;};

@@ -3,7 +3,7 @@
 
 #include "parques.h"
 #include "senderos.h"
-parques::parques(string nombre, list <sendero> senderos, string fechaNombramientoParque,
+parque::parque(string nombre, list <sendero> senderos, string fechaNombramientoParque,
             int tamano, string premios, string descripcion, bool disponibilidad) {
         setNombre(nombre);
         setSenderos(senderos);

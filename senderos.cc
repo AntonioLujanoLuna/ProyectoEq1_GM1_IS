@@ -3,12 +3,12 @@
 
 #include "senderos.h"
 
-senderos::senderos(string nombre, int longitud, string descripcion, 
-        bool disponibilidad, string parqueAsociado, list <ruta> rutas){
+sendero::sendero(string nombre, parque parqueAsociado,int longitud, 
+    string descripcion, bool disponibilidad, list <ruta> rutas){
             setNombre(nombre);
+            setParqueAsociado(parqueAsociado);
             setLongitud(longitud);
             setDescripcion(descripcion);
             setDisponibilidad(disponibilidad);
-            setParqueAsociado(parqueAsociado);
             setRutas(rutas);
         }

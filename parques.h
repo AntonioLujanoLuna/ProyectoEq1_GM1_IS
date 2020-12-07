@@ -9,21 +9,21 @@
 
 using namespace std;
 
-class parques {
+class parque {
     private:
         string nombre_;
-        list <senderos> senderos_;
+        list <sendero> senderos_;
         string fechaNombramientoParque_;
         int tamano_;
         string premios_;
         string descripcion_;
         bool disponibilidad_;
     public:
-        parques(string nombre, list <sendero> senderos=NULL, string fechaNombramientoParque="",
+        parque(string nombre, list <sendero> senderos=NULL, string fechaNombramientoParque="",
             int tamano=0, string premios="", string descripcion="", bool disponibilidad=true);
         inline string getNombre()const{return nombre_;};
         inline void setNombre(string nombre){nombre_=nombre;};
-        inline list <senderos> getSenderos()const{return senderos_;};
+        inline list <sendero> getSenderos()const{return senderos_;};
         inline void setSenderos(list<senderos> senderos){senderos_=senderos;};
         inline void addSendero(sendero newSendero){senderos_.push_back(newSendero);};
         inline string getFechaNombramientoParque()const{return fechaNombramientoParque_;};
