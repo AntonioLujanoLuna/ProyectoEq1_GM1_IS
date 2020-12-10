@@ -3,11 +3,10 @@
 
 #include "persona.h"
 
-persona::persona(string DNI, string nombre, string apellidos, int Tlfn, 
+persona::persona(string DNI, string nombreCompleto, string Tlfn, 
             string fechaDeNacimiento, string condicion) {
         setDNI(DNI);
-        setNombre(nombre);
-        setApellidos(apellidos);
+        setNombreCompleto(nombreCompleto);
         setNumeroDeTlfn(Tlfn);
         setFechaDeNacimiento(fechaDeNacimiento);
         setCondicion(condicion);

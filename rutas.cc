@@ -3,10 +3,9 @@
 
 #include "rutas.h"
 
-ruta::ruta(int id, sendero sendero, int dificultad, string monitor, string fecha,
-            string hora, int duracion, bool bici, list <visitante> visitantes){
+ruta::ruta(string id, string dificultad, string monitor, string fecha,
+            string hora, int duracion, string bici, list <visitante> visitantes){
         setIdentidicador(id);
-        setSenderoAsociado(sendero);
         setDificultad(dificultad);
         setMonitorAsociado(monitor);
         setFecha(fecha);

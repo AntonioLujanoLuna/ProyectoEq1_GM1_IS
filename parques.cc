@@ -3,8 +3,8 @@
 
 #include "parques.h"
 #include "senderos.h"
-parque::parque(string nombre, list <sendero> senderos, string fechaNombramientoParque,
-            int tamano, string premios, string descripcion, bool disponibilidad) {
+parque::parque(string nombre, string fechaNombramientoParque,
+            int tamano, string premios, string descripcion, bool disponibilidad, list <sendero> senderos) {
         setNombre(nombre);
         setSenderos(senderos);
         setFechaNombramientoParque(fechaNombramientoParque);
@@ -12,4 +12,5 @@ parque::parque(string nombre, list <sendero> senderos, string fechaNombramientoP
         setPremios(premios);
         setDescripcion(descripcion);
         setDisponibilidad(disponibilidad);
+        setSenderos(senderos);
 }
