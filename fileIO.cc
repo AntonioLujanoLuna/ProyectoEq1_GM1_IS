@@ -101,6 +101,63 @@ int FileIO::existsRuta (std::string nombreRuta, std::string nombreSendero, std::
     }
 }
 
+int FileIO::existsVisitanteARuta (std::string dni, std::string nombreRuta, std::string nombreSendero, std::string nombreParque){
+    std::ifstream file(nombreParque + "_" + nombreSendero + "_" + nombreRuta + ".txt");
+    if (file) {
+        int count = 0;
+        while (!file.eof()) {
+            if (file.peek() == std::ifstream::traits_type::eof()) {
+                break;
+            }
+            std::string aux;
+            file >> aux;
+            if (aux == dni) {
+                file.close();
+                return count;
+            }
+            for (int i = 0; i < 4; i++) {
+                file.ignore(std::numeric_limits<streamsize>::max(), '\n');
+            }
+            count++;
+            file.get();
+        }
+        file.close();
+        return -1;
+    }
+    else {
+        return -2;
+    }
+}
+
+int FileIO::existsVisitante(std::string dni){
+std::ifstream file("visitantes.txt");
+    if (file) {
+        int count = 0;
+        while (!file.eof()) {
+            if (file.peek() == std::ifstream::traits_type::eof()) {
+                break;
+            }
+            std::string aux;
+            file >> aux;
+            if (aux == dni) {
+                file.close();
+                return count;
+            }
+            for (int i = 0; i < 4; i++) {
+                file.ignore(std::numeric_limits<streamsize>::max(), '\n');
+            }
+            count++;
+            file.get();
+        }
+        file.close();
+        return -1;
+    }
+    else {
+        return -2;
+    }
+}
+
+
 std::list<parque> FileIO::getTodosParques () {
     std::list<parque> parques;
     
@@ -219,9 +276,40 @@ std::list<ruta> FileIO::getRutasSendero (std::string nombresendero) {
             c.setBicicleta(aux);
             
             getline(file, aux);
-            c.setGrupoVisitantes(aux);
+            c.setGrupoVisitantes(getVisitantesRuta(nombresendero + "_" + c.getIdentificador));
 
             rutas.push_back(c);
+        }
+        file.close();
+    }
+    else {
+        std::cerr << "couldn't open <" << _path << ">" << std::endl;
+    }
+    return rutas;
+}
+
+std::list<visitante> FileIO::getVisitantesRuta(std::string nombreruta){
+    std::list<visitante> visitantes;
+    string fichero = nombreruta + ".txt";
+    std::ifstream file(fichero);
+    if (file) {
+        while (!file.eof()) {
+            //Checks if file is empty
+            if (file.peek() == std::ifstream::traits_type::eof()) {
+                break;
+            }
+
+            visitante c;
+            std::string aux;
+
+            getline(file, aux);
+            c.setDNI(aux);
+
+            for (int i = 0; i < 4; i++) {
+                file.ignore(std::numeric_limits<streamsize>::max(), '\n');
+            }
+            
+            visitante.push_back(c);
         }
         file.close();
     }
@@ -319,7 +407,7 @@ void FileIO::borrarRuta(const ruta &r, const sendero &s, const parque &p){
     string sys = "rm " + nombreParque + "_" + nombreSendero + "_" + nommbreRuta + ".txt";
     system(sys);
 
-    std::list<ruta> rutas = getInstance()->getRutasSendero(nombreParque + "_senderos");
+    std::list<ruta> rutas = getInstance()->getRutasSendero(nombreParque + "_" + nombreSendero);
     std::ofstream file(p.getNombre() + "_" + s.getNombre + "_rutas.txt");
     if (file) {
         for (ruta &ruta : rutas) {
@@ -375,8 +463,18 @@ void FileIO::guardarParque (const parque &p) {
                         rutasFile << r.getHora() << std::endl;
                         rutasFile << r.getDuracionEstimada() << std::endl;
                         rutasFile << r.getBicicleta() << std::endl;
-                        rutasFile << r.getGrupoVisitante() << std::endl;
 
+                        std::ofstream visitantesFile;
+
+                        visitantesFile.open(p.getNombre + "_" + s.getNombre() + "_" + r.getIdentificador() + ".txt");
+                        for(visitante &v : r.getGrupoVisitante()){
+                            visitantesFile << v.getDNI() << std::endl;
+                            visitantesFile << v.getNombreCompleto() << std::endl;
+                            visitantesFile << v.getNumeroDeTlfn() << std::endl;
+                            visitantesFile << v.getFechaDeNacimiento() << std::endl;
+                            visitantesFile << v.getCondicion() << std::endl;
+                        }
+                        visitantesFile.close();
                     }
                     rutasFile.close();
                 }
@@ -415,8 +513,18 @@ void FileIO::guardarParque (const parque &p) {
                         rutasFile << r.getHora() << std::endl;
                         rutasFile << r.getDuracionEstimada() << std::endl;
                         rutasFile << r.getBicicleta() << std::endl;
-                        rutasFile << r.getGrupoVisitante() << std::endl;
 
+                        std::ofstream visitantesFile;
+
+                        visitantesFile.open(p.getNombre + "_" + s.getNombre() + "_" + r.getIdentificador() + ".txt");
+                        for(visitante &v : r.getGrupoVisitante()){
+                            visitantesFile << v.getDNI() << std::endl;
+                            visitantesFile << v.getNombreCompleto() << std::endl;
+                            visitantesFile << v.getNumeroDeTlfn() << std::endl;
+                            visitantesFile << v.getFechaDeNacimiento() << std::endl;
+                            visitantesFile << v.getCondicion() << std::endl;
+                        }
+                        visitantesFile.close();
                     }
                     rutasFile.close();
                 }
@@ -453,8 +561,18 @@ void FileIO::guardarSendero (const sendero &s, std::string nombreParque) {
                         rutasFile << r.getHora() << std::endl;
                         rutasFile << r.getDuracionEstimada() << std::endl;
                         rutasFile << r.getBicicleta() << std::endl;
-                        rutasFile << r.getGrupoVisitante() << std::endl;
 
+                        std::ofstream visitantesFile;
+
+                        visitantesFile.open(p.getNombre + "_" + s.getNombre() + "_" + r.getIdentificador() + ".txt");
+                        for(visitante &v : r.getGrupoVisitante()){
+                            visitantesFile << v.getDNI() << std::endl;
+                            visitantesFile << v.getNombreCompleto() << std::endl;
+                            visitantesFile << v.getNumeroDeTlfn() << std::endl;
+                            visitantesFile << v.getFechaDeNacimiento() << std::endl;
+                            visitantesFile << v.getCondicion() << std::endl;
+                        }
+                        visitantesFile.close();
                     }
                     rutasFile.close();
                 }
@@ -482,8 +600,18 @@ void FileIO::guardarSendero (const sendero &s, std::string nombreParque) {
                         rutasFile << r.getHora() << std::endl;
                         rutasFile << r.getDuracionEstimada() << std::endl;
                         rutasFile << r.getBicicleta() << std::endl;
-                        rutasFile << r.getGrupoVisitante() << std::endl;
 
+                        std::ofstream visitantesFile;
+
+                        visitantesFile.open(p.getNombre + "_" + s.getNombre() + "_" + r.getIdentificador() + ".txt");
+                        for(visitante &v : r.getGrupoVisitante()){
+                            visitantesFile << v.getDNI() << std::endl;
+                            visitantesFile << v.getNombreCompleto() << std::endl;
+                            visitantesFile << v.getNumeroDeTlfn() << std::endl;
+                            visitantesFile << v.getFechaDeNacimiento() << std::endl;
+                            visitantesFile << v.getCondicion() << std::endl;
+                        }
+                        visitantesFile.close();
                     }
                     rutasFile.close();
                 }
@@ -509,7 +637,18 @@ int result = existsRuta(r.getIdentificador(), nombreSendero, nombreParque);
                 file << r.getHora() << std::endl;
                 file << r.getDuracionEstimada() << std::endl;
                 file << r.getBicicleta() << std::endl;
-                file << r.getGrupoVisitante() << std::endl;
+                    
+                std::ofstream visitantesFile;
+
+                visitantesFile.open(p.getNombre + "_" + s.getNombre() + "_" + r.getIdentificador() + ".txt");
+                for(visitante &v : r.getGrupoVisitante()){
+                    visitantesFile << v.getDNI() << std::endl;
+                    visitantesFile << v.getNombreCompleto() << std::endl;
+                    visitantesFile << v.getNumeroDeTlfn() << std::endl;
+                    visitantesFile << v.getFechaDeNacimiento() << std::endl;
+                    visitantesFile << v.getCondicion() << std::endl;
+                }
+                visitantesFile.close();
             }
         }
         file.close();
@@ -525,9 +664,89 @@ int result = existsRuta(r.getIdentificador(), nombreSendero, nombreParque);
                 file << r.getHora() << std::endl;
                 file << r.getDuracionEstimada() << std::endl;
                 file << r.getBicicleta() << std::endl;
-                file << r.getGrupoVisitante() << std::endl;
+
+                std::ofstream visitantesFile;
+
+                visitantesFile.open(p.getNombre + "_" + s.getNombre() + "_" + r.getIdentificador() + ".txt");
+                for(visitante &v : r.getGrupoVisitante()){
+                    visitantesFile << v.getDNI() << std::endl;
+                    visitantesFile << v.getNombreCompleto() << std::endl;
+                    visitantesFile << v.getNumeroDeTlfn() << std::endl;
+                    visitantesFile << v.getFechaDeNacimiento() << std::endl;
+                    visitantesFile << v.getCondicion() << std::endl;
+                }
+                visitantesFile.close();
             }
         }
         file.close();
     }    
 }
+
+void FileIO::guardarVisitante(const visitante &v){
+    int result = existsVisitante(v.getDNI());
+    if (result >=0){
+        std::list<visitante> visitantes = getInstance()->getTodosVisitantes();
+        std::ofstream visitantesFile("visitantes.txt");
+        if (visitantesFile) {
+            for (visitante &visitante : visitante) {
+                if (visitante.getDNI() == v.getDNI()) {
+                    visitante = v;
+                    }
+                    visitantesFile << v.getDNI() << std::endl;
+                    visitantesFile << v.getNombreCompleto() << std::endl;
+                    visitantesFile << v.getNumeroDeTlfn() << std::endl;
+                    visitantesFile << v.getFechaDeNacimiento() << std::endl;
+                    visitantesFile << v.getCondicion() << std::endl;
+                }
+                file.close();
+            }
+        }
+    else {
+        std::ofstream visitantesFile("visitantes.txt");
+        if (visitantesFile) {
+            for (visitante &visitante : visitante) {
+                    visitantesFile << v.getDNI() << std::endl;
+                    visitantesFile << v.getNombreCompleto() << std::endl;
+                    visitantesFile << v.getNumeroDeTlfn() << std::endl;
+                    visitantesFile << v.getFechaDeNacimiento() << std::endl;
+                    visitantesFile << v.getCondicion() << std::endl;
+            }
+            file.close();
+        }
+    }    
+}
+
+void FileIO::guardarVisitanteARuta(const visitante &v, std::string idRuta, std::string nombreSendero, std::string nombreParque){
+int result = existsVisitanteARuta(v.getDNI(), idRuta, nombreSendero, nombreParque);
+    if (result >=0){
+        std::list<visitante> visitantes = getInstance()->getVisitantesRuta(nombreParque + "_" + nombreSendero + "_" + idRuta);        
+        std::ofstream file(nombreParque + "_" + nombreSendero + "_" + idRuta + ".txt");
+        if (file) {
+            for (visitante &visitante : visitante) {
+                if (visitante.getDNI() == v.getDNI()) {
+                    visitante = v;
+                }
+                visitantesFile << v.getDNI() << std::endl;
+                visitantesFile << v.getNombreCompleto() << std::endl;
+                visitantesFile << v.getNumeroDeTlfn() << std::endl;
+                visitantesFile << v.getFechaDeNacimiento() << std::endl;
+                visitantesFile << v.getCondicion() << std::endl;        
+            }
+            file.close();
+        }
+    }
+    else {
+        std::ofstream file(nombreParque + "_" + nombreSendero + "_" + idRuta + ".txt");
+        if (file) {
+            for (visitante &visitante : visitante) {
+                visitantesFile << v.getDNI() << std::endl;
+                visitantesFile << v.getNombreCompleto() << std::endl;
+                visitantesFile << v.getNumeroDeTlfn() << std::endl;
+                visitantesFile << v.getFechaDeNacimiento() << std::endl;
+                visitantesFile << v.getCondicion() << std::endl;        
+            }
+            file.close();
+        }
+    }    
+}
+

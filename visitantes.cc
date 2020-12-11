@@ -4,9 +4,7 @@
 #include "visitantes.h"
 
 visitante::visitante(string DNI, string nombre, string apellidos, int Tlfn, 
-            string fechaDeNacimiento, string condicion) : persona(string DNI, 
-            string nombre, string apellidos, int Tlfn, string fechaDeNacimiento, 
-            string condicion){
+            string fechaDeNacimiento, string condicion){
         setDNI(DNI);
         setNombre(nombre);
         setApellidos(apellidos);

@@ -23,9 +23,6 @@ class FileIO {
             }
         }
 
-        std::list<sendero> getSenderos (std::string nombreParque);
-        std::list<ruta> getRutas (std::string Nombresendero);
-
     public:
         static FileIO* getInstance();
 
@@ -39,17 +36,21 @@ class FileIO {
         int existsParque(std::string nombre);
         int existsSendero (std::string nombreSendero, std::string nombreParque);
         int existsRuta (std::string nombreRuta, std::string nombreSendero, std::string nombreParque);
+        int existsVisitanteARuta (std::string dni, std::string nombreRuta, std::string nombreSendero, std::string nombreParque);
+        int existsVisitante(std::string dni);
         std::list<parque> getTodosParques(); 
         std::list<sendero> getSenderosParque(std::string nombre);
         std::list<ruta> getRutasSendero(std::string nombre);
         std::list<visitante> getTodosVisitantes();
+        std::list<visitante> getVisitantesRuta(std::string nombreruta);
         void borrarParque(const parque &p);
         void borrarSendero(const sendero &s, const parque &p);
         void FileIO::borrarRuta(const ruta &r, const sendero &s, const parque &p);
         void guardarParque(const parque &p);         
         void guardarSendero(const sendero &p, std::string nombreParque); 
         void guardarRuta(const ruta &r, std::string nombreSendero, std::string nombreParque);
-
+        void guardarVisitanteARuta(const visitante &v, std::string idRuta, std::string nombreSendero, std::string nombreParque);
+        void guardarVisitante(const visitante &v);
 };
 
 #endif
