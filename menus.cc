@@ -2,6 +2,13 @@
 //proyecto IS
 
 #include "menus.h"
+#include "parques.h"
+#include "senderos.h"
+#include "rutas.h"
+#include "monitores.h"
+#include "visitantes.h"
+#include "persona.h"
+
 
 int menuAdmin(){
     int opc;
@@ -112,31 +119,112 @@ int menuParques(){
 
   case 0:
   //
-  //
+  //FUNCION DE MOSTRAR LISTAS DE PARQUES
+  cout<<"   --- Menu de Introduccion de Datos --- \n";
+
+  cout<<"--- Por favor, introduzca el nombre del nuevo parque natural --- \n";
+  setNombre(string nombre);
+
+  //Funcion que compruebe que el nombre del parque ya exista
+  //Funcion que pida nuevo nombre en caso de que exista
+
+  cout<<"--- Por favor, introduzca un sendero a la lista de sendero asociados al nuevo parque --- \n";
+  addSendero(sendero newSendero);
+
+  cout<<"--- Por favor, introduzca la fecha del nombramiento del parque natural --- \n";
+  setFechaNombramientoParque(string fechaNombramiento);
+
+  cout<<"--- Por favor, introduzca el tamaño del parque natural en kilometros cuadrados --- \n";
+  setTamano(int tamano);
+
+  cout<<"--- Por favor, introduzca el nombre de los premios otorgados al parque natural, separado por comas --- \n";
+  setPremios(string premios);
+
+  cout<<"--- Por favor, introduzca una breve descripcion del nuevo parque natural --- \n";
+  setDescripcion(string descripcion);
+
+  cout<<"--- A continuacion se mostrarán los datos del parque existente --- \n";
+  getNombre();
+  //Funcion que devuelva los senderos Asociados
+  getFechaNombramientoParque();
+  getTamamo();
+  getPremios();
+  getDescripcion();
+
+
   //
   break;
 
   case 1:
   //
-  //
+  //FUNCION DE MOSTRAR LISTAS DE PARQUES
+  cout<<"   --- Menu de Introduccion de Datos --- \n";
+
+    //Funcion que compruebe que el nombre del parque ya exista
+    //Funcion que pida nuevo nombre en caso de que exista
+
+  cout<<"--- Por favor, introduzca el nuevo nombre del parque natural --- \n";
+  setNombre(string nombre);
+
+  cout<<"--- Por favor, introduzca un sendero a la lista de sendero asociados al parque --- \n";
+  addSendero(sendero newSendero);
+
+  cout<<"--- Por favor, introduzca la fecha del nombramiento del parque natural --- \n";
+  setFechaNombramientoParque(string fechaNombramiento);
+
+  cout<<"--- Por favor, introduzca el tamaño del parque natural en kilometros cuadrados --- \n";
+  setTamano(int tamano);
+
+  cout<<"--- Por favor, introduzca el nombre de los premios otorgados al parque natural, separado por comas --- \n";
+  setPremios(string premios);
+
+  cout<<"--- Por favor, introduzca una breve descripcion del parque natural --- \n";
+  setDescripcion(string descripcion);
+
+  cout<<"--- A continuacion se mostrarán los datos del parque existente --- \n";
+  getNombre();
+  //Funcion que devuelva los senderos Asociados
+  getFechaNombramientoParque();
+  getTamamo();
+  getPremios();
+  getDescripcion();
   //
   break;
 
   case 2:
   //
-  //
-  //
+  cout<<"--- Por favor, introduzca la nueva disponibilidad del parque natural\n";
+  setDisponibilidad(bool disponibilidad);
+  getDisponibilidad();
   break;
 
   case 3:
   //
-  //
+  //Funcion mostrar lista de PARQUES
+  //Funcion de seleccion y eliminacion de parques
+  cout<<"--- Esta seguro de que desea borrar el parque ---\n";
+  cout<<"--- Escriba 1 si desea confirmarlo, 0 si no ---\n";
+  int decis;
+  cin<<decis;
+  if(decis==0){
+    //funcion de borrado de parque
+  if(decis==1){
+    //funcion que muestre la lista de parques
+  }
   //
   break;
 
   case 4:
   //
-  //
+  //Funcion mostrar lista de PARQUES
+  //Funcion buscar parque concreto
+  cout<<"--- A continuacion se mostrarán los datos del parque existente --- \n";
+  getNombre();
+  //Funcion que devuelva los senderos Asociados
+  getFechaNombramientoParque();
+  getTamamo();
+  getPremios();
+  getDescripcion();
   //
   break;
 
@@ -199,7 +287,7 @@ case 5:
   return 0;
 break;
 
-}
+
 
 int menuVisitantes(){
   int i;
