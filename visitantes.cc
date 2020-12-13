@@ -3,11 +3,10 @@
 
 #include "visitantes.h"
 
-visitante::visitante(string DNI, string nombre, string apellidos, int Tlfn, 
+visitante::visitante(string DNI, string nombreCompleto, string Tlfn, 
             string fechaDeNacimiento, string condicion){
         setDNI(DNI);
-        setNombre(nombre);
-        setApellidos(apellidos);
+	setNombreCompleto(nombreCompleto);
         setNumeroDeTlfn(Tlfn);
         setFechaDeNacimiento(fechaDeNacimiento);
         setCondicion(condicion);
