@@ -8,6 +8,7 @@
 #include "monitores.h"
 #include "visitantes.h"
 #include "persona.h"
+#include "fileIO.h"
 
 
 int menuAdmin(){
@@ -89,16 +90,24 @@ bool comprobarAdmin(){
   return false;
 }
 
-bool comprobarMonitor(bool es_Monitor){
-  es_Monitor=false;
+bool comprobarMonitor(){
   string dni;
+  for (int i = 0; i<3; i++){
     cout<<" Por favor, introduzca su DNI.\n";
-    cin>>DNI;
-    //Funcion comprobacion DNI
-    //
-    //
-return es_Monitor;
+    cin>>dni;
+    if (){
+        cout<<"DNI correcto\n";
+        return true;
+    }
+    else {
+        cout<<" DNI incorrecto.";
+        printf("Quedan %d intentos", 3-i);
+    }
+  }
+cout<<"Maximo numero de intentos permitido alcanzado\n"
+return false;
 }
+
 
 int menuParques(){
   int i;
@@ -125,6 +134,7 @@ int menuParques(){
   cout<<"--- Por favor, introduzca el nombre del nuevo parque natural --- \n";
   setNombre(string nombre);
 
+  while()
   //Funcion que compruebe que el nombre del parque ya exista
   //Funcion que pida nuevo nombre en caso de que exista
 
@@ -143,9 +153,12 @@ int menuParques(){
   cout<<"--- Por favor, introduzca una breve descripcion del nuevo parque natural --- \n";
   setDescripcion(string descripcion);
 
+  guardarParque(const parque &p);
+
   cout<<"--- A continuacion se mostrarán los datos del parque existente --- \n";
   getNombre();
   //Funcion que devuelva los senderos Asociados
+  getSenderosParque(std::string nombre);
   getFechaNombramientoParque();
   getTamamo();
   getPremios();
@@ -184,6 +197,7 @@ int menuParques(){
   cout<<"--- A continuacion se mostrarán los datos del parque existente --- \n";
   getNombre();
   //Funcion que devuelva los senderos Asociados
+  getSenderosParque(std::string nombre);
   getFechaNombramientoParque();
   getTamamo();
   getPremios();
@@ -208,6 +222,7 @@ int menuParques(){
   cin<<decis;
   if(decis==0){
     //funcion de borrado de parque
+    borrarParque(const parque &p);
   if(decis==1){
     //funcion que muestre la lista de parques
   }
@@ -221,6 +236,7 @@ int menuParques(){
   cout<<"--- A continuacion se mostrarán los datos del parque existente --- \n";
   getNombre();
   //Funcion que devuelva los senderos Asociados
+  getSenderosParque(std::string nombre);
   getFechaNombramientoParque();
   getTamamo();
   getPremios();
