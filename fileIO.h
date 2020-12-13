@@ -50,9 +50,9 @@ class FileIO {
         void borrarParque(const parque &p);
         void borrarSendero(const sendero &s, const parque &p);
         void borrarRuta(const ruta &r, const sendero &s, const parque &p);
-//      void borrarMonitor(const monitor &m);
+        void borrarMonitor(const monitor &m);
         void borrarVisitanteRuta(const visitante &v, const ruta &r, const sendero &s, const parque &p);
-//      void borrarVisitante(const visitante &v);
+        void borrarVisitante(const visitante &v);
 
 
         void guardarParque(const parque &p);         

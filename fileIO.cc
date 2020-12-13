@@ -456,7 +456,7 @@ void FileIO::borrarParque (const parque &p) {
     }
 }
 
-/* void FileIO::borrarMonitor (const monitor &m){
+ void FileIO::borrarMonitor (const monitor &m){
     std::list<monitor> monitores = getInstance()->getTodosMonitores();
     std::ofstream file("monitores.txt");
     if (file) {
@@ -473,7 +473,49 @@ void FileIO::borrarParque (const parque &p) {
         }
         file.close();
     }
-} */
+    std::list<parque> parques = getInstance()->getTodosParques();
+    std::ofstream file(_path);
+    if (file){
+        for(parque &parque : parques){
+            std::list<sendero> senderos = getInstance()->getSenderosParque(parque.getNombre());
+            std::ofstream senderosfile(parque.getNombre() + "_senderos.txt");
+            if (senderosfile){
+                for(sendero &sendero : senderos){
+                    std::list<ruta> rutas = getInstance()->getRutasSendero(parque.getNombre() + "_" + sendero.getNombre());
+                    std::ofstream rutasfile(parque.getNombre() + "_" + sendero.getNombre() + "_rutas.txt");
+                    if (rutasfile){
+                        for(ruta &ruta : rutas){
+                            if(ruta.getMonitorAsociado() != m.getDNI()){
+                                rutasfile << ruta.getIdentificador()          << std::endl;
+                                rutasfile << ruta.getDificultad()        << std::endl;
+                                rutasfile << ruta.getMonitorAsociado()     << std::endl;
+                                rutasfile << ruta.getFecha()  << std::endl;
+                                rutasfile << ruta.getHora()  << std::endl;
+                                rutasfile << ruta.getDuracionEstimada()  << std::endl;
+                                rutasfile << ruta.getBicicleta()  << std::endl;
+                                rutasfile << ruta.getGrupoVisitantes() << std::endl;
+                            }
+                            else{
+                                rutasfile << ruta.getIdentificador()          << std::endl;
+                                rutasfile << ruta.getDificultad()        << std::endl;
+                                rutasfile <<     ""    << std::endl;
+                                rutasfile << ruta.getFecha()  << std::endl;
+                                rutasfile << ruta.getHora()  << std::endl;
+                                rutasfile << ruta.getDuracionEstimada()  << std::endl;
+                                rutasfile << ruta.getBicicleta()  << std::endl;
+                                rutasfile << ruta.getGrupoVisitantes() << std::endl;
+                            }
+                        }
+                        rutasfile.close();
+                    }
+                }
+                senderosfile.close();
+            }
+        }
+        file.close();
+    }
+
+} 
 
 void FileIO::borrarSendero (const sendero &s, const parque &p) {
     std::string nombreParque = p.getNombre();
@@ -515,18 +557,18 @@ void FileIO::borrarRuta(const ruta &r, const sendero &s, const parque &p){
                 file << ruta.getHora()  << std::endl;
                 file << ruta.getDuracionEstimada()  << std::endl;
                 file << ruta.getBicicleta()  << std::endl;
-                file << ruta.setGrupoVisitantes() << std::endl;
+                file << ruta.getGrupoVisitantes() << std::endl;
             }
         }
         file.close();
     }
 }
 
-/*void FileIO::borrarVisitante(const visitante &v){
+void FileIO::borrarVisitante(const visitante &v){
     std::list<visitante> visitantes = getInstance()->getTodosVisitantes();
     std::ofstream file("visitantes.txt");
     if (file) {
-        for (visitante &visitante : visitante) {
+        for (visitante &visitante : visitantes) {
             if (visitante.getDNI() != v.getDNI()) {
                 file << visitante.getDNI()          << std::endl;
                 file << visitante.getNombreCompleto()        << std::endl;
@@ -537,8 +579,42 @@ void FileIO::borrarRuta(const ruta &r, const sendero &s, const parque &p){
         }
         file.close();
     }
-
-}*/
+    std::list<parque> parques = getInstance()->getTodosParques();
+    std::ofstream file(_path);
+    if (file){
+        for(parque &parque : parques){
+            std::list<sendero> senderos = getInstance()->getSenderosParque(parque.getNombre());
+            std::ofstream senderosfile(parque.getNombre() + "_senderos.txt");
+            if (senderosfile){
+                for(sendero &sendero : senderos){
+                    std::list<ruta> rutas = getInstance()->getRutasSendero(parque.getNombre() + "_" + sendero.getNombre());
+                    std::ofstream rutasfile(parque.getNombre() + "_" + sendero.getNombre() + "_rutas.txt");
+                    if (rutasfile){
+                        for(ruta &ruta : rutas){
+                            std::list<visitante> visitantes = getInstance()->getVisitantesRuta(parque.getNombre() + "_" + sendero.getNombre() + "_" + ruta.getIdentificador());
+                            std::ofstream visitantesfile(parque.getNombre() + "_" + sendero.getNombre() + "_" + ruta.getIdentificador() + ".txt");
+                            if(visitantesfile){
+                                for(visitante &visitante : visitantes){
+                                    if(visitante.getDNI() != v.getDNI()){
+                                        file << visitante.getDNI()          << std::endl;
+                                        file << visitante.getNombreCompleto()        << std::endl;
+                                        file << visitante.getNumeroDeTlfn()     << std::endl;
+                                        file << visitante.getFechaDeNacimiento()  << std::endl;
+                                        file << visitante.getCondicion()  << std::endl;
+                                    }
+                                }
+                                visitantesfile.close();
+                            }
+                        }
+                        rutasfile.close();
+                    }
+                }
+                senderosfile.close();
+            }
+        }
+        file.close();
+    }
+}
 
 void FileIO::borrarVisitanteRuta(const visitante &v, const ruta &r, const sendero &s, const parque &p){
     std::string nombreParque = p.getNombre();
@@ -912,4 +988,3 @@ void FileIO::guardarMonitor(const monitor &m){
         file.close();
     }
 }
-
