@@ -125,44 +125,39 @@ int menuParques(){
     cout<<" Opcion invalida. Por favor, seleccione una opcion valida.\n";
     cin<<i;
   }
-
+  switch(i){
+    string aux="";
+    int tamano=0;
+    parque p;
   case 0:
   //
   //FUNCION DE MOSTRAR LISTAS DE PARQUES
   cout<<"   --- Menu de Introduccion de Datos --- \n";
 
   cout<<"--- Por favor, introduzca el nombre del nuevo parque natural --- \n";
-  setNombre(string nombre);
-
-  while()
+  cin>>aux;
+  p.setNombre(aux);
   //Funcion que compruebe que el nombre del parque ya exista
   //Funcion que pida nuevo nombre en caso de que exista
-
-  cout<<"--- Por favor, introduzca un sendero a la lista de sendero asociados al nuevo parque --- \n";
-  addSendero(sendero newSendero);
-
   cout<<"--- Por favor, introduzca la fecha del nombramiento del parque natural --- \n";
-  setFechaNombramientoParque(string fechaNombramiento);
+  cin>>aux;
+  p.setFechaNombramientoParque(aux);
 
   cout<<"--- Por favor, introduzca el tamaño del parque natural en kilometros cuadrados --- \n";
-  setTamano(int tamano);
+  cin>>tamano;
+  p.setTamano(tamano);
 
   cout<<"--- Por favor, introduzca el nombre de los premios otorgados al parque natural, separado por comas --- \n";
-  setPremios(string premios);
+  cin>>aux;
+  p.setPremios(aux);
 
   cout<<"--- Por favor, introduzca una breve descripcion del nuevo parque natural --- \n";
-  setDescripcion(string descripcion);
+  cin>>aux;
+  p.setDescripcion(aux);
 
-  guardarParque(const parque &p);
+  guardarParque(p);
 
-  cout<<"--- A continuacion se mostrarán los datos del parque existente --- \n";
-  getNombre();
-  //Funcion que devuelva los senderos Asociados
-  getSenderosParque(std::string nombre);
-  getFechaNombramientoParque();
-  getTamamo();
-  getPremios();
-  getDescripcion();
+  p.imprimirParque();
 
 
   //
@@ -175,33 +170,29 @@ int menuParques(){
 
     //Funcion que compruebe que el nombre del parque ya exista
     //Funcion que pida nuevo nombre en caso de que exista
-
-  cout<<"--- Por favor, introduzca el nuevo nombre del parque natural --- \n";
-  setNombre(string nombre);
-
-  cout<<"--- Por favor, introduzca un sendero a la lista de sendero asociados al parque --- \n";
-  addSendero(sendero newSendero);
+    //FUNCION MOSTRAR NOMBRES DE PARQUES.
+  cout<<"--- Por favor, introduzca el nombre del parque natural --- \n";
+  cin>>aux;
+  p.setNombre(aux);
 
   cout<<"--- Por favor, introduzca la fecha del nombramiento del parque natural --- \n";
-  setFechaNombramientoParque(string fechaNombramiento);
+  cin>>aux;
+  p.setFechaNombramientoParque(aux);
 
   cout<<"--- Por favor, introduzca el tamaño del parque natural en kilometros cuadrados --- \n";
-  setTamano(int tamano);
+  cin>>tamano;
+  p.setTamano(tamano);
 
   cout<<"--- Por favor, introduzca el nombre de los premios otorgados al parque natural, separado por comas --- \n";
-  setPremios(string premios);
+  cin>>aux;
+  p.setPremios(aux);
 
   cout<<"--- Por favor, introduzca una breve descripcion del parque natural --- \n";
-  setDescripcion(string descripcion);
-
-  cout<<"--- A continuacion se mostrarán los datos del parque existente --- \n";
-  getNombre();
+  cin>>aux;
+  p.setDescripcion(aux);
+  guardarParque(p);
   //Funcion que devuelva los senderos Asociados
-  getSenderosParque(std::string nombre);
-  getFechaNombramientoParque();
-  getTamamo();
-  getPremios();
-  getDescripcion();
+  p.imprimirParque();
   //
   break;
 
@@ -248,6 +239,7 @@ int menuParques(){
     return 0;
   break;
 }
+}
 
 int menuSenderos(){
   int i;
@@ -270,14 +262,28 @@ int menuSenderos(){
 
 
 case 0:
-//
-//
-//
+cout<<"--- Por favor, seleccione el parque al que quiere añadir el sendero.. --- \n";
+//MOSTRAR LISTA DE PARQUES
+cout<<"   --- Menu de Introduccion de Datos --- \n";
+// FUNCION QUE GUARDE EL PARQUE SELECCIONADO EN UNA VARIABLE (PARA NO TENER QUE VOLVER A PEDIRLA)
+cout<<"--- Por favor, introduzca el nombre del nuevo sendero. --- \n";
+setNombre(string nombre);
+setParqueAsociado(string nombre); //AQUI IRIA LA VARIABLE GUARDADA POSTERIORMENTE
+cout<<"--- Por favor, introduzca el nombre del nuevo sendero. --- \n";
+
+
+//Funcion que compruebe que el nombre del sendero ya exista en ese parque.
+//Funcion que pida nuevo nombre en caso de que exista (pueden ser ambos pasos en la misma funcion, una funcion recursiva)
+
+//MOSTRAR LISTA DE SENDEROS ASOCIADOS AL PARQUE ELEGIDO
+cout<<"SENDERO AÑADIDO CON EXITO. "<<endl;
 break;
 
 case 1:
-//
-//
+cout<<"--- Por favor, seleccione el parque al que quiere añadir el sendero.. --- \n";
+//MOSTRAR LISTA DE PARQUES
+
+
 //
 break;
 

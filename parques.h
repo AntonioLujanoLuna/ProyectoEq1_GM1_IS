@@ -19,8 +19,8 @@ class parque {
         bool disponibilidad_;
         list <sendero> senderos_;
     public:
-        parque(string nombre, list <sendero> senderos=NULL, string fechaNombramientoParque="",
-            int tamano=0, string premios="", string descripcion="", bool disponibilidad=true), list <sendero> senderos_ = NULL);
+        parque(string nombre, string fechaNombramientoParque="",
+            int tamano=0, string premios="", string descripcion="", bool disponibilidad=true, list <sendero> senderos=NULL), list <sendero> senderos_ = NULL);
 ;
         inline string getNombre()const{return nombre_;};
         inline void setNombre(string nombre){nombre_=nombre;};
