@@ -36,9 +36,8 @@ class parque {
         inline string getDescripcion()const{return descripcion_;};
         inline void setDescripcion(string descripcion){descripcion_=descripcion;};
         inline bool getDisponibilidad()const{return disponibilidad_;};
-        inline void setDisponibilidad(bool disponibilidad){disponibilidad_=disponibilidad;};
-        void imprimirParque();
-
+        inline void setDisponibilidad(bool disponibilidad){disponibilidad_=disponibilidad;}
+        void imprimirParque(); 
 
 };
 

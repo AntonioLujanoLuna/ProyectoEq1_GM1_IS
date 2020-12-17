@@ -1,6 +1,5 @@
 //menus.cc
 //proyecto IS
-
 #include "menus.h"
 #include "parques.h"
 #include "senderos.h"
@@ -9,6 +8,9 @@
 #include "visitantes.h"
 #include "persona.h"
 #include "fileIO.h"
+#include "extra.h"
+#include <list>
+using namespace std;
 
 
 int menuAdmin(){
@@ -131,7 +133,7 @@ int menuParques(){
     parque p;
   case 0:
   //
-  //FUNCION DE MOSTRAR LISTAS DE PARQUES
+  mostrarNombresParques();
   cout<<"   --- Menu de Introduccion de Datos --- \n";
 
   cout<<"--- Por favor, introduzca el nombre del nuevo parque natural --- \n";
@@ -165,18 +167,15 @@ int menuParques(){
 
   case 1:
   //
-  //FUNCION DE MOSTRAR LISTAS DE PARQUES
-  cout<<"   --- Menu de Introduccion de Datos --- \n";
+  mostrarNombresParques();
 
-    //Funcion que compruebe que el nombre del parque ya exista
-    //Funcion que pida nuevo nombre en caso de que exista
-    //FUNCION MOSTRAR NOMBRES DE PARQUES.
+  cout<<"   --- Menu de Introduccion de Datos --- \n";
   cout<<"--- Por favor, introduzca el nombre del parque natural --- \n";
-  cin>>aux;
+  getline(cin, aux);
   p.setNombre(aux);
 
   cout<<"--- Por favor, introduzca la fecha del nombramiento del parque natural --- \n";
-  cin>>aux;
+  getline(cin, aux);
   p.setFechaNombramientoParque(aux);
 
   cout<<"--- Por favor, introduzca el tamaño del parque natural en kilometros cuadrados --- \n";
@@ -184,11 +183,11 @@ int menuParques(){
   p.setTamano(tamano);
 
   cout<<"--- Por favor, introduzca el nombre de los premios otorgados al parque natural, separado por comas --- \n";
-  cin>>aux;
+  getline(cin, aux);
   p.setPremios(aux);
 
   cout<<"--- Por favor, introduzca una breve descripcion del parque natural --- \n";
-  cin>>aux;
+  getline(cin, aux);
   p.setDescripcion(aux);
   guardarParque(p);
   //Funcion que devuelva los senderos Asociados
@@ -197,41 +196,80 @@ int menuParques(){
   break;
 
   case 2:
-  //
-  cout<<"--- Por favor, introduzca la nueva disponibilidad del parque natural\n";
-  setDisponibilidad(bool disponibilidad);
-  getDisponibilidad();
+  mostrarNombresParques();
+  cout<<"--- Por favor, introduzca el nombre del parque natural a cambiar disponibilidad\n";
+  cin>>aux;
+  p.setNombre(aux);
+  cout<<"Introduzca 1 si quiere que el parque este disponible y 0 en caso contrario"<<endl;
+  cin>>tamano;
+    if(tamano>1 || tamano<0)
+    {
+      cout<<"ERROR, numero no valido. Debe introducir 1 o 0"<<endl;
+      menuParques();
+    }
+    else if(tamano=1)
+    {
+      p.setDisponibilidad(true);
+      if(p.getDisponibilidad()==false)
+       {
+         cout<<"ERROR al cambiar la disponibilidad del parque."<<endl;
+         menuParques();
+       }
+       else
+       {
+         cout<<"Disponibilidad cambiada con exito."<<endl;
+       }
+    }
+    else if(tamano=0)
+    {
+      p.setDisponibilidad(false);
+      if(p.getDisponibilidad()==true)
+       {
+         cout<<"ERROR al cambiar la disponibilidad del parque."<<endl;
+         menuParques();
+       }
+       else
+       {
+         cout<<"Disponibilidad cambiada con exito."<<endl;
+       }
+    }
+  guardarParque(p);
   break;
 
   case 3:
   //
-  //Funcion mostrar lista de PARQUES
-  //Funcion de seleccion y eliminacion de parques
-  cout<<"--- Esta seguro de que desea borrar el parque ---\n";
+  mostrarNombresParques();
+  cout<<"Introduzca el nombre del parque que quiere borrar"<<endl;
+  cin>>aux;
+  p.setNombre(aux);
+  cout<<"--- ¿Esta seguro de que desea borrar el parque? ---\n";
   cout<<"--- Escriba 1 si desea confirmarlo, 0 si no ---\n";
   int decis;
   cin<<decis;
-  if(decis==0){
-    //funcion de borrado de parque
-    borrarParque(const parque &p);
   if(decis==1){
-    //funcion que muestre la lista de parques
+    borrarParque(p);
+  if(decis==0){
+    menuParques();
   }
   //
   break;
 
   case 4:
   //
-  //Funcion mostrar lista de PARQUES
-  //Funcion buscar parque concreto
+  mostrarNombresParques();
+  cout<<"Introduzca el nombre del parque que quiere mostrar por pantalla."<<endl;
+  cin>>aux;
   cout<<"--- A continuacion se mostrarán los datos del parque existente --- \n";
-  getNombre();
-  //Funcion que devuelva los senderos Asociados
-  getSenderosParque(std::string nombre);
-  getFechaNombramientoParque();
-  getTamamo();
-  getPremios();
-  getDescripcion();
+
+  list<parque> parques=getInstance()->GetTodosParques();
+  for(parque &parque: parques)
+  {
+    if(aux==parque.getNombre())
+    {
+      parque.imprimirParque();
+    }
+  }
+
   //
   break;
 

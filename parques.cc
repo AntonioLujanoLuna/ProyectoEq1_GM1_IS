@@ -13,8 +13,9 @@ parque::parque(string nombre, string fechaNombramientoParque,
         setDescripcion(descripcion);
         setDisponibilidad(disponibilidad);
         setSenderos(senderos);
+      }
 
-parque::imprimirParque()
+void parque::imprimirParque()
 {
   cout<<"DATOS DEL PARQUE: \n";
   cout<<"NOMBRE: "<<this->getNombre()<<endl;
@@ -23,5 +24,5 @@ parque::imprimirParque()
   cout<<"PREMIOS: "<<this->getPremios()<<endl;
   cout<<"DESCRIPCION: "<<this->getDescripcion()<<endl;
   cout<<"DISPONIBILIDAD: "<<this->getDisponibilidad()<<endl;
-  cout<<"SENDEROS ASOCIADOS: "<<this->getSenderos()<<endl; 
+  cout<<"SENDEROS ASOCIADOS: "<<this->getSenderos()<<endl;
 }

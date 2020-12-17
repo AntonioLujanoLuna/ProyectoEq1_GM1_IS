@@ -80,7 +80,7 @@ bool horaValida (const std::string &str) {
         }
     }
     else {
-        return false;        
+        return false;
     }
 
     return true;
@@ -141,4 +141,12 @@ bool solapanRutas (const ruta &r1, const ruta &r2) {
     }
 
     return solapan;
+}
+void mostrarNombresParques()
+{
+  list<parque> parques=getInstance()->GetTodosParques();
+  for(parque &parque: parques)
+  {
+    std::cout<<parque.getNombre()<<endl;
+  }
 }
