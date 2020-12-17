@@ -15,3 +15,14 @@ ruta::ruta(string id, string dificultad, string monitor, string fecha,
         setGrupoVisitantes(visitantes);
 
 }
+
+void imprimirRuta(){
+  cout<<"DATOS DE LA RUTA: \n";
+  cout<<"IDENTIFICADOR: "<<this->getIdentificador()<<endl;
+  cout<<"DIFICULTAD: "<<this->getDificultad()<<endl;
+  cout<<"MONITOR ASOCIADO: "<<this->getMonitorAsociado()<<endl;
+  cout<<"FECHA: "<<this->getFecha()<<endl;
+  cout<<"HORA: "<<this->getHora()<<endl;
+  cout<<"DURACION ESTIMADA: "<<this->getDuracionEstimada()<<endl;
+  cout<<"BICICLETA: "<<this->getBicicleta()<<endl;
+}

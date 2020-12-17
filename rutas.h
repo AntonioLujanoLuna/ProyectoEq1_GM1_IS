@@ -25,7 +25,7 @@ class ruta {
         list <visitante> grupoVisitantes_;
 
     public:
-        ruta(string id, string dificultad = 2, string monitor = "", 
+        ruta(string id, string dificultad = 2, string monitor = "",
             string fecha = "", string hora = "", int duracion = 0, bool bici = true,
             list <visitante> visitantes = NULL);
         inline string getIdentificador()const{return identificador_;};
@@ -45,7 +45,7 @@ class ruta {
         inline list <visitante> getGrupoVisitante()const{return grupoVisitantes_;};
         inline void setGrupoVisitantes(list<visitante> visitantes){grupoVisitantes_=visitantes;};
         inline void addVisitante(visitante newVisitante){grupoVisitantes_.push_back(newVisitante);};
-
+        void imprimirRuta();
 };
 
 #endif
