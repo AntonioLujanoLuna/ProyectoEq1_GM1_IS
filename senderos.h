@@ -19,7 +19,7 @@ class sendero {
         list <ruta> rutas_;
 
     public:
-        sendero(string nombre, int longitud=0, string descripcion="", 
+        sendero(string nombre, int longitud=0, string descripcion="",
             bool disponibilidad=true, list <ruta> rutas=NULL);
         inline string getNombre()const{return nombre_;};
         inline void setNombre(string nombre){nombre_=nombre;};
@@ -32,6 +32,7 @@ class sendero {
         list <ruta> getRutas()const{return rutas_;};
         void setRutas(list<ruta> rutas){rutas_=rutas;};
         void addRuta(ruta newRuta){rutas_.push_back(newRuta);};
+        void imprimirSendero();
 
 };
 
