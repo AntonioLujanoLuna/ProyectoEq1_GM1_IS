@@ -484,20 +484,20 @@ int menuSenderos(){
   s.setNombre(aux);
 
 
-  cout<<"--- ¿Esta seguro de que desea borrar el parque? ---\n";
+  cout<<"--- ¿Esta seguro de que desea borrar el sendero? ---\n";
   cout<<"--- Escriba 1 si desea confirmarlo, 0 si no ---\n";
   int decis;
   cin<<decis;
   if(decis==1){
     borrarSenderos(aux,nomParque);
+  }
   if(decis==0){
     menuSenderos();
   }
-  //
   break;
 
   case 4:
-  //
+
   string nomParque;
   mostrarNombresParques();
   cout<<"--- Por favor, introduzca el nombre del parque cuyos senderos desea modificar. --- \n";
@@ -530,17 +530,15 @@ int menuSenderos(){
   {
     if(aux==s.getNombre())
     {
-      s.imprimerSendero();
+      s.imprimirSendero();
     }
   }
-
-  //
   break;
 
   case 5:
     return 0;
   break;
-}
+
 }
 }
 
@@ -551,7 +549,7 @@ int menuRutas(){
   cout<<"--- Seleccione la opcion a la que desee acceder. --- \n";
   cout<<"--- 0) Añadir una nueva ruta a un Sendero de un Parque Natural. --- \n";
   cout<<"--- 1) Modificar los datos de una ruta ya introducida. --- \n";
-  cout<<"--- 2) Cambiar la disponibilidad de una ruta. --- \n";
+  cout<<"--- 2) Finalizar una ruta. --- \n";
   cout<<"--- 3) Eliminar una ruta. --- \n";
   cout<<"--- 4) Mostrar los datos de una ruta ya introducida. --- \n";
   cout<<"--- 5) Salir del programa. --- \n";
@@ -733,4 +731,187 @@ int menuRutas(){
 
     break;
 
+    case 2:
+    string nomParque;
+    mostrarNombresParques();
+    cout<<"--- Por favor, introduzca el nombre del parque cuyos senderos quiere ver. --- \n";
+    cin>>nomParque;
+    existsParque(nomParque);
+    do{
+      cout<<" El parque no existe. Por favor, introduzca el nombre del parque cuyos senderos quiere ver. \n";
+      cin>>nomParque;
+      existsParque(nomParque);
+    }
+    while(existsParque (nomParque)==-2);
+
+
+    list<sendero> getSenderosParque(nomParque);
+    cout<<"--- Por favor, introduzca el nombre del sendero. --- \n";
+    cin>>aux;
+    existsSendero(aux, nomParque);
+    do{
+      cout<<" El sendero no existe. Por favor, introduzca el nombre del sendero cuyas rutas quiere ver. \n";
+      cin>>aux;
+      existsSendero(aux, nomParque);
+    }
+    while(existsSendero(aux, nomParque)==-2);
+    s.setNombre(aux);
+
+    string nomsendero==aux;
+    list<ruta> getRutasSendero(nomsendero);
+    cout<<"--- Por favor, introduzca el nombre de la ruta. --- \n";
+    cin>>aux;
+    existsRuta (aux, nomsendero, nomParque);
+    do{
+      cout<<" No existe la ruta. Por favor, introduzca el nombre de la ruta. \n";
+      cin>>aux;
+      existsRuta (aux, nomsendero, nomParque);
+    }
+    while(existsRuta (aux, nomsendero, nomParque)==-2);
+    r.setIdentidicador(aux);
+    string id==aux;
+
+    cout<<"Introduzca 1 si quiere finalizar la ruta y 0 en caso contrario"<<endl;
+    cin>>tamano;
+      if(tamano>1 || tamano<0)
+      {
+        cout<<"ERROR, numero no valido. Debe introducir 1 o 0"<<endl;
+        menuSenderos();
+      }
+      else if(tamano=1)
+      {
+        s.setDisponibilidad(true);
+        if(s.getDisponibilidad()==false)
+         {
+           cout<<"ERROR al finalizar la ruta."<<endl;
+          menuSenderos();
+         }
+         else
+         {
+           cout<<"Ruta finalizada con exito."<<endl;
+         }
+      }
+      else if(tamano=0)
+      {
+        s.setDisponibilidad(false);
+        if(s.getDisponibilidad()==true)
+         {
+           cout<<"ERROR al finalizar la ruta."<<endl;
+          menuSenderos();
+         }
+         else
+         {
+           cout<<"Disponibilidad cambiada con exito."<<endl;
+         }
+      }
+    guardarRuta(id, nomsendero,nomParque);
+    break;
+
+    case 3:
+
+    string nomParque;
+    mostrarNombresParques();
+    cout<<"--- Por favor, introduzca el nombre del parque cuyos senderos quiere ver. --- \n";
+    cin>>nomParque;
+    existsParque(nomParque);
+    do{
+      cout<<" El parque no existe. Por favor, introduzca el nombre del parque cuyos senderos quiere ver. \n";
+      cin>>nomParque;
+      existsParque(nomParque);
+    }
+    while(existsParque (nomParque)==-2);
+
+
+    list<sendero> getSenderosParque(nomParque);
+    cout<<"--- Por favor, introduzca el nombre del sendero. --- \n";
+    cin>>aux;
+    existsSendero(aux, nomParque);
+    do{
+      cout<<" El sendero no existe. Por favor, introduzca el nombre del sendero cuyas rutas quiere ver. \n";
+      cin>>aux;
+      existsSendero(aux, nomParque);
+    }
+    while(existsSendero(aux, nomParque)==-2);
+    s.setNombre(aux);
+
+
+    string nomsendero==aux;
+    list<ruta> getRutasSendero(nomsendero);
+    cout<<"--- Por favor, introduzca el nombre de la ruta. --- \n";
+    cin>>aux;
+    existsRuta (aux, nomsendero, nomParque);
+    do{
+      cout<<" No existe la ruta. Por favor, introduzca el nombre de la ruta. \n";
+      cin>>aux;
+      existsRuta (aux, nomsendero, nomParque);
+    }
+    while(existsRuta (aux, nomsendero, nomParque)==-2);
+    r.setIdentidicador(aux);
+    string id==aux;
+
+    cout<<"--- ¿Esta seguro de que desea borrar la ruta? ---\n";
+    cout<<"--- Escriba 1 si desea confirmarlo, 0 si no ---\n";
+    int decis;
+    cin<<decis;
+    if(decis==1){
+      borrarRuta(id, nomsendero, nomParque);
+    }
+    if(decis==0){
+      menuRutas();
+    }
+    break;
+
+    case 4:
+    string nomParque;
+    mostrarNombresParques();
+    cout<<"--- Por favor, introduzca el nombre del parque cuyos senderos quiere ver. --- \n";
+    cin>>nomParque;
+    existsParque(nomParque);
+    do{
+      cout<<" El parque no existe. Por favor, introduzca el nombre del parque cuyos senderos quiere ver. \n";
+      cin>>nomParque;
+      existsParque(nomParque);
+    }
+    while(existsParque (nomParque)==-2);
+
+
+    list<sendero> getSenderosParque(nomParque);
+    cout<<"--- Por favor, introduzca el nombre del sendero. --- \n";
+    cin>>aux;
+    existsSendero(aux, nomParque);
+    do{
+      cout<<" El sendero no existe. Por favor, introduzca el nombre del sendero cuyas rutas quiere ver. \n";
+      cin>>aux;
+      existsSendero(aux, nomParque);
+    }
+    while(existsSendero(aux, nomParque)==-2);
+    s.setNombre(aux);
+
+    string nomsendero==aux;
+    list<ruta> getRutasSendero(nomsendero);
+    cout<<"--- Por favor, introduzca el nombre de la ruta. --- \n";
+    cin>>aux;
+    existsRuta (aux, nomsendero, nomParque);
+    do{
+      cout<<" No existe la ruta. Por favor, introduzca el nombre de la ruta. \n";
+      cin>>aux;
+      existsRuta (aux, nomsendero, nomParque);
+    }
+    while(existsRuta (aux, nomsendero, nomParque)==-2);
+    r.setIdentidicador(aux);
+    string id==aux;
+    for(ruta &ruta: rutas)
+    {
+      if(aux==r.getNombre())
+      {
+        r.imprimirRuta();
+      }
+    }
+    break;
+
+    case 5:
+      return 0;
+    break;
+
+  }
 }
