@@ -782,8 +782,8 @@ int menuRutas(){
       }
       else if(tamano=1)
       {
-        s.setDisponibilidad(true);
-        if(s.getDisponibilidad()==false)
+        r.setDisponibilidad(true);
+        if(r.getDisponibilidad()==false)
          {
            cout<<"ERROR al finalizar la ruta."<<endl;
           menuSenderos();
@@ -795,8 +795,8 @@ int menuRutas(){
       }
       else if(tamano=0)
       {
-        s.setDisponibilidad(false);
-        if(s.getDisponibilidad()==true)
+        r.setDisponibilidad(false);
+        if(r.getDisponibilidad()==true)
          {
            cout<<"ERROR al finalizar la ruta."<<endl;
           menuSenderos();
@@ -923,7 +923,7 @@ int menuVisitantes(){
   int i;
   cout<<"   --- Gestion de Visitantes --- \n";
   cout<<"--- Seleccione la opcion a la que desee acceder. --- \n";
-  cout<<"--- 0) Añadir un nuevo visitante a una ruta ya creada. --- \n";
+  cout<<"--- 0) Añadir un nuevo un visitante. --- \n";
   cout<<"--- 1) Modificar los datos de visitante ya introducido. --- \n";
   cout<<"--- 2) Cancelar visita. --- \n";
   cout<<"--- 3) Mostrar los datos de un visitante ya introducido. --- \n";
@@ -948,13 +948,14 @@ int menuVisitantes(){
 
   cout<<"Por favor, introduzca el DNI del nuevo visitante";
   cin>>aux;
-  existsVisitante(aux);
+  f.existsVisitante(aux);
 
   do{
     cout<<"Ya existe un visitante con ese DNI. Por favor, introduzca otro DNI para el nuevo visitante";
     cin>>aux;
-  }while(existsVisitante(aux)==-1);
+  }while(f.existsVisitante(aux)==-1);
   string dni==aux;
+  v.setDNI(aux);
 
   cout<<"--- Por favor, introduzca el nombre completo del nuevo visitante. --- \n";
   cin>>aux;
@@ -978,16 +979,17 @@ int menuVisitantes(){
   break;
 
   case 1:
-
+  list<visitante> getTodosVisitantes();
   cout<<"Por favor, introduzca el DNI del visitante a Modificar";
   cin>>aux;
-  existsVisitante(aux);
+  f.existsVisitante(aux);
 
   do{
-    cout<<"Ya existe un visitante con ese DNI. Por favor, introduzca otro DNI para el nuevo visitante";
+    cout<<"No existe ningun visitante con ese DNI. Por favor, introduzca el DNI del visitante.";
     cin>>aux;
-  }while(existsVisitante(aux)==-2);
+  }while(f.existsVisitante(aux)==-2);
   string dni==aux;
+  v.setDNI(aux);
 
   cout<<"--- Por favor, introduzca el nombre completo del visitante. --- \n";
   getline(cin, aux);
@@ -1012,15 +1014,15 @@ int menuVisitantes(){
   break;
 
   case 2:
-
-  cout<<"Por favor, introduzca el DNI del visitante a Modificar";
+  list<visitante> getTodosVisitantes();
+  cout<<"Por favor, introduzca el DNI del visitante cuya visita quiere cancelar.";
   cin>>aux;
-  existsVisitante(aux);
+  f.existsVisitante(aux);
 
   do{
-    cout<<"Ya existe un visitante con ese DNI. Por favor, introduzca otro DNI para el nuevo visitante";
+    cout<<"No existe ningun visitante con ese DNI. Por favor, introduzca el DNI del visitante.";
     cin>>aux;
-  }while(existsVisitante(aux)==-2);
+  }while(f.existsVisitante(aux)==-2);
   string dni==aux;
 
   cout<<"--- ¿Esta seguro de que desea cancelar la visita? ---\n";
@@ -1037,15 +1039,15 @@ int menuVisitantes(){
   break;
 
   case 3:
-
+  list<visitante> getTodosVisitantes();
   cout<<"Por favor, introduzca el DNI del visitante cuyos datos quiere ver";
   cin>>aux;
-  existsVisitante(aux);
+  f.existsVisitante(aux);
 
   do{
-    cout<<"Ya existe un visitante con ese DNI. Por favor, introduzca otro DNI para el nuevo visitante";
+    cout<<"No existe ningun visitante con ese DNI. Por favor, introduzca el DNI del visitante.";
     cin>>aux;
-  }while(existsVisitante(aux)==-2);
+  }while(f.existsVisitante(aux)==-2);
   string dni==aux;
 
   for(visitante &visitante: visitantes)
@@ -1058,7 +1060,7 @@ int menuVisitantes(){
   break;
 
   case 4:
-
+  list<visitante> getTodosVisitantes();
   string nomParque;
   mostrarNombresParques();
   cout<<"--- Por favor, introduzca el nombre del parque cuyos senderos quiere ver. --- \n";
@@ -1102,7 +1104,7 @@ int menuVisitantes(){
   existsVisitante(aux);
 
   do{
-    cout<<"Ya existe un visitante con ese DNI. Por favor, introduzca otro DNI para el nuevo visitante";
+    cout<<"No existe ningun visitante con ese DNI. Por favor, introduzca el DNI del visitante.";
     cin>>aux;
   }while(existsVisitante(aux)==-2);
   string dni==aux;
@@ -1112,7 +1114,202 @@ int menuVisitantes(){
   break;
 
   case 5:
-    menuAdmin();
+    menuMonitor();
   break;
 }
+}
+
+int menuMonitores(){
+
+  int i;
+  cout<<"   --- Gestion de Monitores --- \n";
+  cout<<"--- Seleccione la opcion a la que desee acceder. --- \n";
+  cout<<"--- 0) Añadir un nuevo monitor. --- \n";
+  cout<<"--- 1) Modificar los datos de un monitor ya introducido. --- \n";
+  cout<<"--- 2) Dar de baja / alta a un monitor. --- \n";
+  cout<<"--- 3) Mostrar los datos de un monitor ya introducido. --- \n";
+  cout<<"--- 4) Eliminar un monitor del sistema. --- \n";
+  cout<<"--- 5) Volver al menu principal. --- \n";
+  cin>>i;
+
+  while(i<0||i>5){
+    cout<<" Opcion invalida. Por favor, seleccione una opcion valida.\n";
+    cin>>i;
+  }
+  switch(i){
+    string aux="";
+    int tamano=0;
+    parque p;
+    sendero s;
+    ruta r;
+    visitante v;
+    monitor m;
+
+    case 0:
+
+    cout<<"Por favor, introduzca el DNI del nuevo monitor";
+    cin>>aux;
+    f.existsMonitor(aux);
+
+    do{
+      cout<<"Ya existe un monitor con ese DNI. Por favor, introduzca otro DNI para el nuevo monitor";
+      cin>>aux;
+    }while(f.existsMonitor(aux)==-1);
+    string dni==aux;
+    m.setDNI(aux);
+
+    cout<<"--- Por favor, introduzca el nombre completo del Monitor. --- \n";
+    cin>>aux;
+    m.setNombreCompleto(aux);
+
+    cout<<"--- Por favor, introduzca el numero de telefono del Monitor. --- \n";
+    cin>>aux;
+    m.setNumeroDeTlfn(aux);
+
+    cout<<"--- Por favor, introduzca la fecha de nacimiento del Monitor. --- \n";
+    cin>>aux;
+    m.setFechaDeNacimiento(aux);
+
+    cout<<"--- Por favor, introduzca cualquier condicion a tener en cuenta . --- \n";
+    cin>>aux;
+    m.setCondicion(aux);
+
+    f.guardarMonitor(&m);
+    m.imprimirMonitor();
+    break;
+
+    case 1:
+
+    cout<<"Por favor, introduzca el DNI del monitor";
+    cin>>aux;
+    f.existsMonitor(aux);
+
+    do{
+      cout<<"No existe un monitor con ese DNI. Por favor, introduzca el DNI del monitor cuyos datos quiere modificar.";
+      cin>>aux;
+    }while(f.existsMonitor(aux)==-2);
+    string dni==aux;
+
+    cout<<"--- Por favor, introduzca el nombre completo del Monitor. --- \n";
+    getline(cin,aux);
+    m.setNombreCompleto(aux);
+
+    cout<<"--- Por favor, introduzca el numero de telefono del Monitor. --- \n";
+    getline(cin,aux);
+    m.setNumeroDeTlfn(aux);
+
+    cout<<"--- Por favor, introduzca la fecha de nacimiento del Monitor. --- \n";
+    getline(cin,aux);
+    m.setFechaDeNacimiento(aux);
+
+    cout<<"--- Por favor, introduzca cualquier condicion a tener en cuenta . --- \n";
+    getline(cin,aux);
+    m.setCondicion(aux);
+
+    f.guardarMonitor(&m);
+    m.imprimirMonitor();
+
+    break;
+
+    case 2:
+
+    cout<<"Por favor, introduzca el DNI del monitor";
+    cin>>aux;
+    f.existsMonitor(aux);
+
+    do{
+      cout<<"No existe un monitor con ese DNI. Por favor, introduzca el DNI del monitor cuyos datos quiere modificar.";
+      cin>>aux;
+    }while(f.existsMonitor(aux)==-2);
+    string dni==aux;
+    m.setDNI(dni);
+
+    cout<<"Introduzca 1 si quiere que el monitor este disponible y 0 en caso contrario"<<endl;
+    cin>>tamano;
+      if(tamano>1 || tamano<0)
+      {
+        cout<<"ERROR, numero no valido. Debe introducir 1 o 0"<<endl;
+        menuParques();
+      }
+      else if(tamano=1)
+      {
+        m.setDisponibilidad(true);
+        if(m.getDisponibilidad()==false)
+         {
+           cout<<"ERROR al cambiar la disponibilidad del monitor."<<endl;
+           menuParques();
+         }
+         else
+         {
+           cout<<"Disponibilidad cambiada con exito."<<endl;
+         }
+      }
+      else if(tamano=0)
+      {
+        m.setDisponibilidad(false);
+        if(m.getDisponibilidad()==true)
+         {
+           cout<<"ERROR al cambiar la disponibilidad del monitor."<<endl;
+           menuParques();
+         }
+         else
+         {
+           cout<<"Disponibilidad cambiada con exito."<<endl;
+         }
+      }
+    f.guardarMonitor(&m);
+
+
+    break;
+
+    case 3:
+
+    cout<<"Por favor, introduzca el DNI del monitor";
+    cin>>aux;
+    f.existsMonitor(aux);
+
+    do{
+      cout<<"No existe un monitor con ese DNI. Por favor, introduzca el DNI del monitor cuyos datos quiere modificar.";
+      cin>>aux;
+    }while(f.existsMonitor(aux)==-2);
+    string dni==aux;
+
+    for(monitor &monitor: monitores)
+    {
+      if(aux==m.getDNI())
+      {
+        m.imprimirMonitor();
+      }
+    }
+
+    break;
+    case 4:
+
+    cout<<"Por favor, introduzca el DNI del monitor";
+    cin>>aux;
+    f.existsMonitor(aux);
+
+    do{
+      cout<<"No existe un monitor con ese DNI. Por favor, introduzca el DNI del monitor cuyos datos quiere modificar.";
+      cin>>aux;
+    }while(f.existsMonitor(aux)==-2);
+    string dni==aux;
+
+    cout<<"--- ¿Esta seguro de que desea eliminar ? ---\n";
+    cout<<"--- Escriba 1 si desea confirmarlo, 0 si no ---\n";
+    int decis;
+    cin<<decis;
+    if(decis==1){
+      f.borrarMonitor(&m);
+    }
+    if(decis==0){
+      menuMonitores();
+    }
+
+
+    break;
+
+    case 5:
+      menuAdmin();
+    break;
 }

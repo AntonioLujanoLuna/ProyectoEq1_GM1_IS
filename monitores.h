@@ -17,7 +17,7 @@ class monitor : public persona{
 	string numeroDeTlfn_;
 	string FechaDeNacimiento_;
 	string condicion_;
-	int horasTrabajadas_;        
+	int horasTrabajadas_;
 	bool disponibilidad_;
     public:
         monitor(string DNI, string nombreCompleto = "", string Tlfn="", string fechaDeNacimiento="01/01/2000", string condicion="",
@@ -37,5 +37,6 @@ class monitor : public persona{
         inline void setHorasTrabajadas(int horas){horasTrabajadas_=horas;};
         inline bool getDisponibilidad()const{return disponibilidad_;};
         inline void setDisponibilidad(bool disponibilidad){disponibilidad_=disponibilidad;};
+        void imprimirMonitor();
 };
 #endif
