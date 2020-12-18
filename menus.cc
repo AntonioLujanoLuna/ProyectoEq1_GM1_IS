@@ -977,9 +977,137 @@ int menuVisitantes(){
 
   break;
 
+  case 1:
+
+  cout<<"Por favor, introduzca el DNI del visitante a Modificar";
+  cin>>aux;
+  existsVisitante(aux);
+
+  do{
+    cout<<"Ya existe un visitante con ese DNI. Por favor, introduzca otro DNI para el nuevo visitante";
+    cin>>aux;
+  }while(existsVisitante(aux)==-2);
+  string dni==aux;
+
+  cout<<"--- Por favor, introduzca el nombre completo del visitante. --- \n";
+  getline(cin, aux);
+  v.setNombreCompleto(aux);
+
+  cout<<"--- Por favor, introduzca el numero de telefono del visitante. --- \n";
+  getline(cin, aux);
+  v.setNumeroDeTlfn(aux);
+
+  cout<<"--- Por favor, introduzca la fecha de nacimiento del visitante. --- \n";
+  getline(cin, aux);
+  v.setFechaDeNacimiento(aux);
+
+  cout<<"--- Por favor, introduzca cualquier condicion del visitante a tener en cuenta. --- \n";
+  getline(cin, aux);
+  v.setCondicion(aux);
+
+  f.guardarVisitante(&v);
+  v.imprimirVisitante();
+
+
+  break;
+
+  case 2:
+
+  cout<<"Por favor, introduzca el DNI del visitante a Modificar";
+  cin>>aux;
+  existsVisitante(aux);
+
+  do{
+    cout<<"Ya existe un visitante con ese DNI. Por favor, introduzca otro DNI para el nuevo visitante";
+    cin>>aux;
+  }while(existsVisitante(aux)==-2);
+  string dni==aux;
+
+  cout<<"--- ¿Esta seguro de que desea cancelar la visita? ---\n";
+  cout<<"--- Escriba 1 si desea confirmarlo, 0 si no ---\n";
+  int decis;
+  cin<<decis;
+  if(decis==1){
+    f.borrarVisitante(&v);
+  }
+  if(decis==0){
+    menuVisitantes();
+  }
+
+  break;
+
+  case 3:
+
+  cout<<"Por favor, introduzca el DNI del visitante cuyos datos quiere ver";
+  cin>>aux;
+  existsVisitante(aux);
+
+  do{
+    cout<<"Ya existe un visitante con ese DNI. Por favor, introduzca otro DNI para el nuevo visitante";
+    cin>>aux;
+  }while(existsVisitante(aux)==-2);
+  string dni==aux;
+
+  for(visitante &visitante: visitantes)
+  {
+    if(aux==v.getDNI())
+    {
+      v.imprimirRuta();
+    }
+  }
+  break;
+
   case 4:
 
+  string nomParque;
+  mostrarNombresParques();
+  cout<<"--- Por favor, introduzca el nombre del parque cuyos senderos quiere ver. --- \n";
+  cin>>nomParque;
+  f.existsParque(nomParque);
+  do{
+    cout<<" El parque no existe. Por favor, introduzca el nombre del parque cuyos senderos quiere ver. \n";
+    cin>>nomParque;
+    f.existsParque(nomParque);
+  }
+  while(f.existsParque (nomParque)==-2);
 
+  list<sendero> getSenderosParque(nomParque);
+  cout<<"--- Por favor, introduzca el nombre del sendero. --- \n";
+  cin>>aux;
+  f.existsSendero(aux, nomParque);
+  do{
+    cout<<" El sendero no existe. Por favor, introduzca el nombre del sendero cuyas rutas quiere ver. \n";
+    cin>>aux;
+    f.existsSendero(aux, nomParque);
+  }
+  while(f.existsSendero(aux, nomParque)==-2);
+  s.setNombre(aux);
+
+  string nomsendero==aux;
+  list<ruta> getRutasSendero(nomsendero);
+  cout<<"--- Por favor, introduzca el nombre de la ruta. --- \n";
+  cin>>aux;
+  f.existsRuta (aux, nomsendero, nomParque);
+  do{
+    cout<<" No existe la ruta. Por favor, introduzca el nombre de la ruta. \n";
+    cin>>aux;
+    f.existsRuta (aux, nomsendero, nomParque);
+  }
+  while(f.existsRuta (aux, nomsendero, nomParque)==-2);
+  r.setIdentidicador(aux);
+  string id==aux;
+
+  cout<<"Por favor, introduzca el DNI del visitante al que asignar a la ruta";
+  cin>>aux;
+  existsVisitante(aux);
+
+  do{
+    cout<<"Ya existe un visitante con ese DNI. Por favor, introduzca otro DNI para el nuevo visitante";
+    cin>>aux;
+  }while(existsVisitante(aux)==-2);
+  string dni==aux;
+
+  f.guardarVisitanteARuta(&v,id,nomsendero,nomParque);
 
   break;
 
