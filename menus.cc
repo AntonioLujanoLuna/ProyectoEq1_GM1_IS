@@ -12,6 +12,7 @@
 #include <list>
 using namespace std;
 
+FileIO f;
 
 int menuAdmin(){
     int opc;
@@ -120,7 +121,7 @@ int menuParques(){
   cout<<"--- 2) Cambiar la disponibilidad de un Parque Natural. --- \n";
   cout<<"--- 3) Eliminar un Parque Natural. --- \n";
   cout<<"--- 4) Mostrar los datos de un Parque Natural ya introducido. --- \n";
-  cout<<"--- 5) Salir del programa. --- \n";
+  cout<<"--- 5) Volver al menu Principal --- \n";
   cin<<i;
 
   while(i<0||i>5){
@@ -157,7 +158,7 @@ int menuParques(){
   cin>>aux;
   p.setDescripcion(aux);
 
-  guardarParque(p);
+  f.guardarParque(p);
 
   p.imprimirParque();
 
@@ -189,7 +190,7 @@ int menuParques(){
   cout<<"--- Por favor, introduzca una breve descripcion del parque natural --- \n";
   getline(cin, aux);
   p.setDescripcion(aux);
-  guardarParque(p);
+  f.guardarParque(p);
   //Funcion que devuelva los senderos Asociados
   p.imprimirParque();
   //
@@ -233,7 +234,7 @@ int menuParques(){
          cout<<"Disponibilidad cambiada con exito."<<endl;
        }
     }
-  guardarParque(p);
+  f.guardarParque(p);
   break;
 
   case 3:
@@ -247,7 +248,7 @@ int menuParques(){
   int decis;
   cin<<decis;
   if(decis==1){
-    borrarParque(p);
+    f.borrarParque(p);
   }
   if(decis==0){
     menuParques();
@@ -265,9 +266,9 @@ int menuParques(){
   list<parque> parques=getInstance()->GetTodosParques();
   for(parque &parque: parques)
   {
-    if(aux==parque.getNombre())
+    if(aux==p.getNombre())
     {
-      parque.imprimirParque();
+      p.imprimirParque();
     }
   }
 
@@ -275,7 +276,7 @@ int menuParques(){
   break;
 
   case 5:
-    return 0;
+    menuAdmin();
   break;
 }
 }
@@ -289,7 +290,7 @@ int menuSenderos(){
   cout<<"--- 2) Cambiar la disponibilidad de un Sendero. --- \n";
   cout<<"--- 3) Eliminar un Sendero. --- \n";
   cout<<"--- 4) Mostrar los datos de un Sendero ya introducido. --- \n";
-  cout<<"--- 5) Salir del programa. --- \n";
+  cout<<"--- 5) Volver al Menu Principal. --- \n";
   cin>>i;
 
   while(i<0||i>5){
@@ -308,26 +309,26 @@ int menuSenderos(){
   mostrarNombresParques();
   cout<<"--- Por favor, introduzca el nombre del parque cuyos senderos quiere ver. --- \n";
   cin>>nomParque;
-  existsParque(nomParque);
+  f.existsParque(nomParque);
   do{
     cout<<" El parque no existe. Por favor, introduzca el nombre del parque cuyos senderos quiere ver. \n";
     cin>>nomParque;
-    existsParque(nomParque);
+    f.existsParque(nomParque);
   }
-  while(existsParque (nomParque)==-2);
+  while(f.existsParque (nomParque)==-2);
 
 
   list<sendero> getSenderosParque(nomParque);
   cin>>aux;
   cout<<"--- Por favor, introduzca el nombre del nuevo sendero. --- \n";
   cin>>aux;
-  existsSendero(aux, nomParque);
+  f.existsSendero(aux, nomParque);
   do{
     cout<<" Ya existe un sendero con ese nombre. Introduzca otra nombre para el nuevo sendero. \n";
     cin>>aux;
-    existsSendero(aux, nomParque);
+    f.existsSendero(aux, nomParque);
   }
-  while(existsSendero(aux, nomParque)==-1);
+  while(f.existsSendero(aux, nomParque)==-1);
 
   s.setNombre(aux);
 
@@ -339,7 +340,7 @@ int menuSenderos(){
   cin>>aux;
   s.setDescripcion(aux);
 
-  guardarSendero(s, nomParque);
+  f.guardarSendero(s, nomParque);
   s.imprimirSendero();
 
   //
@@ -353,25 +354,25 @@ int menuSenderos(){
   cin>>nomParque;
 
 
-  existsParque(nomParque);
+  f.existsParque(nomParque);
   do{
     cout<<" El parque no existe. Por favor, introduzca el nombre del parque cuyos senderos quiere ver. \n";
     cin>>nomParque;
-    existsParque(nomParque);
+    f.existsParque(nomParque);
   }
-  while(existsParque (nomParque)==-2);
+  while(f.existsParque (nomParque)==-2);
 
   list<sendero> getSenderosParque(nomParque);
   cin>>aux;
   cout<<"--- Por favor, introduzca el nombre del sendero a modificar. --- \n";
   cin>>aux;
-  existsSendero(aux, nomParque);
+  f.existsSendero(aux, nomParque);
   do{
     cout<<" El sendero no existe. Por favor, introduzca el nombre del sendero que desea modificar. \n";
     cin>>aux;
-    existsSendero(aux, nomParque);
+    f.existsSendero(aux, nomParque);
   }
-  while(existsSendero(aux, nomParque)==-2);
+  while(f.existsSendero(aux, nomParque)==-2);
 
   s.setNombre(aux);
 
@@ -384,7 +385,7 @@ int menuSenderos(){
   s.setDescripcion(aux);
 
 
-  guardarSendero(s, nomParque)
+  f.guardarSendero(s, nomParque);
   s.imprimirSendero();
   //
 
@@ -397,25 +398,25 @@ int menuSenderos(){
   cin>>nomParque;
 
 
-  existsParque(nomParque);
+  f.existsParque(nomParque);
   do{
     cout<<" El parque no existe. Por favor, introduzca el nombre del parque cuyos senderos quiere ver. \n";
     cin>>nomParque;
-    existsParque(nomParque);
+    f.existsParque(nomParque);
   }
-  while(existsParque (nomParque)==-2);
+  while(f.existsParque (nomParque)==-2);
 
   list<sendero> getSenderosParque(nomParque);
   cin>>aux;
   cout<<"--- Por favor, introduzca el nombre del sendero a modificar. --- \n";
   cin>>aux;
-  existsSendero(aux, nomParque);
+  f.existsSendero(aux, nomParque);
   do{
     cout<<" El sendero no existe. Por favor, introduzca el nombre del sendero que desea modificar. \n";
     cin>>aux;
-    existsSendero(aux, nomParque);
+    f.existsSendero(aux, nomParque);
   }
-  while(existsSendero(aux, nomParque)==-2);
+  while(f.existsSendero(aux, nomParque)==-2);
   s.setNombre(aux);
 
 
@@ -452,7 +453,7 @@ int menuSenderos(){
          cout<<"Disponibilidad cambiada con exito."<<endl;
        }
     }
-  guardarSendero(s, nomParque);
+  f.guardarSendero(s, nomParque);
   break;
 
   case 3:
@@ -463,25 +464,25 @@ int menuSenderos(){
   cin>>nomParque;
 
 
-  existsParque(nomParque);
+  f.existsParque(nomParque);
   do{
     cout<<" El parque no existe. Por favor, introduzca el nombre del parque cuyos senderos quiere ver. \n";
     cin>>nomParque;
-    existsParque(nomParque);
+    f.existsParque(nomParque);
   }
-  while(existsParque (nomParque)==-2);
+  while(f.existsParque (nomParque)==-2);
 
   list<sendero> getSenderosParque(nomParque);
   cin>>aux;
   cout<<"--- Por favor, introduzca el nombre del sendero a modificar. --- \n";
   cin>>aux;
-  existsSendero(aux, nomParque);
+  f.existsSendero(aux, nomParque);
   do{
     cout<<" El sendero no existe. Por favor, introduzca el nombre del sendero que desea modificar. \n";
     cin>>aux;
-    existsSendero(aux, nomParque);
+    f.existsSendero(aux, nomParque);
   }
-  while(existsSendero(aux, nomParque)==-2);
+  while(f.existsSendero(aux, nomParque)==-2);
   s.setNombre(aux);
 
 
@@ -490,7 +491,7 @@ int menuSenderos(){
   int decis;
   cin<<decis;
   if(decis==1){
-    borrarSenderos(aux,nomParque);
+    f.borrarSenderos(aux,nomParque);
   }
   if(decis==0){
     menuSenderos();
@@ -504,24 +505,23 @@ int menuSenderos(){
   cout<<"--- Por favor, introduzca el nombre del parque cuyos senderos desea modificar. --- \n";
   cin>>nomParque;
 
-
-  existsParque(nomParque);
+  f.existsParque(nomParque);
   do{
     cout<<" El parque no existe. Por favor, introduzca el nombre del parque cuyos senderos quiere ver. \n";
     cin>>nomParque;
-    existsParque(nomParque);
+    f.existsParque(nomParque);
   }
-  while(existsParque (nomParque)==-2);
+  while(f.existsParque (nomParque)==-2);
 
   list<sendero> getSenderosParque(nomParque);
   cin>>aux;
   cout<<"--- Por favor, introduzca el nombre del sendero a modificar. --- \n";
   cin>>aux;
-  existsSendero(aux, nomParque);
+  f.existsSendero(aux, nomParque);
   do{
     cout<<" El sendero no existe. Por favor, introduzca el nombre del sendero que desea modificar. \n";
     cin>>aux;
-    existsSendero(aux, nomParque);
+    f.existsSendero(aux, nomParque);
   }
   while(existsSendero(aux, nomParque)==-2);
   s.setNombre(aux);
@@ -537,7 +537,7 @@ int menuSenderos(){
   break;
 
   case 5:
-    return 0;
+    menuAdmin();
   break;
 
 }
@@ -553,7 +553,7 @@ int menuRutas(){
   cout<<"--- 2) Finalizar una ruta. --- \n";
   cout<<"--- 3) Eliminar una ruta. --- \n";
   cout<<"--- 4) Mostrar los datos de una ruta ya introducida. --- \n";
-  cout<<"--- 5) Salir del programa. --- \n";
+  cout<<"--- 5) Volver al menu Principal. --- \n";
   cin>>i;
 
   while(i<0||i>5){
@@ -573,25 +573,25 @@ int menuRutas(){
     mostrarNombresParques();
     cout<<"--- Por favor, introduzca el nombre del parque cuyos senderos quiere ver. --- \n";
     cin>>nomParque;
-    existsParque(nomParque);
+    f.existsParque(nomParque);
     do{
       cout<<" El parque no existe. Por favor, introduzca el nombre del parque cuyos senderos quiere ver. \n";
       cin>>nomParque;
-      existsParque(nomParque);
+      f.existsParque(nomParque);
     }
-    while(existsParque (nomParque)==-2);
+    while(f.existsParque (nomParque)==-2);
 
 
     list<sendero> getSenderosParque(nomParque);
     cout<<"--- Por favor, introduzca el nombre del sendero. --- \n";
     cin>>aux;
-    existsSendero(aux, nomParque);
+    f.existsSendero(aux, nomParque);
     do{
       cout<<" El sendero no existe. Por favor, introduzca el nombre del sendero cuyas rutas quiere ver. \n";
       cin>>aux;
-      existsSendero(aux, nomParque);
+      f.existsSendero(aux, nomParque);
     }
-    while(existsSendero(aux, nomParque)==-2);
+    while(f.existsSendero(aux, nomParque)==-2);
     s.setNombre(aux);
 
 
@@ -599,13 +599,13 @@ int menuRutas(){
     list<ruta> getRutasSendero(nomsendero);
     cout<<"--- Por favor, introduzca el nombre de la ruta. --- \n";
     cin>>aux;
-    existsRuta (aux, nomsendero, nomParque);
+    f.existsRuta (aux, nomsendero, nomParque);
     do{
       cout<<" Ya existe una ruta con ese nombre. Por favor, introduzca otro nombre para la ruta. \n";
       cin>>aux;
-      existsRuta (aux, nomsendero, nomParque);
+      f.existsRuta (aux, nomsendero, nomParque);
     }
-    while(existsRuta (aux, nomsendero, nomParque)==-1);
+    while(f.existsRuta (aux, nomsendero, nomParque)==-1);
     r.setIdentidicador(aux);
     string id==aux;
 
@@ -644,8 +644,8 @@ int menuRutas(){
     cin>>aux;
     r.setBicicleta(aux);
 
-    guardarRuta(id, nomsendero,nomParque);
-    s.imprimirRuta();
+    f.guardarRuta(id, nomsendero,nomParque);
+    r.imprimirRuta();
 
     //
     break;
@@ -656,25 +656,25 @@ int menuRutas(){
     mostrarNombresParques();
     cout<<"--- Por favor, introduzca el nombre del parque cuyos senderos quiere ver. --- \n";
     cin>>nomParque;
-    existsParque(nomParque);
+    f.existsParque(nomParque);
     do{
       cout<<" El parque no existe. Por favor, introduzca el nombre del parque cuyos senderos quiere ver. \n";
       cin>>nomParque;
-      existsParque(nomParque);
+      f.existsParque(nomParque);
     }
-    while(existsParque (nomParque)==-2);
+    while(f.existsParque (nomParque)==-2);
 
 
     list<sendero> getSenderosParque(nomParque);
     cout<<"--- Por favor, introduzca el nombre del sendero. --- \n";
     cin>>aux;
-    existsSendero(aux, nomParque);
+    f.existsSendero(aux, nomParque);
     do{
       cout<<" El sendero no existe. Por favor, introduzca el nombre del sendero cuyas rutas quiere ver. \n";
       cin>>aux;
-      existsSendero(aux, nomParque);
+      f.existsSendero(aux, nomParque);
     }
-    while(existsSendero(aux, nomParque)==-2);
+    while(f.existsSendero(aux, nomParque)==-2);
     s.setNombre(aux);
 
 
@@ -682,13 +682,13 @@ int menuRutas(){
     list<ruta> getRutasSendero(nomsendero);
     cout<<"--- Por favor, introduzca el nombre de la ruta. --- \n";
     cin>>aux;
-    existsRuta (aux, nomsendero, nomParque);
+    f.existsRuta (aux, nomsendero, nomParque);
     do{
       cout<<" No existe la ruta. Por favor, introduzca el nombre de la ruta. \n";
       cin>>aux;
-      existsRuta (aux, nomsendero, nomParque);
+      f.existsRuta (aux, nomsendero, nomParque);
     }
-    while(existsRuta (aux, nomsendero, nomParque)==-2);
+    while(f.existsRuta (aux, nomsendero, nomParque)==-2);
     r.setIdentidicador(aux);
     string id==aux;
 
@@ -728,8 +728,8 @@ int menuRutas(){
     cin>>aux;
     r.setBicicleta(aux);
 
-    guardarRuta(id, nomsendero,nomParque);
-    imprimirRuta();
+    f.guardarRuta(id, nomsendero,nomParque);
+    r.imprimirRuta();
 
     break;
 
@@ -738,38 +738,38 @@ int menuRutas(){
     mostrarNombresParques();
     cout<<"--- Por favor, introduzca el nombre del parque cuyos senderos quiere ver. --- \n";
     cin>>nomParque;
-    existsParque(nomParque);
+    f.existsParque(nomParque);
     do{
       cout<<" El parque no existe. Por favor, introduzca el nombre del parque cuyos senderos quiere ver. \n";
       cin>>nomParque;
-      existsParque(nomParque);
+      f.existsParque(nomParque);
     }
-    while(existsParque (nomParque)==-2);
+    while(f.existsParque (nomParque)==-2);
 
 
     list<sendero> getSenderosParque(nomParque);
     cout<<"--- Por favor, introduzca el nombre del sendero. --- \n";
     cin>>aux;
-    existsSendero(aux, nomParque);
+    f.existsSendero(aux, nomParque);
     do{
       cout<<" El sendero no existe. Por favor, introduzca el nombre del sendero cuyas rutas quiere ver. \n";
       cin>>aux;
-      existsSendero(aux, nomParque);
+      f.existsSendero(aux, nomParque);
     }
-    while(existsSendero(aux, nomParque)==-2);
+    while(f.existsSendero(aux, nomParque)==-2);
     s.setNombre(aux);
 
     string nomsendero==aux;
     list<ruta> getRutasSendero(nomsendero);
     cout<<"--- Por favor, introduzca el nombre de la ruta. --- \n";
     cin>>aux;
-    existsRuta (aux, nomsendero, nomParque);
+    f.existsRuta (aux, nomsendero, nomParque);
     do{
       cout<<" No existe la ruta. Por favor, introduzca el nombre de la ruta. \n";
       cin>>aux;
-      existsRuta (aux, nomsendero, nomParque);
+      f.existsRuta (aux, nomsendero, nomParque);
     }
-    while(existsRuta (aux, nomsendero, nomParque)==-2);
+    while(f.existsRuta (aux, nomsendero, nomParque)==-2);
     r.setIdentidicador(aux);
     string id==aux;
 
@@ -806,7 +806,7 @@ int menuRutas(){
            cout<<"Disponibilidad cambiada con exito."<<endl;
          }
       }
-    guardarRuta(id, nomsendero,nomParque);
+    f.guardarRuta(id, nomsendero,nomParque);
     break;
 
     case 3:
@@ -815,25 +815,25 @@ int menuRutas(){
     mostrarNombresParques();
     cout<<"--- Por favor, introduzca el nombre del parque cuyos senderos quiere ver. --- \n";
     cin>>nomParque;
-    existsParque(nomParque);
+    f.existsParque(nomParque);
     do{
       cout<<" El parque no existe. Por favor, introduzca el nombre del parque cuyos senderos quiere ver. \n";
       cin>>nomParque;
-      existsParque(nomParque);
+      f.existsParque(nomParque);
     }
-    while(existsParque (nomParque)==-2);
+    while(f.existsParque (nomParque)==-2);
 
 
     list<sendero> getSenderosParque(nomParque);
     cout<<"--- Por favor, introduzca el nombre del sendero. --- \n";
     cin>>aux;
-    existsSendero(aux, nomParque);
+    f.existsSendero(aux, nomParque);
     do{
       cout<<" El sendero no existe. Por favor, introduzca el nombre del sendero cuyas rutas quiere ver. \n";
       cin>>aux;
-      existsSendero(aux, nomParque);
+      f.existsSendero(aux, nomParque);
     }
-    while(existsSendero(aux, nomParque)==-2);
+    while(f.existsSendero(aux, nomParque)==-2);
     s.setNombre(aux);
 
 
@@ -841,13 +841,13 @@ int menuRutas(){
     list<ruta> getRutasSendero(nomsendero);
     cout<<"--- Por favor, introduzca el nombre de la ruta. --- \n";
     cin>>aux;
-    existsRuta (aux, nomsendero, nomParque);
+    f.existsRuta (aux, nomsendero, nomParque);
     do{
       cout<<" No existe la ruta. Por favor, introduzca el nombre de la ruta. \n";
       cin>>aux;
-      existsRuta (aux, nomsendero, nomParque);
+      f.existsRuta (aux, nomsendero, nomParque);
     }
-    while(existsRuta (aux, nomsendero, nomParque)==-2);
+    while(f.existsRuta (aux, nomsendero, nomParque)==-2);
     r.setIdentidicador(aux);
     string id==aux;
 
@@ -856,7 +856,7 @@ int menuRutas(){
     int decis;
     cin<<decis;
     if(decis==1){
-      borrarRuta(id, nomsendero, nomParque);
+      f.borrarRuta(id, nomsendero, nomParque);
     }
     if(decis==0){
       menuRutas();
@@ -868,38 +868,38 @@ int menuRutas(){
     mostrarNombresParques();
     cout<<"--- Por favor, introduzca el nombre del parque cuyos senderos quiere ver. --- \n";
     cin>>nomParque;
-    existsParque(nomParque);
+    f.existsParque(nomParque);
     do{
       cout<<" El parque no existe. Por favor, introduzca el nombre del parque cuyos senderos quiere ver. \n";
       cin>>nomParque;
-      existsParque(nomParque);
+      f.existsParque(nomParque);
     }
-    while(existsParque (nomParque)==-2);
+    while(f.existsParque (nomParque)==-2);
 
 
     list<sendero> getSenderosParque(nomParque);
     cout<<"--- Por favor, introduzca el nombre del sendero. --- \n";
     cin>>aux;
-    existsSendero(aux, nomParque);
+    f.existsSendero(aux, nomParque);
     do{
       cout<<" El sendero no existe. Por favor, introduzca el nombre del sendero cuyas rutas quiere ver. \n";
       cin>>aux;
-      existsSendero(aux, nomParque);
+      f.existsSendero(aux, nomParque);
     }
-    while(existsSendero(aux, nomParque)==-2);
+    while(f.existsSendero(aux, nomParque)==-2);
     s.setNombre(aux);
 
     string nomsendero==aux;
     list<ruta> getRutasSendero(nomsendero);
     cout<<"--- Por favor, introduzca el nombre de la ruta. --- \n";
     cin>>aux;
-    existsRuta (aux, nomsendero, nomParque);
+    f.existsRuta (aux, nomsendero, nomParque);
     do{
       cout<<" No existe la ruta. Por favor, introduzca el nombre de la ruta. \n";
       cin>>aux;
-      existsRuta (aux, nomsendero, nomParque);
+      f.existsRuta (aux, nomsendero, nomParque);
     }
-    while(existsRuta (aux, nomsendero, nomParque)==-2);
+    while(f.existsRuta (aux, nomsendero, nomParque)==-2);
     r.setIdentidicador(aux);
     string id==aux;
     for(ruta &ruta: rutas)
@@ -912,7 +912,7 @@ int menuRutas(){
     break;
 
     case 5:
-      return 0;
+      menuAdmin();
     break;
 
   }
@@ -928,7 +928,7 @@ int menuVisitantes(){
   cout<<"--- 2) Cancelar visita. --- \n";
   cout<<"--- 3) Mostrar los datos de un visitante ya introducido. --- \n";
   cout<<"--- 4) Asignar visitante a una ruta. --- \n";
-  cout<<"--- 5) Salir del programa. --- \n";
+  cout<<"--- 5) Volver al menu principal. --- \n";
   cin>>i;
 
   while(i<0||i>5){
@@ -954,6 +954,7 @@ int menuVisitantes(){
     cout<<"Ya existe un visitante con ese DNI. Por favor, introduzca otro DNI para el nuevo visitante";
     cin>>aux;
   }while(existsVisitante(aux)==-1);
+  string dni==aux;
 
   cout<<"--- Por favor, introduzca el nombre completo del nuevo visitante. --- \n";
   cin>>aux;
@@ -971,8 +972,8 @@ int menuVisitantes(){
   cin>>aux;
   v.setCondicion(aux);
 
-  guardarVisitante();
-  imprimirVisitante();
+  f.guardarVisitante(&v);
+  v.imprimirVisitante();
 
   break;
 
@@ -983,7 +984,7 @@ int menuVisitantes(){
   break;
 
   case 5:
-    return 0;
+    menuAdmin();
   break;
 }
 }

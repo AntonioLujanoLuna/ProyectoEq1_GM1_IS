@@ -12,4 +12,11 @@ visitante::visitante(string DNI, string nombreCompleto, string Tlfn,
         setCondicion(condicion);
     }
 
-void
+void visitante::imprimirVisitante(){
+  cout<<"DATOS DEL VISITANTE: \n";
+  cout<<"DNI: "<<this->getDNI()<<endl;
+  cout<<"NOMBRE: "<<this->getNombreCompleto()<<endl;
+  cout<<"FECHA DE NACIMIENTO: "<<this->getFechaDeNacimiento()<<endl;
+  cout<<"NUMERO DE TELEFONO: "<<this->getNumeroDeTlfn()<<endl;
+  cout<<"CONDICION: "<<this->getCondicion()<<endl;
+}
