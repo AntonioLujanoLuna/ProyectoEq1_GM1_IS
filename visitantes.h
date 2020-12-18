@@ -18,7 +18,7 @@ private:
         string FechaDeNacimiento_;
         string condicion_;
 public:
-        visitante(string DNI, string nombreCompleto = "", string Tlfn = "", 
+        visitante(string DNI, string nombreCompleto = "", string Tlfn = "",
             string fechaDeNacimiento = "", string condicion = "");
         inline string getDNI()const{return DNI_;};
         inline void setDNI(string dni){DNI_=dni;};
@@ -30,6 +30,7 @@ public:
         inline void setFechaDeNacimiento(string fecha){FechaDeNacimiento_=fecha;};
         inline string getCondicion()const{return condicion_;};
         inline void setCondicion(string condicion){condicion_=condicion;};
+        void imprimirVisitante();
 };
 
 

@@ -248,10 +248,11 @@ int menuParques(){
   cin<<decis;
   if(decis==1){
     borrarParque(p);
+  }
   if(decis==0){
     menuParques();
   }
-  //
+
   break;
 
   case 4:
@@ -278,7 +279,6 @@ int menuParques(){
   break;
 }
 }
-}
 
 int menuSenderos(){
   int i;
@@ -299,6 +299,7 @@ int menuSenderos(){
   switch(i){
     string aux="";
     int tamano=0;
+    parque p;
     sendero s;
 
   case 0:
@@ -562,6 +563,7 @@ int menuRutas(){
   switch(i){
     string aux="";
     int tamano=0;
+    parque p;
     sendero s;
     ruta r;
 
@@ -914,4 +916,74 @@ int menuRutas(){
     break;
 
   }
+}
+
+int menuVisitantes(){
+
+  int i;
+  cout<<"   --- Gestion de Visitantes --- \n";
+  cout<<"--- Seleccione la opcion a la que desee acceder. --- \n";
+  cout<<"--- 0) Añadir un nuevo visitante a una ruta ya creada. --- \n";
+  cout<<"--- 1) Modificar los datos de visitante ya introducido. --- \n";
+  cout<<"--- 2) Cancelar visita. --- \n";
+  cout<<"--- 3) Mostrar los datos de un visitante ya introducido. --- \n";
+  cout<<"--- 4) Asignar visitante a una ruta. --- \n";
+  cout<<"--- 5) Salir del programa. --- \n";
+  cin>>i;
+
+  while(i<0||i>5){
+    cout<<" Opcion invalida. Por favor, seleccione una opcion valida.\n";
+    cin>>i;
+  }
+  switch(i){
+    string aux="";
+    int tamano=0;
+    parque p;
+    sendero s;
+    ruta r;
+    visitante v;
+
+
+  case 0:
+
+  cout<<"Por favor, introduzca el DNI del nuevo visitante";
+  cin>>aux;
+  existsVisitante(aux);
+
+  do{
+    cout<<"Ya existe un visitante con ese DNI. Por favor, introduzca otro DNI para el nuevo visitante";
+    cin>>aux;
+  }while(existsVisitante(aux)==-1);
+
+  cout<<"--- Por favor, introduzca el nombre completo del nuevo visitante. --- \n";
+  cin>>aux;
+  v.setNombreCompleto(aux);
+
+  cout<<"--- Por favor, introduzca el numero de telefono del nuevo visitante. --- \n";
+  cin>>aux;
+  v.setNumeroDeTlfn(aux);
+
+  cout<<"--- Por favor, introduzca la fecha de nacimiento del nuevo visitante. --- \n";
+  cin>>aux;
+  v.setFechaDeNacimiento(aux);
+
+  cout<<"--- Por favor, introduzca cualquier condicion del visitante a tener en cuenta. --- \n";
+  cin>>aux;
+  v.setCondicion(aux);
+
+  guardarVisitante();
+  imprimirVisitante();
+
+  break;
+
+  case 4:
+
+
+
+  break;
+
+  case 5:
+    return 0;
+  break;
+}
 }

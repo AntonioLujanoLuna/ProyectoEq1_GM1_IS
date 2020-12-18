@@ -16,7 +16,7 @@ ruta::ruta(string id, string dificultad, string monitor, string fecha,
 
 }
 
-void imprimirRuta(){
+void ruta::imprimirRuta(){
   cout<<"DATOS DE LA RUTA: \n";
   cout<<"IDENTIFICADOR: "<<this->getIdentificador()<<endl;
   cout<<"DIFICULTAD: "<<this->getDificultad()<<endl;
