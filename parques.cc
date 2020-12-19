@@ -37,5 +37,29 @@ void parque::mostrarSenderosAsociados(const parque &p){
     std::cout<<sendero.getNombre()<<endl;
     std::cout<<"\n";
   }
+}
 
+void parque::setDisponibilidad(bool disponibilidad)
+{
+  disponibilidad_=disponibilidad;
+  list<parque> parques=getInstance()->GetTodosParques();
+  for(parque &parque: parques)
+  {
+  list<sendero> senderos=getInstance()->getSenderosParque(parque.getNombre());
+    for(sendero &sendero: senderos)
+    {
+      if(parque.getDisponibilidad()==false && sendero.getDisponibilidad()==true)
+      {
+        sendero.setDisponibilidad(false);
+      }
+      list <ruta> rutas=getInstance()->getRutasSendero(sendero.getNombre());
+      for(ruta &ruta: rutas)
+      {
+        if(sendero.getDisponibilidad()==false && ruta.getDisponibilidad()==true)
+        {
+          ruta.setDisponibilidad(false);
+        }
+      }
+    }
+  }
 }
