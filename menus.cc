@@ -10,8 +10,8 @@
 #include "fileIO.h"
 #include "extra.h"
 #include <list>
-using namespace std;
 
+using namespace std;
 FileIO f;
 
 int menuAdmin(){
@@ -158,8 +158,9 @@ int menuParques(){
   cin>>aux;
   p.setDescripcion(aux);
 
-  f.guardarParque(p);
+  p.setDisponibilidad(true);
 
+  f.guardarParque(p);
   p.imprimirParque();
 
 
@@ -190,10 +191,12 @@ int menuParques(){
   cout<<"--- Por favor, introduzca una breve descripcion del parque natural --- \n";
   getline(cin, aux);
   p.setDescripcion(aux);
+
+  p.setDisponibilidad(true);
+
   f.guardarParque(p);
-  //Funcion que devuelva los senderos Asociados
   p.imprimirParque();
-  //
+
   break;
 
   case 2:
@@ -340,6 +343,8 @@ int menuSenderos(){
   cin>>aux;
   s.setDescripcion(aux);
 
+  s.setDisponibilidad(true);
+
   f.guardarSendero(s, nomParque);
   s.imprimirSendero();
 
@@ -384,6 +389,7 @@ int menuSenderos(){
   getline(cin, aux);
   s.setDescripcion(aux);
 
+  s.setDisponibilidad(true);
 
   f.guardarSendero(s, nomParque);
   s.imprimirSendero();
@@ -1174,6 +1180,10 @@ int menuMonitores(){
     cin>>aux;
     m.setCondicion(aux);
 
+    m.setHorasTrabajadas(0);
+
+    m.setDisponibilidad(true);
+
     f.guardarMonitor(&m);
     m.imprimirMonitor();
     break;
@@ -1205,6 +1215,12 @@ int menuMonitores(){
     cout<<"--- Por favor, introduzca cualquier condicion a tener en cuenta . --- \n";
     getline(cin,aux);
     m.setCondicion(aux);
+
+    cout<<"--- Por favor, introduzca las horas trabajadas del Monitor. --- \n";
+    getline(cin,tamano);
+    m.setHorasTrabajadas(tamano);
+
+    m.setDisponibilidad(true);
 
     f.guardarMonitor(&m);
     m.imprimirMonitor();
@@ -1283,6 +1299,7 @@ int menuMonitores(){
     }
 
     break;
+
     case 4:
 
     cout<<"Por favor, introduzca el DNI del monitor";
@@ -1312,4 +1329,5 @@ int menuMonitores(){
     case 5:
       menuAdmin();
     break;
+}
 }

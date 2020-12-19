@@ -16,7 +16,7 @@ ruta::ruta(string id, string dificultad, string monitor, string fecha,
 
 }
 
-void ruta::imprimirRuta(){
+void ruta::imprimirRuta(const ruta &r, const sendero &s, const parque &p){
   cout<<"DATOS DE LA RUTA: \n";
   cout<<"IDENTIFICADOR: "<<this->getIdentificador()<<endl;
   cout<<"DIFICULTAD: "<<this->getDificultad()<<endl;
@@ -25,4 +25,5 @@ void ruta::imprimirRuta(){
   cout<<"HORA: "<<this->getHora()<<endl;
   cout<<"DURACION ESTIMADA: "<<this->getDuracionEstimada()<<endl;
   cout<<"BICICLETA: "<<this->getBicicleta()<<endl;
+  list <visitante> getVisitantesRuta(nombreruta);
 }
