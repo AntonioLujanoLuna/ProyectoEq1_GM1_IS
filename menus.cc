@@ -140,8 +140,6 @@ int menuParques(){
   cout<<"--- Por favor, introduzca el nombre del nuevo parque natural --- \n";
   cin>>aux;
   p.setNombre(aux);
-  //Funcion que compruebe que el nombre del parque ya exista
-  //Funcion que pida nuevo nombre en caso de que exista
   cout<<"--- Por favor, introduzca la fecha del nombramiento del parque natural --- \n";
   cin>>aux;
   p.setFechaNombramientoParque(aux);
@@ -320,8 +318,7 @@ int menuSenderos(){
   }
   while(f.existsParque (nomParque)==-2);
 
-
-  list<sendero> getSenderosParque(nomParque);
+  p.mostrarSenderosAsociados(nomParque);
   cin>>aux;
   cout<<"--- Por favor, introduzca el nombre del nuevo sendero. --- \n";
   cin>>aux;
@@ -367,7 +364,7 @@ int menuSenderos(){
   }
   while(f.existsParque (nomParque)==-2);
 
-  list<sendero> getSenderosParque(nomParque);
+  p.mostrarSenderosAsociados(nomParque);
   cin>>aux;
   cout<<"--- Por favor, introduzca el nombre del sendero a modificar. --- \n";
   cin>>aux;
@@ -412,7 +409,7 @@ int menuSenderos(){
   }
   while(f.existsParque (nomParque)==-2);
 
-  list<sendero> getSenderosParque(nomParque);
+  p.mostrarSenderosAsociados(nomParque);
   cin>>aux;
   cout<<"--- Por favor, introduzca el nombre del sendero a modificar. --- \n";
   cin>>aux;
@@ -478,7 +475,7 @@ int menuSenderos(){
   }
   while(f.existsParque (nomParque)==-2);
 
-  list<sendero> getSenderosParque(nomParque);
+  p.mostrarSenderosAsociados(nomParque);
   cin>>aux;
   cout<<"--- Por favor, introduzca el nombre del sendero a modificar. --- \n";
   cin>>aux;
@@ -519,7 +516,7 @@ int menuSenderos(){
   }
   while(f.existsParque (nomParque)==-2);
 
-  list<sendero> getSenderosParque(nomParque);
+  p.mostrarSenderosAsociados(nomParque);
   cin>>aux;
   cout<<"--- Por favor, introduzca el nombre del sendero a modificar. --- \n";
   cin>>aux;
@@ -588,7 +585,7 @@ int menuRutas(){
     while(f.existsParque (nomParque)==-2);
 
 
-    list<sendero> getSenderosParque(nomParque);
+    p.mostrarSenderosAsociados(nomParque);
     cout<<"--- Por favor, introduzca el nombre del sendero. --- \n";
     cin>>aux;
     f.existsSendero(aux, nomParque);
@@ -602,7 +599,7 @@ int menuRutas(){
 
 
     string nomsendero==aux;
-    list<ruta> getRutasSendero(nomsendero);
+    s.mostrarRutasAsociadas(nomsendero, nomParque);
     cout<<"--- Por favor, introduzca el nombre de la ruta. --- \n";
     cin>>aux;
     f.existsRuta (aux, nomsendero, nomParque);
@@ -671,7 +668,7 @@ int menuRutas(){
     while(f.existsParque (nomParque)==-2);
 
 
-    list<sendero> getSenderosParque(nomParque);
+    p.mostrarSenderosAsociados(nomParque);
     cout<<"--- Por favor, introduzca el nombre del sendero. --- \n";
     cin>>aux;
     f.existsSendero(aux, nomParque);
@@ -685,7 +682,7 @@ int menuRutas(){
 
 
     string nomsendero==aux;
-    list<ruta> getRutasSendero(nomsendero);
+    s.mostrarRutasAsociadas(nomsendero, nomParque);
     cout<<"--- Por favor, introduzca el nombre de la ruta. --- \n";
     cin>>aux;
     f.existsRuta (aux, nomsendero, nomParque);
@@ -753,7 +750,7 @@ int menuRutas(){
     while(f.existsParque (nomParque)==-2);
 
 
-    list<sendero> getSenderosParque(nomParque);
+    p.mostrarSenderosAsociados(nomParque);
     cout<<"--- Por favor, introduzca el nombre del sendero. --- \n";
     cin>>aux;
     f.existsSendero(aux, nomParque);
@@ -766,7 +763,7 @@ int menuRutas(){
     s.setNombre(aux);
 
     string nomsendero==aux;
-    list<ruta> getRutasSendero(nomsendero);
+    s.mostrarRutasAsociadas(nomsendero, nomParque);
     cout<<"--- Por favor, introduzca el nombre de la ruta. --- \n";
     cin>>aux;
     f.existsRuta (aux, nomsendero, nomParque);
@@ -830,7 +827,7 @@ int menuRutas(){
     while(f.existsParque (nomParque)==-2);
 
 
-    list<sendero> getSenderosParque(nomParque);
+    p.mostrarSenderosAsociados(nomParque);
     cout<<"--- Por favor, introduzca el nombre del sendero. --- \n";
     cin>>aux;
     f.existsSendero(aux, nomParque);
@@ -844,7 +841,7 @@ int menuRutas(){
 
 
     string nomsendero==aux;
-    list<ruta> getRutasSendero(nomsendero);
+    s.mostrarRutasAsociadas(nomsendero, nomParque);
     cout<<"--- Por favor, introduzca el nombre de la ruta. --- \n";
     cin>>aux;
     f.existsRuta (aux, nomsendero, nomParque);
@@ -883,7 +880,7 @@ int menuRutas(){
     while(f.existsParque (nomParque)==-2);
 
 
-    list<sendero> getSenderosParque(nomParque);
+    p.mostrarSenderosAsociados(nomParque);
     cout<<"--- Por favor, introduzca el nombre del sendero. --- \n";
     cin>>aux;
     f.existsSendero(aux, nomParque);
@@ -896,7 +893,7 @@ int menuRutas(){
     s.setNombre(aux);
 
     string nomsendero==aux;
-    list<ruta> getRutasSendero(nomsendero);
+    s.mostrarRutasAsociadas(nomsendero, nomParque);
     cout<<"--- Por favor, introduzca el nombre de la ruta. --- \n";
     cin>>aux;
     f.existsRuta (aux, nomsendero, nomParque);
@@ -985,7 +982,7 @@ int menuVisitantes(){
   break;
 
   case 1:
-  list<visitante> getTodosVisitantes();
+  v.mostrarTodosVisitantes();
   cout<<"Por favor, introduzca el DNI del visitante a Modificar";
   cin>>aux;
   f.existsVisitante(aux);
@@ -1020,7 +1017,7 @@ int menuVisitantes(){
   break;
 
   case 2:
-  list<visitante> getTodosVisitantes();
+  v.mostrarTodosVisitantes();
   cout<<"Por favor, introduzca el DNI del visitante cuya visita quiere cancelar.";
   cin>>aux;
   f.existsVisitante(aux);
@@ -1045,7 +1042,7 @@ int menuVisitantes(){
   break;
 
   case 3:
-  list<visitante> getTodosVisitantes();
+  v.mostrarTodosVisitantes();
   cout<<"Por favor, introduzca el DNI del visitante cuyos datos quiere ver";
   cin>>aux;
   f.existsVisitante(aux);
@@ -1066,7 +1063,7 @@ int menuVisitantes(){
   break;
 
   case 4:
-  list<visitante> getTodosVisitantes();
+  v.getTodosVisitantes()
   string nomParque;
   mostrarNombresParques();
   cout<<"--- Por favor, introduzca el nombre del parque cuyos senderos quiere ver. --- \n";
@@ -1079,7 +1076,7 @@ int menuVisitantes(){
   }
   while(f.existsParque (nomParque)==-2);
 
-  list<sendero> getSenderosParque(nomParque);
+  p.mostrarSenderosAsociados(nomParque);
   cout<<"--- Por favor, introduzca el nombre del sendero. --- \n";
   cin>>aux;
   f.existsSendero(aux, nomParque);
@@ -1092,7 +1089,7 @@ int menuVisitantes(){
   s.setNombre(aux);
 
   string nomsendero==aux;
-  list<ruta> getRutasSendero(nomsendero);
+  s.mostrarRutasAsociadas(nomsendero, nomParque);
   cout<<"--- Por favor, introduzca el nombre de la ruta. --- \n";
   cin>>aux;
   f.existsRuta (aux, nomsendero, nomParque);

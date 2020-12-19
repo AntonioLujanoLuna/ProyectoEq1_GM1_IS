@@ -24,6 +24,18 @@ void parque::imprimirParque(const parque &p)
   cout<<"PREMIOS: "<<this->getPremios()<<endl;
   cout<<"DESCRIPCION: "<<this->getDescripcion()<<endl;
   cout<<"DISPONIBILIDAD: "<<this->getDisponibilidad()<<endl;
-  cout<<"SENDEROS ASOCIADOS: "<<this->getSenderos()<<endl;
-  list<sendero> getSenderosParque(nombre);
+  cout<<"SENDEROS ASOCIADOS: \n";
+  mostrarSenderosAsociados(const parque &p);
+
+}
+
+void parque::mostrarSenderosAsociados(const parque &p){
+
+  list<sendero> senderos=getInstance()->getSenderosParque(p.getNombre());
+  for(sendero &sendero: senderos)
+  {
+    std::cout<<sendero.getNombre()<<endl;
+    std::cout<<"\n";
+  }
+
 }

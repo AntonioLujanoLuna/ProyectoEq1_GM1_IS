@@ -19,5 +19,18 @@ void sendero::imprimirSendero(const sendero &s, const parque &p)
   cout<<"LONGITUD: "<<this->getLongitud()<<endl;
   cout<<"DESCRIPCION: "<<this->getDescripcion()<<endl;
   cout<<"DISPONIBILIDAD: "<<this->getDisponibilidad()<<endl;
-  list <sendero> getRutasSendero(nombre);
+  cout<<"RUTAS ASOCIADAS: \n";
+  mostrarRutasAsociadas(const sendero &s,const parque &p);
+
+  }
+
+  void sendero::mostrarRutasAsociadas(const sendero &s, const parque &p){
+
+    list<ruta> rutas=getInstance()->getRutasSendero(s.getNombre());
+    for(ruta &ruta: rutas)
+    {
+      std::cout<<ruta.getNombre()<<endl;
+      std::cout<<"\n";
+    }
+
   }

@@ -20,3 +20,13 @@ void visitante::imprimirVisitante(const visitante &v){
   cout<<"NUMERO DE TELEFONO: "<<this->getNumeroDeTlfn()<<endl;
   cout<<"CONDICION: "<<this->getCondicion()<<endl;
 }
+
+void visitante::mostrarTodosVisitantes(){
+
+  list<visitante> visitantes=getInstance()->getTodosVisitantes(v.getNombreCompleto());
+  for(visitante &visitante: visitantes)
+  {
+    std::cout<<visitante.getNombreCompleto()<<endl;
+    std::cout<<"\n";
+  }
+}

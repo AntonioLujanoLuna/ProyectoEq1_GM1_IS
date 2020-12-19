@@ -46,6 +46,7 @@ class ruta {
         inline void setGrupoVisitantes(list<visitante> visitantes){grupoVisitantes_=visitantes;};
         inline void addVisitante(visitante newVisitante){grupoVisitantes_.push_back(newVisitante);};
         void imprimirRuta(const ruta &r, const sendero &s, const parque &p);
+        void mostarVisitantesAsociados(const ruta &r, const sendero &s, const parque &p);
 };
 
 #endif
