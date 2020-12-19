@@ -26,7 +26,7 @@ void sendero::imprimirSendero(const sendero &s, const parque &p)
 
   void sendero::mostrarRutasAsociadas(const sendero &s, const parque &p){
 
-    list<ruta> rutas=getInstance()->getRutasSendero(s.getNombre());
+    list<ruta> rutas=getInstance()->getRutasSendero(nombre + "_" + c.getNombre()));
     for(ruta &ruta: rutas)
     {
       std::cout<<ruta.getNombre()<<endl;

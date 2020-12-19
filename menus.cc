@@ -305,7 +305,7 @@ int menuSenderos(){
     sendero s;
 
   case 0:
-  //
+    //
   string nomParque;
   mostrarNombresParques();
   cout<<"--- Por favor, introduzca el nombre del parque cuyos senderos quiere ver. --- \n";
