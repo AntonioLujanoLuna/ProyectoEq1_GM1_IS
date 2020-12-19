@@ -3,6 +3,8 @@
 
 #include "parques.h"
 #include "senderos.h"
+#include "rutas.h"
+
 parque::parque(string nombre, string fechaNombramientoParque,
             int tamano, string premios, string descripcion, bool disponibilidad, list <sendero> senderos) {
         setNombre(nombre);
@@ -39,27 +41,16 @@ void parque::mostrarSenderosAsociados(const parque &p){
   }
 }
 
-void parque::setDisponibilidad(bool disponibilidad)
-{
+void parque::setDisponibilidad(bool disponibilidad) {
   disponibilidad_=disponibilidad;
-  list<parque> parques=getInstance()->GetTodosParques();
-  for(parque &parque: parques)
-  {
   list<sendero> senderos=getInstance()->getSenderosParque(parque.getNombre());
     for(sendero &sendero: senderos)
     {
-      if(parque.getDisponibilidad()==false && sendero.getDisponibilidad()==true)
-      {
-        sendero.setDisponibilidad(false);
-      }
-      list <ruta> rutas=getInstance()->getRutasSendero(sendero.getNombre());
+        sendero.setDisponibilidad(disponibilidad);
+        list <ruta> rutas=getInstance()->getRutasSendero(parque.getnombre() + "_" + sendero.getNombre());
       for(ruta &ruta: rutas)
       {
-        if(sendero.getDisponibilidad()==false && ruta.getDisponibilidad()==true)
-        {
-          ruta.setDisponibilidad(false);
-        }
+          ruta.setDisponibilidad(disponibilidad);
       }
     }
-  }
 }
