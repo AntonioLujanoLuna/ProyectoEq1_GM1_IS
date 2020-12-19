@@ -30,7 +30,7 @@ public:
         inline void setFechaDeNacimiento(string fecha){FechaDeNacimiento_=fecha;};
         inline string getCondicion()const{return condicion_;};
         inline void setCondicion(string condicion){condicion_=condicion;};
-        void imprimirVisitante();
+        void imprimirVisitante(const visitante &v);
 };
 
 

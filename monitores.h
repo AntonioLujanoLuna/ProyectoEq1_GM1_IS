@@ -37,6 +37,6 @@ class monitor : public persona{
         inline void setHorasTrabajadas(int horas){horasTrabajadas_=horas;};
         inline bool getDisponibilidad()const{return disponibilidad_;};
         inline void setDisponibilidad(bool disponibilidad){disponibilidad_=disponibilidad;};
-        void imprimirMonitor();
+        void imprimirMonitor(const monitor &m);
 };
 #endif

@@ -32,7 +32,7 @@ class sendero {
         list <ruta> getRutas()const{return rutas_;};
         void setRutas(list<ruta> rutas){rutas_=rutas;};
         void addRuta(ruta newRuta){rutas_.push_back(newRuta);};
-        void imprimirSendero();
+        void imprimirSendero(const sendero &s, const parque &p);
 
 };
 
