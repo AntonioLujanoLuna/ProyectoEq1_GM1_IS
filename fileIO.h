@@ -65,6 +65,13 @@ class FileIO {
         void guardarVisitanteARuta(const visitante &v, std::string idRuta, std::string nombreSendero, std::string nombreParque);
         void guardarVisitante(const visitante &v);
         void guardarMonitor(const monitor &m);
+
+        parque busquedaParque(string nombre);
+        sendero busquedaSendero(string nombreparque, string nombresendero);
+        ruta busquedaRuta(string nombreparque, string nombresendero, string nombreruta);
+        monitor busquedaMonitor(string nombre);
+        visitante busquedaVisitanteRuta(string nombreparque, string nombresendero, string nombreruta, string dni);
+        visitante busquedaVisitante(string dni);
 };
 
 #endif

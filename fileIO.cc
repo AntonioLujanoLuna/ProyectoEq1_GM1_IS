@@ -987,3 +987,87 @@ void FileIO::guardarMonitor(const monitor &m){
         file.close();
     }
 }
+
+parque FileIO::busquedaParque(string nombre){
+    std::list<parque> parques = getInstance->getTodosParques();
+    for(parque &parque : parques){
+        if(parque.getNombre() == nombre){
+            return parque;
+        }
+    }
+}
+
+sendero FileIO::busquedaSendero(string nombreparque, string nombresendero){
+    std::list<parque> parques = getInstance->getTodosParques();
+        for(parque &parque : parques){
+            if(parque.getNombre() == nombreparque){
+                std::list<sendero> senderos = getInstance->getSenderosParque(nombreparque);
+                for(sendero &sendero : senderos){
+                    if(sendero.getNombre() == nombresendero){
+                        return sendero;
+                    }
+                }
+            }
+        }
+}
+
+ruta FileIO::busquedaRuta(string nombreparque, string nombresendero, string nombreruta) {
+    std::list<parque> parques = getInstance->getTodosParques();
+        for(parque &parque : parques){
+            if(parque.getNombre() == nombreparque){
+                std::list<sendero> senderos = getInstance->getSenderosParque(nombreparque);
+                for(sendero &sendero : senderos){
+                    if(sendero.getNombre() == nombresendero){
+                        std::list<ruta> rutas = getInstance->getRutasSendero(nombreparque + "_" + nombresendero);
+                        for(ruta &ruta : rutas){
+                            if(ruta.getIdentificador() == nombreruta){
+                                return ruta;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+}
+
+monitor FileIO::busquedaMonitor(string dni){
+    std::list<monitor> monitores = getInstance->getTodosMonitores();
+    for(monitor &monitor : monitores){
+        if (monitor.getDNI() == dni){
+            return monitor;
+        }
+    }
+}
+
+visitante FileIO::busquedaVisitanteRuta(string nombreparque, string nombresendero, string nombreruta, string dni){
+    std::list<parque> parques = getInstance->getTodosParques();
+        for(parque &parque : parques){
+            if(parque.getNombre() == nombreparque){
+                std::list<sendero> senderos = getInstance->getSenderosParque(nombreparque);
+                for(sendero &sendero : senderos){
+                    if(sendero.getNombre() == nombresendero){
+                        std::list<ruta> rutas = getInstance->getRutasSendero(nombreparque + "_" + nombresendero);
+                        for(ruta &ruta : rutas){
+                            if(ruta.getIdentificador() == nombreruta){
+                                std::list<visitante> visitantes = getInstance->getVisitantesRuta(nombreparque + "_" + nombresendero + "_" + nombreruta)
+                                for(visitante &visitante : visitantes){
+                                    if(visitante.getDNI() == dni){
+                                        return visitante;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+}
+
+visitante FileIO::busquedaVisitante(string dni){
+    std::list<visitante> visitantes = getInstance->getTodosVisitantes();
+    for(visitante &visitante : visitantes){
+        if (visitante.getDNI() == dni){
+            return visitante;
+        }
+    }
+}
