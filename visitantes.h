@@ -31,6 +31,7 @@ public:
         inline void setCondicion(string condicion){condicion_=condicion;};
         void imprimirVisitante();
         void mostrarTodosVisitantes();
+        void mostrarTodosVisitantesDNI();
 };
 
 

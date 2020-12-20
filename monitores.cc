@@ -4,13 +4,12 @@
 #include "monitores.h"
 
        monitor::monitor(string DNI, string nombreCompleto, string Tlfn, string fechaDeNacimiento, string condicion,
-            string horasTrabajadas, bool disponibilidad){
+            bool disponibilidad){
 		setDNI(DNI);
 		setNombreCompleto(nombreCompleto);
 		setNumeroDeTlfn(Tlfn);
 		setFechaDeNacimiento(fechaDeNacimiento);
 		setCondicion(condicion);
-		setHorasTrabajadas(horasTrabajadas);
 		setDisponibilidad(disponibilidad);
 
      	}
@@ -22,6 +21,14 @@
         cout<<"FECHA DE NACIMIENTO: "<<this->getFechaDeNacimiento()<<endl;
         cout<<"NUMERO DE TELEFONO: "<<this->getNumeroDeTlfn()<<endl;
         cout<<"CONDICION: "<<this->getCondicion()<<endl;
-        cout<<"HORAS TRABAJADAS: "<<this->getHorasTrabajadas()<<endl;
         cout<<"DISPONIBILIDAD: "<<this->getDisponibilidad()<<endl;
+      }
+
+      void monitor::mostrarTodosMonitoresDNI(){
+
+        list<monitor> monitores=getInstance()->getTodosMonitores();
+        for(monitor &monitor: monitores)
+        {
+          std::cout<<monitor.getDNI()<<endl;
+        }
       }

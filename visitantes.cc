@@ -29,3 +29,12 @@ void visitante::mostrarTodosVisitantes(){
     std::cout<<visitante.getNombreCompleto()<<endl;
   }
 }
+
+void visitante::mostrarTodosVisitantesDNI(){
+
+  list<visitante> visitantes=getInstance()->getTodosVisitantes();
+  for(visitante &visitante: visitantes)
+  {
+    std::cout<<visitante.getDNI()<<endl;
+  }
+}

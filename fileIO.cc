@@ -258,9 +258,6 @@ std::list<monitor> FileIO::getTodosMonitores(){
             p.setCondicion(aux);
 
             getline(file, aux);
-            p.setHorasTrabajadas(atoi(aux));
-
-            getline(file, aux);
             if(aux=="true"){
                 p.setDisponibilidad(true);
             }else p.setDisponibilidad(false);
@@ -466,7 +463,6 @@ void FileIO::borrarParque (const parque &p) {
                 file << monitor.getNumeroDeTlfn()       << std::endl;
                 file << monitor.getFechaDeNacimiento()  << std::endl;
                 file << monitor.getCondicion()          << std::endl;
-                file << monitor.getHorasTrabajadas()    << std::endl;
                 file << monitor.getDisponibilidad()     << std::endl;
             }
         }
@@ -967,7 +963,6 @@ void FileIO::guardarMonitor(const monitor &m){
                 file << m.getNumeroDeTlfn() << std::endl;
                 file << m.getFechaDeNacimiento() << std::endl;
                 file << m.getCondicion() << std::endl;
-                file << m.getHorasTrabajadas() << std::endl;
                 file << m.getDisponibilidad() << std::endl;
             }
             file.close();
@@ -981,7 +976,6 @@ void FileIO::guardarMonitor(const monitor &m){
                 file << m.getNumeroDeTlfn() << std::endl;
                 file << m.getFechaDeNacimiento() << std::endl;
                 file << m.getCondicion() << std::endl;
-                file << m.getHorasTrabajadas() << std::endl;
                 file << m.getDisponibilidad() << std::endl;
         }
         file.close();
