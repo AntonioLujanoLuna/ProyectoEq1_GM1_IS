@@ -6,6 +6,8 @@
 
 #include <string>
 #include <list>
+#include "senderos.h"
+#include "rutas.h"
 
 using namespace std;
 

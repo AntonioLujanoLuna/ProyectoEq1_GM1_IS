@@ -6,7 +6,6 @@
 #include "rutas.h"
 #include "monitores.h"
 #include "visitantes.h"
-#include "persona.h"
 #include "fileIO.h"
 #include "extra.h"
 #include <list>
@@ -273,8 +272,8 @@ int menuParques(){
       else if{
         cout<<"Error en la confirmación, volviendo al menú\n";
       }
-      break;
     }
+      break;
 
     case 4:
 
@@ -288,17 +287,19 @@ int menuParques(){
       cout<<"--- A continuacion se mostrarán los datos del parque existente --- \n";
 
       list<parque> parques=getInstance()->GetTodosParques();
-      for(parque &parque: parques)
-      {
+      for(parque &parque: parques){
+        p=parque;
         if(aux==p.getNombre())
         {
-          p.imprimirParque(p);
+          p.imprimirParque();
         }
       }
       break;
 
     case 5:
       return(EXIT_SUCCESS);
+    break;
+
     }
   }
 }

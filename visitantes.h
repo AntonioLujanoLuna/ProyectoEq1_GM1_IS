@@ -6,7 +6,6 @@
 
 #include <string>
 #include <list>
-#include "persona.h"
 
 using namespace std;
 
