@@ -160,7 +160,7 @@ int menuParques(){
       p.setDisponibilidad(true);
 
       f.guardarParque(p);
-      p.imprimirParque();
+      p.imprimirParque(p);
 
     break;
 
@@ -171,7 +171,7 @@ int menuParques(){
       cout<<"   --- Menu de Introduccion de Datos --- \n";
       cout<<"--- Por favor, introduzca el nombre del parque natural --- \n";
       getline(cin, aux);
-      
+
       if(f.existsParque(aux) < 0) {
         cout<<"El parque que desea modificar no existe\n Volviendo al menú\n";
         break;
@@ -198,7 +198,7 @@ int menuParques(){
         p.setDisponibilidad(true);
 
         f.guardarParque(p);
-        p.imprimirParque();
+        p.imprimirParque(p);
       }
     break;
 
@@ -277,7 +277,7 @@ int menuParques(){
     }
 
     case 4:
-    
+
       mostrarNombresParques();
       cout<<"Introduzca el nombre del parque que quiere mostrar por pantalla."<<endl;
       cin>>aux;
@@ -292,7 +292,7 @@ int menuParques(){
       {
         if(aux==p.getNombre())
         {
-          p.imprimirParque();
+          p.imprimirParque(p);
         }
       }
       break;
@@ -307,7 +307,7 @@ int menuSenderos(){
   int i;
   while(){
 
-    
+
     cout<<"   --- Gestion de Senderos --- \n";
     cout<<"--- Seleccione la opcion a la que desee acceder. --- \n";
     cout<<"--- 0) Añadir un nuevo Sendero a un Parque Natural. --- \n";
@@ -364,12 +364,12 @@ int menuSenderos(){
       s.setDisponibilidad(true);
 
       f.guardarSendero(s, nomParque);
-      s.imprimirSendero();
+      s.imprimirSendero(s, nomParque);
     }
     break;
 
     case 1:
-    
+
     string nomParque;
     mostrarNombresParques();
     cout<<"--- Por favor, introduzca el nombre del parque cuyo sendero desea modificar. --- \n";
@@ -404,7 +404,7 @@ int menuSenderos(){
       s.setDisponibilidad(true);
 
       f.guardarSendero(s, nomParque);
-      s.imprimirSendero();
+      s.imprimirSendero(s, nomParque);
     }
     break;
 
@@ -496,7 +496,7 @@ int menuSenderos(){
         exist = f.existsSendero(aux, nomParque);
         }
       while(exist <0);
-      
+
       cout<<"--- ¿Esta seguro de que desea borrar el sendero? ---\n";
       cout<<"--- Escriba 1 si desea confirmarlo, 0 si no ---\n";
       int decis;
@@ -536,9 +536,9 @@ int menuSenderos(){
         cin>>aux;
         exist = f.existsSendero(aux, nomParque);
         }
-      while(exist <0);          
-  
-          s.imprimirSendero();
+      while(exist <0);
+
+          s.imprimirSendero(s, nomParque);
       }
     }
 
@@ -549,6 +549,7 @@ int menuSenderos(){
     }
   }
 }
+
 
 int menuRutas(){
 
@@ -586,7 +587,7 @@ int menuRutas(){
       cin>>nomParque;
       f.existsParque(nomParque);
     }
-    while(f.existsParque (nomParque)==-2);
+    while(f.existsParque (nomParque)<0);
 
 
     p.mostrarSenderosAsociados(nomParque);
@@ -598,7 +599,7 @@ int menuRutas(){
       cin>>aux;
       f.existsSendero(aux, nomParque);
     }
-    while(f.existsSendero(aux, nomParque)==-2);
+    while(f.existsSendero(aux, nomParque)<0);
     s.setNombre(aux);
 
 
@@ -612,7 +613,7 @@ int menuRutas(){
       cin>>aux;
       f.existsRuta (aux, nomsendero, nomParque);
     }
-    while(f.existsRuta (aux, nomsendero, nomParque)==-1);
+    while(f.existsRuta (aux, nomsendero, nomParque)=>0);
     r.setIdentidicador(aux);
     string id==aux;
 
@@ -652,7 +653,7 @@ int menuRutas(){
     r.setBicicleta(aux);
 
     f.guardarRuta(id, nomsendero,nomParque);
-    r.imprimirRuta();
+    r.imprimirRuta(id, nomsendero, nomParque);
 
     //
     break;
@@ -669,7 +670,7 @@ int menuRutas(){
       cin>>nomParque;
       f.existsParque(nomParque);
     }
-    while(f.existsParque (nomParque)==-2);
+    while(f.existsParque (nomParque)<0);
 
 
     p.mostrarSenderosAsociados(nomParque);
@@ -681,7 +682,7 @@ int menuRutas(){
       cin>>aux;
       f.existsSendero(aux, nomParque);
     }
-    while(f.existsSendero(aux, nomParque)==-2);
+    while(f.existsSendero(aux, nomParque)<0);
     s.setNombre(aux);
 
 
@@ -695,7 +696,7 @@ int menuRutas(){
       cin>>aux;
       f.existsRuta (aux, nomsendero, nomParque);
     }
-    while(f.existsRuta (aux, nomsendero, nomParque)==-2);
+    while(f.existsRuta (aux, nomsendero, nomParque)<0);
     r.setIdentidicador(aux);
     string id==aux;
 
@@ -736,7 +737,7 @@ int menuRutas(){
     r.setBicicleta(aux);
 
     f.guardarRuta(id, nomsendero,nomParque);
-    r.imprimirRuta();
+    r.imprimirRuta(id, nomsendero, nomParque);
 
     break;
 
@@ -751,7 +752,7 @@ int menuRutas(){
       cin>>nomParque;
       f.existsParque(nomParque);
     }
-    while(f.existsParque (nomParque)==-2);
+    while(f.existsParque (nomParque)<0);
 
 
     p.mostrarSenderosAsociados(nomParque);
@@ -763,7 +764,7 @@ int menuRutas(){
       cin>>aux;
       f.existsSendero(aux, nomParque);
     }
-    while(f.existsSendero(aux, nomParque)==-2);
+    while(f.existsSendero(aux, nomParque)<0);
     s.setNombre(aux);
 
     string nomsendero==aux;
@@ -776,7 +777,7 @@ int menuRutas(){
       cin>>aux;
       f.existsRuta (aux, nomsendero, nomParque);
     }
-    while(f.existsRuta (aux, nomsendero, nomParque)==-2);
+    while(f.existsRuta (aux, nomsendero, nomParque)<0);
     r.setIdentidicador(aux);
     string id==aux;
 
@@ -828,7 +829,7 @@ int menuRutas(){
       cin>>nomParque;
       f.existsParque(nomParque);
     }
-    while(f.existsParque (nomParque)==-2);
+    while(f.existsParque (nomParque)<0);
 
 
     p.mostrarSenderosAsociados(nomParque);
@@ -840,7 +841,7 @@ int menuRutas(){
       cin>>aux;
       f.existsSendero(aux, nomParque);
     }
-    while(f.existsSendero(aux, nomParque)==-2);
+    while(f.existsSendero(aux, nomParque)<0);
     s.setNombre(aux);
 
 
@@ -854,7 +855,7 @@ int menuRutas(){
       cin>>aux;
       f.existsRuta (aux, nomsendero, nomParque);
     }
-    while(f.existsRuta (aux, nomsendero, nomParque)==-2);
+    while(f.existsRuta (aux, nomsendero, nomParque)<0);
     r.setIdentidicador(aux);
     string id==aux;
 
@@ -881,7 +882,7 @@ int menuRutas(){
       cin>>nomParque;
       f.existsParque(nomParque);
     }
-    while(f.existsParque (nomParque)==-2);
+    while(f.existsParque (nomParque)<0);
 
 
     p.mostrarSenderosAsociados(nomParque);
@@ -893,7 +894,7 @@ int menuRutas(){
       cin>>aux;
       f.existsSendero(aux, nomParque);
     }
-    while(f.existsSendero(aux, nomParque)==-2);
+    while(f.existsSendero(aux, nomParque)<0);
     s.setNombre(aux);
 
     string nomsendero==aux;
@@ -903,17 +904,18 @@ int menuRutas(){
     f.existsRuta (aux, nomsendero, nomParque);
     do{
       cout<<" No existe la ruta. Por favor, introduzca el nombre de la ruta. \n";
+
       cin>>aux;
       f.existsRuta (aux, nomsendero, nomParque);
     }
-    while(f.existsRuta (aux, nomsendero, nomParque)==-2);
+    while(f.existsRuta (aux, nomsendero, nomParque)<0);
     r.setIdentidicador(aux);
     string id==aux;
     for(ruta &ruta: rutas)
     {
       if(aux==r.getNombre())
       {
-        r.imprimirRuta();
+        r.imprimirRuta(id, nomsendero, nomParque);
       }
     }
     break;
@@ -924,6 +926,7 @@ int menuRutas(){
 
   }
 }
+
 
 int menuVisitantes(){
 
@@ -981,7 +984,7 @@ int menuVisitantes(){
   v.setCondicion(aux);
 
   f.guardarVisitante(&v);
-  v.imprimirVisitante();
+  v.imprimirVisitante(&v);
 
   break;
 
@@ -1015,7 +1018,7 @@ int menuVisitantes(){
   v.setCondicion(aux);
 
   f.guardarVisitante(&v);
-  v.imprimirVisitante();
+  v.imprimirVisitante(&v);
 
 
   break;
@@ -1061,7 +1064,7 @@ int menuVisitantes(){
   {
     if(aux==v.getDNI())
     {
-      v.imprimirRuta();
+      v.imprimirRuta(&v);
     }
   }
   break;
@@ -1186,7 +1189,7 @@ int menuMonitores(){
     m.setDisponibilidad(true);
 
     f.guardarMonitor(&m);
-    m.imprimirMonitor();
+    m.imprimirMonitor(&m);
     break;
 
     case 1:
@@ -1224,7 +1227,7 @@ int menuMonitores(){
     m.setDisponibilidad(true);
 
     f.guardarMonitor(&m);
-    m.imprimirMonitor();
+    m.imprimirMonitor(&m);
 
     break;
 
@@ -1295,7 +1298,7 @@ int menuMonitores(){
     {
       if(aux==m.getDNI())
       {
-        m.imprimirMonitor();
+        m.imprimirMonitor(&m);
       }
     }
 
