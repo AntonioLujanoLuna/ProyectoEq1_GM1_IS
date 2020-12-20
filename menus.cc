@@ -325,6 +325,7 @@ int menuSenderos(){
     switch(i){
       string aux;
       int tamano;
+      int exist;
       parque p;
       sendero s;
 
@@ -342,7 +343,7 @@ int menuSenderos(){
       p.mostrarSenderosAsociados(nomParque);
       cout<<"--- Por favor, introduzca el nombre del nuevo sendero. --- \n";
       cin>>aux;
-      if((int exist = f.existsSendero(aux, nomParque))>=0){
+      if((exist = f.existsSendero(aux, nomParque))>=0){
       do{
         cout<<" Ya existe un sendero con ese nombre. Introduzca otro nombre para el nuevo sendero. \n";
         cin>>aux;
@@ -382,7 +383,7 @@ int menuSenderos(){
       p.mostrarSenderosAsociados(nomParque);
       cout<<"--- Por favor, introduzca el nombre del sendero a modificar. --- \n";
       cin>>aux;
-      if((int exist = f.existsSendero(aux, nomParque))<0){
+      if((exist = f.existsSendero(aux, nomParque))<0){
       do{
         cout<<" No existe un sendero con ese nombre. Introduzca otro nombre para el nuevo sendero. \n";
         cin>>aux;
@@ -410,107 +411,105 @@ int menuSenderos(){
     case 2:
     string nomParque;
     mostrarNombresParques();
-    cout<<"--- Por favor, introduzca el nombre del parque cuyos senderos desea modificar. --- \n";
+    cout<<"--- Por favor, introduzca el nombre del parque cuyo sendero desea modificar. --- \n";
     cin>>nomParque;
 
-
-    f.existsParque(nomParque);
-    do{
-      cout<<" El parque no existe. Por favor, introduzca el nombre del parque cuyos senderos quiere ver. \n";
-      cin>>nomParque;
-      f.existsParque(nomParque);
+    if(f.existsParque(nomParque)<0){
+      cout<<" El parque indicado no existe. Volviendo al menu\n";
+      break;
     }
-    while(f.existsParque (nomParque)==-2);
-
-    p.mostrarSenderosAsociados(nomParque);
-    cin>>aux;
-    cout<<"--- Por favor, introduzca el nombre del sendero a modificar. --- \n";
-    cin>>aux;
-    f.existsSendero(aux, nomParque);
-    do{
-      cout<<" El sendero no existe. Por favor, introduzca el nombre del sendero que desea modificar. \n";
+    else{
+      p.mostrarSenderosAsociados(nomParque);
       cin>>aux;
-      f.existsSendero(aux, nomParque);
+      cout<<"--- Por favor, introduzca el nombre del sendero a dar de baja/alta. --- \n";
+      cin>>aux;
+
+      if((exist = f.existsSendero(aux, nomParque))<0){
+      do{
+        cout<<" No existe un sendero con ese nombre. Introduzca otro nombre para el nuevo sendero. \n";
+        cin>>aux;
+        exist = f.existsSendero(aux, nomParque);
+        }
+      while(exist <0);
+
+      s.setNombre(aux);
+
+      cout<<"Introduzca 1 si quiere que el parque este disponible y 0 en caso contrario"<<endl;
+      cin>>tamano;
+        if(tamano>1 || tamano<0)
+        {
+          cout<<"ERROR, numero no valido. Debe introducir 1 o 0"<<endl;
+          menuSenderos();
+        }
+        else if(tamano=1)
+        {
+          s.setDisponibilidad(true);
+          if(s.getDisponibilidad()==false)
+          {
+            cout<<"ERROR al cambiar la disponibilidad del sendero."<<endl;
+            menuSenderos();
+          }
+          else
+          {
+            cout<<"Disponibilidad cambiada con exito."<<endl;
+          }
+        }
+        else if(tamano=0)
+        {
+          s.setDisponibilidad(false);
+          if(s.getDisponibilidad()==true)
+          {
+            cout<<"ERROR al cambiar la disponibilidad del sendero."<<endl;
+            menuSenderos();
+          }
+          else
+          {
+            cout<<"Disponibilidad cambiada con exito."<<endl;
+          }
+        }
+      f.guardarSendero(s, nomParque);
     }
-    while(f.existsSendero(aux, nomParque)==-2);
-    s.setNombre(aux);
 
-
-    cout<<"Introduzca 1 si quiere que el parque este disponible y 0 en caso contrario"<<endl;
-    cin>>tamano;
-      if(tamano>1 || tamano<0)
-      {
-        cout<<"ERROR, numero no valido. Debe introducir 1 o 0"<<endl;
-        menuSenderos();
-      }
-      else if(tamano=1)
-      {
-        s.setDisponibilidad(true);
-        if(s.getDisponibilidad()==false)
-        {
-          cout<<"ERROR al cambiar la disponibilidad del sendero."<<endl;
-          menuSenderos();
-        }
-        else
-        {
-          cout<<"Disponibilidad cambiada con exito."<<endl;
-        }
-      }
-      else if(tamano=0)
-      {
-        s.setDisponibilidad(false);
-        if(s.getDisponibilidad()==true)
-        {
-          cout<<"ERROR al cambiar la disponibilidad del sendero."<<endl;
-          menuSenderos();
-        }
-        else
-        {
-          cout<<"Disponibilidad cambiada con exito."<<endl;
-        }
-      }
-    f.guardarSendero(s, nomParque);
     break;
 
     case 3:
-    //
+
     string nomParque;
     mostrarNombresParques();
-    cout<<"--- Por favor, introduzca el nombre del parque cuyos senderos desea modificar. --- \n";
+    cout<<"--- Por favor, introduzca el nombre del parque cuyo sendero desea modificar. --- \n";
     cin>>nomParque;
 
-
-    f.existsParque(nomParque);
-    do{
-      cout<<" El parque no existe. Por favor, introduzca el nombre del parque cuyos senderos quiere ver. \n";
-      cin>>nomParque;
-      f.existsParque(nomParque);
+    if(f.existsParque(nomParque)<0){
+      cout<<" El parque indicado no existe. Volviendo al menu\n";
+      break;
     }
-    while(f.existsParque (nomParque)==-2);
-
-    p.mostrarSenderosAsociados(nomParque);
-    cin>>aux;
-    cout<<"--- Por favor, introduzca el nombre del sendero a modificar. --- \n";
-    cin>>aux;
-    f.existsSendero(aux, nomParque);
-    do{
-      cout<<" El sendero no existe. Por favor, introduzca el nombre del sendero que desea modificar. \n";
+    else{
+      p.mostrarSenderosAsociados(nomParque);
       cin>>aux;
-      f.existsSendero(aux, nomParque);
-    }
-    while(f.existsSendero(aux, nomParque)==-2);
-    s.setNombre(aux);
+      cout<<"--- Por favor, introduzca el nombre del sendero a modificar. --- \n";
+      cin>>aux;
 
-
-    cout<<"--- ¿Esta seguro de que desea borrar el sendero? ---\n";
-    cout<<"--- Escriba 1 si desea confirmarlo, 0 si no ---\n";
-    int decis;
-    cin<<decis;
-    if(decis==1){
-      f.borrarSenderos(aux,nomParque);
-    }
-    if(decis==0){
-      menuSenderos();
+      if((exist = f.existsSendero(aux, nomParque))<0){
+      do{
+        cout<<" No existe un sendero con ese nombre. Introduzca otro nombre para el nuevo sendero. \n";
+        cin>>aux;
+        exist = f.existsSendero(aux, nomParque);
+        }
+      while(exist <0);
+      
+      cout<<"--- ¿Esta seguro de que desea borrar el sendero? ---\n";
+      cout<<"--- Escriba 1 si desea confirmarlo, 0 si no ---\n";
+      int decis;
+      cin<<decis;
+      if(decis==1){
+        f.borrarSenderos(aux,nomParque);
+      }
+      if(decis==0){
+        cout<<"Operación abortada\n";
+      }
+      else if{
+        cout<<"Error en la confirmación, volviendo al menú\n";
+      }
     }
     break;
 
@@ -521,35 +520,28 @@ int menuSenderos(){
     cout<<"--- Por favor, introduzca el nombre del parque cuyos senderos desea modificar. --- \n";
     cin>>nomParque;
 
-    f.existsParque(nomParque);
-    do{
-      cout<<" El parque no existe. Por favor, introduzca el nombre del parque cuyos senderos quiere ver. \n";
-      cin>>nomParque;
-      f.existsParque(nomParque);
+    if(f.existsParque(nomParque)<0){
+      cout<<" El parque indicado no existe. Volviendo al menu\n";
+      break;
     }
-    while(f.existsParque (nomParque)==-2);
-
-    p.mostrarSenderosAsociados(nomParque);
-    cin>>aux;
-    cout<<"--- Por favor, introduzca el nombre del sendero a modificar. --- \n";
-    cin>>aux;
-    f.existsSendero(aux, nomParque);
-    do{
-      cout<<" El sendero no existe. Por favor, introduzca el nombre del sendero que desea modificar. \n";
+    else{
+      p.mostrarSenderosAsociados(nomParque);
       cin>>aux;
-      f.existsSendero(aux, nomParque);
-    }
-    while(existsSendero(aux, nomParque)==-2);
-    s.setNombre(aux);
+      cout<<"--- Por favor, introduzca el nombre del sendero a modificar. --- \n";
+      cin>>aux;
 
-
-    for(sendero &sendero: senderos)
-    {
-      if(aux==s.getNombre())
-      {
-        s.imprimirSendero();
+      if((exist = f.existsSendero(aux, nomParque))<0){
+      do{
+        cout<<" No existe un sendero con ese nombre. Introduzca otro nombre para el nuevo sendero. \n";
+        cin>>aux;
+        exist = f.existsSendero(aux, nomParque);
+        }
+      while(exist <0);          
+  
+          s.imprimirSendero();
       }
     }
+
     break;
 
     case 5:
