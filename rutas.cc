@@ -16,7 +16,7 @@ ruta::ruta(string id, string dificultad, string monitor, string fecha,
 
 }
 
-void ruta::mostarVisitantesAsociados(const ruta &r, const sendero &s, const parque &p){
+void ruta::mostarVisitantesAsociados(const sendero &s, const parque &p){
 
 
       list<visitante> visitantes=getInstance()->getVisitantesRuta(p.getNombre() + "_" + s.getNombre() + "_" + r.getIdentificador());
@@ -28,7 +28,7 @@ void ruta::mostarVisitantesAsociados(const ruta &r, const sendero &s, const parq
 
 }
 
-void ruta::imprimirRuta(const ruta &r, const sendero &s, const parque &p){
+void ruta::imprimirRuta(const sendero &s, const parque &p){
   cout<<"DATOS DE LA RUTA: \n";
   cout<<"IDENTIFICADOR: "<<this->getIdentificador()<<endl;
   cout<<"DIFICULTAD: "<<this->getDificultad()<<endl;
@@ -37,7 +37,5 @@ void ruta::imprimirRuta(const ruta &r, const sendero &s, const parque &p){
   cout<<"HORA: "<<this->getHora()<<endl;
   cout<<"DURACION ESTIMADA: "<<this->getDuracionEstimada()<<endl;
   cout<<"BICICLETA: "<<this->getBicicleta() << endl;
-  mostrarVisitantesAsociados(r, s, p);
+  this->mostrarVisitantesAsociados(s, p);
 }
-
-

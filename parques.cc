@@ -18,7 +18,7 @@ parque::parque(string nombre, string fechaNombramientoParque,
       }
 
 
-  void parque::mostrarSenderosAsociados(const parque &p){
+  void parque::mostrarSenderosAsociados(){
 
     list<sendero> senderos=getInstance()->getSenderosParque(p.getNombre());
     for(sendero &sendero: senderos)
@@ -29,7 +29,7 @@ parque::parque(string nombre, string fechaNombramientoParque,
   }
 
 
-void parque::imprimirParque(const parque &p)
+void parque::imprimirParque()
 {
   cout<<"DATOS DEL PARQUE: \n";
   cout<<"NOMBRE: "<<this->getNombre()<<endl;
@@ -39,7 +39,7 @@ void parque::imprimirParque(const parque &p)
   cout<<"DESCRIPCION: "<<this->getDescripcion()<<endl;
   cout<<"DISPONIBILIDAD: "<<this->getDisponibilidad()<<endl;
   cout<<"SENDEROS ASOCIADOS: \n";
-  mostrarSenderosAsociados(p);
+  this->mostrarSenderosAsociados();
 
 }
 

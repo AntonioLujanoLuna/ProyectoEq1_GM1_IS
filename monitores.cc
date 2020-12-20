@@ -15,7 +15,7 @@
 
      	}
 
-      void monitor::imprimirMonitor(const monitor &m){
+      void monitor::imprimirMonitor(){
         cout<<"DATOS DEL MONITOR: \n";
         cout<<"DNI: "<<this->getDNI()<<endl;
         cout<<"NOMBRE COMPLETO: "<<this->getNombreCompleto()<<endl;
