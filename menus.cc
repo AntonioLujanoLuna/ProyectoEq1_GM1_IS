@@ -349,7 +349,6 @@ int menuSenderos(){
         exist = f.existsSendero(aux, nomParque);
         }
       while(exist >=0);
-      }
 
       s.setNombre(aux);
 
@@ -381,7 +380,7 @@ int menuSenderos(){
     }
     else{
       p.mostrarSenderosAsociados(nomParque);
-      cout<<"--- Por favor, introduzca el nombre del nuevo sendero. --- \n";
+      cout<<"--- Por favor, introduzca el nombre del sendero a modificar. --- \n";
       cin>>aux;
       if((int exist = f.existsSendero(aux, nomParque))<0){
       do{
@@ -390,7 +389,6 @@ int menuSenderos(){
         exist = f.existsSendero(aux, nomParque);
         }
       while(exist <0);
-      }
 
       s.setNombre(aux);
 
