@@ -341,7 +341,7 @@ int menuParques(){
         p=parque;
         if(aux==p.getNombre())
         {
-          p.imprimirParque();
+          p.imprimirParque(p);
         }
       }
       break;
@@ -576,7 +576,6 @@ int menuSenderos(){
     }
     else{
       p.mostrarSenderosAsociados(nomParque);
-      cin>>aux;
       cout<<"--- Por favor, introduzca el nombre del sendero a modificar. --- \n";
       cin>>aux;
 
@@ -587,8 +586,14 @@ int menuSenderos(){
         exist = f.existsSendero(aux, nomParque);
         }
       while(exist <0);
-
-          s.imprimirSendero(s, nomParque);
+          parque aux;
+          list<parque> parques = getInstance->getTodosParques();
+          for(parque &parque : parques){
+            if(nomParque == parque.getNombre()){
+              aux = parque;
+            }            
+          }
+          s.imprimirSendero(s, aux);
       }
     }
 
