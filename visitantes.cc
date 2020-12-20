@@ -23,10 +23,9 @@ void visitante::imprimirVisitante(const visitante &v){
 
 void visitante::mostrarTodosVisitantes(){
 
-  list<visitante> visitantes=getInstance()->getTodosVisitantes(v.getNombreCompleto());
+  list<visitante> visitantes=getInstance()->getTodosVisitantes();
   for(visitante &visitante: visitantes)
   {
     std::cout<<visitante.getNombreCompleto()<<endl;
-    std::cout<<"\n";
   }
 }

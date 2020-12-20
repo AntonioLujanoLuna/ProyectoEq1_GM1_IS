@@ -4,7 +4,7 @@
 #include "monitores.h"
 
        monitor::monitor(string DNI, string nombreCompleto, string Tlfn, string fechaDeNacimiento, string condicion,
-            int horasTrabajadas, bool disponibilidad){
+            string horasTrabajadas, bool disponibilidad){
 		setDNI(DNI);
 		setNombreCompleto(nombreCompleto);
 		setNumeroDeTlfn(Tlfn);

@@ -4,9 +4,8 @@
 #ifndef SENDEROS_H
 #define SENDEROS_H
 
-#include <string>
-#include <list>
-#include "rutas.h"
+#include "fileIO.h"
+
 
 using namespace std;
 
@@ -19,8 +18,8 @@ class sendero {
         list <ruta> rutas_;
 
     public:
-        sendero(string nombre, int longitud=0, string descripcion="",
-            bool disponibilidad=true, list <ruta> rutas=NULL);
+        sendero(string nombre="", int longitud=0, string descripcion="",
+            bool disponibilidad=true);
         inline string getNombre()const{return nombre_;};
         inline void setNombre(string nombre){nombre_=nombre;};
         inline int getLongitud()const{return longitud_;};
@@ -31,7 +30,6 @@ class sendero {
         inline void setDisponibilidad(int disponibilidad){disponibilidad_=disponibilidad;};
         list <ruta> getRutas()const{return rutas_;};
         void setRutas(list<ruta> rutas){rutas_=rutas;};
-        void addRuta(ruta newRuta){rutas_.push_back(newRuta);};
         void imprimirSendero(const sendero &s, const parque &p);
         void mostrarRutasAsociadas(const sendero &s, const parque &p);
 };

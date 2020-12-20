@@ -7,8 +7,12 @@
 #include <string>
 #include <list>
 #include <fstream>
+#include <iostream>
 #include "senderos.h"
 #include "parques.h"
+#include "rutas.h"
+#include "visitantes.h"
+#include "monitores.h"
 
 class FileIO {
     private:

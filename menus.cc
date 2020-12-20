@@ -11,7 +11,53 @@
 #include <list>
 
 using namespace std;
-FileIO f;
+using namespace FileIO;
+
+int menuPrincipal(){
+  int login;
+
+  cout<<"     --- Bienvenido al Sistema de Gestión de Parques Naturales de la Junta de Andalucia. ---\n";
+  cout<<"--- Por favor, inicie sesion, seleccionado la opcion 0 o 1. ---\n";
+  cout<<"--- 0) Entrar al Sistema como Administrador. ---\n";
+  cout<<"--- 1) Entrar al Sistema como Monitor. ---\n";
+  cout<<"--- 2) Salir del programa ---\n";
+  cin>>login;
+
+  switch(login){
+    while(login<0||login>2){
+      cout<<"Opcion invalida. Por favor, seleccione una opcion valida. \n";
+      cin>>login;
+    }
+
+  case 0:
+    if(!comprobarAdmin()){
+      cout<<"No tiene autorizacion para entrar al sistema como administrador. \n";
+    }
+    else{
+      menuAdmin();
+    }
+    break;
+
+  case 1:
+    if(!comprobarMonitor()){
+      cout<<"No tiene autorizacion para entrar al sistema como monitor. \n";
+      cout<<"Si es usted administrador del sistema, introduzca sus credenciales. \n";
+      if(!comprobarAdmin()){
+        cout<<"No tiene autorizacion para entrar al sistema como administrador. \n";
+        return 0;
+      }
+      else{
+        menuMonitor();
+      }
+    }
+    break;
+
+  case 2:
+    return 0;
+  break;
+  }
+}
+
 
 int menuAdmin(){
     int opc;
@@ -22,11 +68,12 @@ int menuAdmin(){
       cout<<"--- 2) Gestion de Visitantes. ---\n";
       cout<<"--- 3) Gestion de Monitores. ---\n";
       cout<<"--- 4) Salir del menu. ---\n";
-      cin<<opc;
+      cin>>opc;
 
+    switch(opc){
       while(opc<0||opc>4){
         cout<<" Opcion invalida. Por favor, seleccione una opcion valida. \n";
-        cin<<opc;
+        cin>>opc;
       }
 
       case 0:
@@ -48,6 +95,8 @@ int menuAdmin(){
       case 4:
         menuPrincipal();
         break;
+
+    }
 }
 
 int menuMonitor(){
@@ -56,12 +105,12 @@ int menuMonitor(){
   cout<<"--- Por favor, seleccione a que gestion desea acceder. ---\n";
   cout<<"--- 0) Gestion de Rutas. ---\n";
   cout<<"--- 1) Salir del menu ---\n";
-  cin<<seleccion;
+  cin>>seleccion;
 
     switch(seleccion){
       while(seleccion<0||seleccion>1){
         cout<<"Opcion invalida. Por favor seleccione una opcion valida \n";
-        cin<<seleccion;
+        cin>>seleccion;
       }
 
     case 0:
@@ -79,7 +128,7 @@ bool comprobarAdmin(){
   for (int i = 0; i<3; i++){
     cout<<" Por favor, introduzca su contraseña.\n";
     cin>>password;
-    if (password == admingestionJA){
+    if (password == "admingestionJA"){
         cout<<"Contraseña correcta\n";
         return true;
     }
@@ -113,6 +162,9 @@ bool comprobarMonitor(){
 
 int menuParques(){
     int i;
+    string aux;
+    int tamano;
+    parque p;
     while(){
 
     cout<<"   --- Gestion de Parques --- \n";
@@ -123,16 +175,14 @@ int menuParques(){
     cout<<"--- 3) Eliminar un Parque Natural. --- \n";
     cout<<"--- 4) Mostrar los datos de un Parque Natural ya introducido. --- \n";
     cout<<"--- 5) Volver al menu Principal --- \n";
-    cin<<i;
+    cin>>i;
 
     while(i<0||i>5){
       cout<<" Opcion invalida. Por favor, seleccione una opcion valida.\n";
-      cin<<i;
+      cin>>i;
     }
     switch(i){
-      string aux;
-      int tamano;
-      parque p;
+
     case 0:
       mostrarNombresParques();
       cout<<"   --- Menu de Introduccion de Datos --- \n";
@@ -158,7 +208,7 @@ int menuParques(){
 
       p.setDisponibilidad(true);
 
-      f.guardarParque(p);
+      FileIO::getInstance->guardarParque(p);
       p.imprimirParque(p);
 
     break;
@@ -262,7 +312,7 @@ int menuParques(){
       cout<<"--- ¿Esta seguro de que desea borrar el parque? ---\n";
       cout<<"--- Escriba 1 si desea confirmarlo, 0 en caso contrario ---\n";
       int decis;
-      cin<<decis;
+      cin>>decis;
       if(decis==1){
         f.borrarParque(p);
       }
@@ -306,8 +356,13 @@ int menuParques(){
 
 int menuSenderos(){
   int i;
-  while(){
+  string aux;
+  int tamano;
+  int exist;
+  parque p;
+  sendero s;
 
+  while(){
 
     cout<<"   --- Gestion de Senderos --- \n";
     cout<<"--- Seleccione la opcion a la que desee acceder. --- \n";
@@ -324,12 +379,6 @@ int menuSenderos(){
       cin>>i;
     }
     switch(i){
-      string aux;
-      int tamano;
-      int exist;
-      parque p;
-      sendero s;
-
     case 0:
 
     string nomParque;
@@ -501,7 +550,7 @@ int menuSenderos(){
       cout<<"--- ¿Esta seguro de que desea borrar el sendero? ---\n";
       cout<<"--- Escriba 1 si desea confirmarlo, 0 si no ---\n";
       int decis;
-      cin<<decis;
+      cin>>decis;
       if(decis==1){
         f.borrarSenderos(aux,nomParque);
       }
@@ -863,7 +912,7 @@ int menuRutas(){
     cout<<"--- ¿Esta seguro de que desea borrar la ruta? ---\n";
     cout<<"--- Escriba 1 si desea confirmarlo, 0 si no ---\n";
     int decis;
-    cin<<decis;
+    cin>>decis;
     if(decis==1){
       f.borrarRuta(id, nomsendero, nomParque);
     }
@@ -1039,7 +1088,7 @@ int menuVisitantes(){
   cout<<"--- ¿Esta seguro de que desea cancelar la visita? ---\n";
   cout<<"--- Escriba 1 si desea confirmarlo, 0 si no ---\n";
   int decis;
-  cin<<decis;
+  cin>>decis;
   if(decis==1){
     f.borrarVisitante(&v);
   }
@@ -1320,7 +1369,7 @@ int menuMonitores(){
     cout<<"--- ¿Esta seguro de que desea eliminar ? ---\n";
     cout<<"--- Escriba 1 si desea confirmarlo, 0 si no ---\n";
     int decis;
-    cin<<decis;
+    cin>>decis;
     if(decis==1){
       f.borrarMonitor(&m);
     }

@@ -4,7 +4,7 @@
 #include "rutas.h"
 
 ruta::ruta(string id, string dificultad, string monitor, string fecha,
-            string hora, int duracion, string bici, list <visitante> visitantes){
+            string hora, string duracion, string bici, list <visitante> visitantes){
         setIdentidicador(id);
         setDificultad(dificultad);
         setMonitorAsociado(monitor);
@@ -16,6 +16,18 @@ ruta::ruta(string id, string dificultad, string monitor, string fecha,
 
 }
 
+void ruta::mostarVisitantesAsociados(const ruta &r, const sendero &s, const parque &p){
+
+
+      list<visitante> visitantes=getInstance()->getVisitantesRuta(p.getNombre() + "_" + s.getNombre() + "_" + r.getIdentificador());
+      for(visitante &visitantes: visitantes)
+      {
+        std::cout<<visitante.getNombreCompleto()<<endl;
+        std::cout<<"\n";
+      }
+
+}
+
 void ruta::imprimirRuta(const ruta &r, const sendero &s, const parque &p){
   cout<<"DATOS DE LA RUTA: \n";
   cout<<"IDENTIFICADOR: "<<this->getIdentificador()<<endl;
@@ -24,18 +36,8 @@ void ruta::imprimirRuta(const ruta &r, const sendero &s, const parque &p){
   cout<<"FECHA: "<<this->getFecha()<<endl;
   cout<<"HORA: "<<this->getHora()<<endl;
   cout<<"DURACION ESTIMADA: "<<this->getDuracionEstimada()<<endl;
-  cout<<"BICICLETA: "<<this->getBicicleta()<<endl;
-  mostrarVisitantesAsociados(const ruta &r, const senderos &s, const parque &p);
+  cout<<"BICICLETA: "<<this->getBicicleta() << endl;
+  mostrarVisitantesAsociados(r, s, p);
 }
 
-void ruta::mostarVisitantesAsociados(const ruta &r, const senderos &s, const parque &p){
 
-
-      list<visitante> visitantes=getInstance()->getVisitantesRuta(r.getIdentificador());
-      for(visitante &visitantes: visitantes)
-      {
-        std::cout<<visitante.getNombreCompleto()<<endl;
-        std::cout<<"\n";
-      }
-
-}

@@ -11,8 +11,8 @@
 int menuAdmin();
 int menuMonitor();
 
-int comprobarAdmin();
-int comprobarMonitor(bool es_Monitor);
+bool comprobarAdmin();
+bool comprobarMonitor(bool es_Monitor);
 
 int menuParques();
 int menuSenderos();

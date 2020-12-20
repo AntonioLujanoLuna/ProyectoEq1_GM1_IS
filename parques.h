@@ -4,10 +4,9 @@
 #ifndef PARQUES_H
 #define PARQUES_H
 
-#include <string>
-#include <list>
-#include "senderos.h"
-#include "rutas.h"
+#include "fileIO.h"
+
+
 
 using namespace std;
 
@@ -21,14 +20,12 @@ class parque {
         bool disponibilidad_;
         list <sendero> senderos_;
     public:
-        parque(string nombre, string fechaNombramientoParque="",
-            int tamano=0, string premios="", string descripcion="", bool disponibilidad=true, list <sendero> senderos=NULL), list <sendero> senderos_ = NULL);
-;
+        parque(string nombre="", string fechaNombramientoParque="",
+            int tamano=0, string premios="", string descripcion="", bool disponibilidad=true);
         inline string getNombre()const{return nombre_;};
         inline void setNombre(string nombre){nombre_=nombre;};
         inline list <sendero> getSenderos()const{return senderos_;};
-        inline void setSenderos(list<senderos> senderos){senderos_=senderos;};
-        inline void addSendero(sendero newSendero){senderos_.push_back(newSendero);};
+        inline void setSenderos(list<sendero> senderos){senderos_=senderos;};
         inline string getFechaNombramientoParque()const{return fechaNombramientoParque_;};
         inline void setFechaNombramientoParque(string fechaNombramiento){fechaNombramientoParque_=fechaNombramiento;};
         inline int getTamano()const{return tamano_;};
