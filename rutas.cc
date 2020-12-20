@@ -19,7 +19,7 @@ ruta::ruta(string id, string dificultad, string monitor, string fecha,
 void ruta::mostarVisitantesAsociados(const sendero &s, const parque &p){
 
 
-      list<visitante> visitantes=getInstance()->getVisitantesRuta(p.getNombre() + "_" + s.getNombre() + "_" + r.getIdentificador());
+      list<visitante> visitantes=getInstance()->getVisitantesRuta(p.getNombre() + "_" + s.getNombre() + "_" + this->getIdentificador());
       for(visitante &visitantes: visitantes)
       {
         std::cout<<visitante.getNombreCompleto()<<endl;

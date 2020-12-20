@@ -20,7 +20,7 @@ parque::parque(string nombre, string fechaNombramientoParque,
 
   void parque::mostrarSenderosAsociados(){
 
-    list<sendero> senderos=getInstance()->getSenderosParque(p.getNombre());
+    list<sendero> senderos=getInstance()->getSenderosParque(this->getNombre());
     for(sendero &sendero: senderos)
     {
       std::cout<<sendero.getNombre()<<endl;

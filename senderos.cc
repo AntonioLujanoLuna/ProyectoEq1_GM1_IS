@@ -13,7 +13,7 @@ sendero::sendero(string nombre,int longitud,
         }
 
   void sendero::mostrarRutasAsociadas(const parque &p){
-    list<ruta> rutas=getInstance()->getRutasSendero(p.getNombre() + "_" + s.getSendero());
+    list<ruta> rutas=getInstance()->getRutasSendero(p.getNombre() + "_" + this->getSendero());
     for(ruta &ruta: rutas)
     {
       std::cout<<ruta.getNombre()<<endl;
