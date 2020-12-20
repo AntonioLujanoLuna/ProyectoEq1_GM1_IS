@@ -246,7 +246,7 @@ int menuParques(){
 
         p.setDisponibilidad(true);
 
-        f.guardarParque(p);
+        FileIO::getInstance->guardarParque(p);
         p.imprimirParque(p);
       }
     break;
@@ -294,7 +294,7 @@ int menuParques(){
                 cout<<"Disponibilidad cambiada con exito."<<endl;
               }
           }
-        f.guardarParque(p);
+        FileIO::getInstance->guardarParque(p);
         break;
       }
 
@@ -413,7 +413,7 @@ int menuSenderos(){
 
       s.setDisponibilidad(true);
 
-      f.guardarSendero(s, nomParque);
+      FileIO::getInstance->guardarSendero(s, nomParque);
       s.imprimirSendero(s, nomParque);
     }
     break;
@@ -453,7 +453,7 @@ int menuSenderos(){
 
       s.setDisponibilidad(true);
 
-      f.guardarSendero(s, nomParque);
+      FileIO::getInstance->guardarSendero(s, nomParque);
       s.imprimirSendero(s, nomParque);
     }
     break;
@@ -517,7 +517,7 @@ int menuSenderos(){
             cout<<"Disponibilidad cambiada con exito."<<endl;
           }
         }
-      f.guardarSendero(s, nomParque);
+      FileIO::getInstance->guardarSendero(s, nomParque);
     }
 
     break;
@@ -591,7 +591,7 @@ int menuSenderos(){
           for(parque &parque : parques){
             if(nomParque == parque.getNombre()){
               aux = parque;
-            }            
+            }
           }
           s.imprimirSendero(s, aux);
       }
@@ -707,7 +707,7 @@ int menuRutas(){
     cin>>aux;
     r.setBicicleta(aux);
 
-    f.guardarRuta(id, nomsendero,nomParque);
+    FileIO::getInstance->guardarRuta(id, nomsendero,nomParque);
     r.imprimirRuta(id, nomsendero, nomParque);
 
     //
@@ -791,7 +791,7 @@ int menuRutas(){
     cin>>aux;
     r.setBicicleta(aux);
 
-    f.guardarRuta(id, nomsendero,nomParque);
+    FileIO::getInstance->guardarRuta(id, nomsendero,nomParque);
     r.imprimirRuta(id, nomsendero, nomParque);
 
     break;
@@ -869,7 +869,7 @@ int menuRutas(){
            cout<<"Disponibilidad cambiada con exito."<<endl;
          }
       }
-    f.guardarRuta(id, nomsendero,nomParque);
+    FileIO::getInstance->guardarRuta(id, nomsendero,nomParque);
     break;
 
     case 3:
@@ -1038,8 +1038,8 @@ int menuVisitantes(){
   cin>>aux;
   v.setCondicion(aux);
 
-  f.guardarVisitante(&v);
-  v.imprimirVisitante(&v);
+  FileIO::getInstance->guardarVisitante(v);
+  v.imprimirVisitante(v);
 
   break;
 
@@ -1072,8 +1072,8 @@ int menuVisitantes(){
   getline(cin, aux);
   v.setCondicion(aux);
 
-  f.guardarVisitante(&v);
-  v.imprimirVisitante(&v);
+  FileIO::getInstance->guardarVisitante(v);
+  v.imprimirVisitante(v);
 
 
   break;
@@ -1095,7 +1095,7 @@ int menuVisitantes(){
   int decis;
   cin>>decis;
   if(decis==1){
-    f.borrarVisitante(&v);
+    f.borrarVisitante(v);
   }
   if(decis==0){
     menuVisitantes();
@@ -1119,7 +1119,7 @@ int menuVisitantes(){
   {
     if(aux==v.getDNI())
     {
-      v.imprimirRuta(&v);
+      v.imprimirRuta(v);
     }
   }
   break;
@@ -1174,7 +1174,7 @@ int menuVisitantes(){
   }while(existsVisitante(aux)==-2);
   string dni==aux;
 
-  f.guardarVisitanteARuta(&v,id,nomsendero,nomParque);
+  FileIO::getInstance->guardarVisitanteARuta(&v,id,nomsendero,nomParque);
 
   break;
 
@@ -1243,7 +1243,7 @@ int menuMonitores(){
 
     m.setDisponibilidad(true);
 
-    f.guardarMonitor(&m);
+    FileIO::getInstance->guardarMonitor(&m);
     m.imprimirMonitor(&m);
     break;
 
@@ -1281,7 +1281,7 @@ int menuMonitores(){
 
     m.setDisponibilidad(true);
 
-    f.guardarMonitor(&m);
+    FileIO::getInstance->guardarMonitor(&m);
     m.imprimirMonitor(&m);
 
     break;
@@ -1332,7 +1332,7 @@ int menuMonitores(){
            cout<<"Disponibilidad cambiada con exito."<<endl;
          }
       }
-    f.guardarMonitor(&m);
+    FileIO::getInstance->guardarMonitor(&m);
 
 
     break;
