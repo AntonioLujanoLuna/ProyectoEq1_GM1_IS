@@ -17,6 +17,18 @@ parque::parque(string nombre, string fechaNombramientoParque,
         setSenderos(senderos);
       }
 
+
+  void parque::mostrarSenderosAsociados(const parque &p){
+
+    list<sendero> senderos=getInstance()->getSenderosParque(p.getNombre());
+    for(sendero &sendero: senderos)
+    {
+      std::cout<<sendero.getNombre()<<endl;
+      std::cout<<"\n";
+    }
+  }
+
+
 void parque::imprimirParque(const parque &p)
 {
   cout<<"DATOS DEL PARQUE: \n";
@@ -27,18 +39,8 @@ void parque::imprimirParque(const parque &p)
   cout<<"DESCRIPCION: "<<this->getDescripcion()<<endl;
   cout<<"DISPONIBILIDAD: "<<this->getDisponibilidad()<<endl;
   cout<<"SENDEROS ASOCIADOS: \n";
-  mostrarSenderosAsociados(const parque &p);
+  mostrarSenderosAsociados(p);
 
-}
-
-void parque::mostrarSenderosAsociados(const parque &p){
-
-  list<sendero> senderos=getInstance()->getSenderosParque(p.getNombre());
-  for(sendero &sendero: senderos)
-  {
-    std::cout<<sendero.getNombre()<<endl;
-    std::cout<<"\n";
-  }
 }
 
 void parque::setDisponibilidad(bool disponibilidad) {
