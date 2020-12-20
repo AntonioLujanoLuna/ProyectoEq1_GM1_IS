@@ -31,7 +31,7 @@ int menuPrincipal(){
     }
 
   case 0:
-    if(comprobarAdmin() == false){
+    if(!comprobarAdmin()){
       cout<<"No tiene autorizacion para entrar al sistema como administrador. \n";
     }
     else{
@@ -40,21 +40,21 @@ int menuPrincipal(){
     break;
 
   case 1:
-    if(comprobarMonitor() == false){
+    if(!comprobarMonitor()){
       cout<<"No tiene autorizacion para entrar al sistema como monitor. \n";
       cout<<"Si es usted administrador del sistema, introduzca sus credenciales. \n";
-      comprobarAdmin();
-      if(comprobarAdmin() == false){
-      cout<<"No tiene autorizacion para entrar al sistema como administrador. \n";
-      return 0;
-    }
-    else{
-      menuMonitor();
+      if(!comprobarAdmin()){
+        cout<<"No tiene autorizacion para entrar al sistema como administrador. \n";
+        return 0;
+      }
+      else{
+        menuMonitor();
+      }
     }
     break;
 
   case 2:
-  return 0;
+    return 0;
   break;
- }
+  }
 }
