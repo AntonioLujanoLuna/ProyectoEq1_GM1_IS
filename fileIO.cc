@@ -10,7 +10,7 @@ FileIO* FileIO::_instance = NULL;
 
 FileIO* FileIO::getInstance () {
     if (_instance == NULL) {
-        _instance = new FileIO("parques.txt"); //Archivo de pacientes default
+        _instance = new FileIO("parques.txt"); //Archivo de parques default
     }
 
     return _instance;
