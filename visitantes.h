@@ -4,10 +4,14 @@
 #ifndef VISITANTES_H
 #define VISITANTES_H
 
-#include "fileIO.h"
+//#include "fileIO.h"
 
-
+#include <string>
+#include <list>
+#include <fstream>
+#include <iostream>
 using namespace std;
+
 
 class visitante {
 private:
@@ -17,7 +21,9 @@ private:
       std::string FechaDeNacimiento_;
       std::string condicion_;
 public:
-        visitante();
+        visitante(){}
+        visitante(std::string DNI, std::string nombreCompleto, std::string Tlfn,
+            std::string fechaDeNacimiento, std::string condiciong);
         inline std::string getDNI()const{return DNI_;};
         inline void setDNI(std::string dni){DNI_=dni;};
         inline std::string getNombreCompleto()const{return nombreCompleto_;};

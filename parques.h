@@ -4,6 +4,12 @@
 #ifndef PARQUES_H
 #define PARQUES_H
 
+#include <string>
+#include <list>
+#include <fstream>
+#include <iostream>
+
+#include "senderos.h"
 #include "fileIO.h"
 
 
@@ -26,7 +32,7 @@ class parque {
         inline std::list <sendero> getSenderos()const{return senderos_;};
         inline void setFechaNombramientoParque(std::string fechaNombramiento){fechaNombramientoParque_=fechaNombramiento;};
         inline std::string getFechaNombramientoParque()const{return fechaNombramientoParque_;};
-        inline int getTamano()const{return tamano_;};
+        inline string getTamano()const{return tamano_;};
         inline void setTamano(std::string tamano){tamano_=tamano;};
         inline std::string getPremios()const{return premios_;};
         inline void setPremios(std::string premios){premios_=premios;};

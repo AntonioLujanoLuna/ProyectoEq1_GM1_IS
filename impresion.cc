@@ -2,7 +2,7 @@
 //Proyecto IS
 
 #include "impresion.h"
-
+/*
 void mostrarSenderosAsociados(const parque &p){
 
   std::list<sendero> senderos=getInstance()->getSenderosParque(p.getNombre());
@@ -25,8 +25,6 @@ std::cout<<"SENDEROS ASOCIADOS: \n";
 mostrarSenderosAsociados(p);
 
 }
-
-
 void mostrarRutasAsociadas(const sendero &s, const parque &p){
   std::list<ruta> rutas=getInstance()->getRutasSendero(p.getNombre() + "_" + s.getSendero());
   for(ruta &ruta: rutas)
@@ -70,8 +68,7 @@ void imprimirRuta(const ruta &r, const sendero &s, const parque &p){
   std::cout<<"BICICLETA: "<<r.getBicicleta() << endl;
   this->mostrarVisitantesAsociados(r, s, p);
 }
-
-
+*/
 void imprimirVisitante(const visitante &v){
   std::cout<<"DATOS DEL VISITANTE: \n";
   std::cout<<"DNI: "<<v.getDNI()<<endl;
@@ -89,7 +86,7 @@ void mostrarTodosVisitantes(){
     std::cout<<visitante.getNombreCompleto()<<endl;
   }
 }
-
+/*
 void mostrarTodosVisitantesDNI(){
 
   std::list<visitante> visitantes=getInstance()->getTodosVisitantes();
@@ -98,7 +95,7 @@ void mostrarTodosVisitantesDNI(){
     std::cout<<visitante.getDNI()<<endl;
   }
 }
-
+*/
 void imprimirMonitor(const monitor &m){
   std::cout<<"DATOS DEL MONITOR: \n";
   std::cout<<"DNI: "<<m.getDNI()<<endl;
@@ -108,6 +105,7 @@ void imprimirMonitor(const monitor &m){
   std::cout<<"CONDICION: "<<m.getCondicion()<<endl;
   std::cout<<"DISPONIBILIDAD: "<<m.getDisponibilidad()<<endl;
 }
+/*
 
 void mostrarTodosMonitoresDNI(){
 

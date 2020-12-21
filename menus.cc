@@ -1,4 +1,4 @@
-std::std::list//menus.cc
+//menus.cc
 //proyecto IS
 #include "menus.h"
 #include "parques.h"
@@ -7,10 +7,11 @@ std::std::list//menus.cc
 #include "monitores.h"
 #include "visitantes.h"
 #include "fileIO.h"
+#include "impresion.h"
 #include <list>
 #include <string>
 
-using namespace
+using namespace std;
 
 
 bool comprobarAdmin(){
@@ -97,13 +98,12 @@ int menuPrincipal(){
 
   }
   }
-
-int menuAdmin(){
+void menuAdmin(){
     int opc;
       std::cout<<"--- Contraseña correcta. Bienvenido al sistema. ---\n";
       std::cout<<"--- Por favor, seleccione a que gestion desea acceder. ---\n";
-      std::cout<<"--- 0) Gestion de Parques Naturales. ---\n";
-      std::cout<<"--- 1) Gestion de Senderos. ---\n";
+      //std::cout<<"--- 0) Gestion de Parques Naturales. ---\n";
+     // std::cout<<"--- 1) Gestion de Senderos. ---\n";
       std::cout<<"--- 2) Gestion de Visitantes. ---\n";
       std::cout<<"--- 3) Gestion de Monitores. ---\n";
       std::cout<<"--- 4) Salir del menu. ---\n";
@@ -111,13 +111,13 @@ int menuAdmin(){
 
     switch(opc){
 
-      case 0:
+      /*case 0:
         menuParques();
-        break;
+        break;*/
 
-      case 1:
-        menuSenderos();
-        break;
+      //case 1:
+      //  menuSenderos();
+      //  break;
 
       case 2:
         menuVisitantes();
@@ -138,31 +138,34 @@ int menuAdmin(){
       }
     }
 
-int menuMonitor(){
+void menuMonitor(){
   int seleccion;
   std::cout<<"--- DNI correcto. Bienvenido al sistema. ---\n";
   std::cout<<"--- Por favor, seleccione a que gestion desea acceder. ---\n";
-  std::cout<<"--- 0) Gestion de Rutas. ---\n";
+  //std::cout<<"--- 0) Gestion de Rutas. ---\n";
   std::cout<<"--- 1) Salir del menu ---\n";
   std::cin>>seleccion;
 
     switch(seleccion){
-
+/*
     case 0:
       menuRutas();
       break;
-
+*/
     case 1:
+    {
       menuPrincipal();
+    }
       break;
 
     default:
+    
       std::cout<<"Opcion invalida. Por favor seleccione una opcion valida \n";
       std::cin>>seleccion;
     break;
     }
   }
-
+/*
 int menuParques(){
     int i;
     std::string aux;
@@ -1088,13 +1091,13 @@ int menuRutas(){
   }
 }
 
-
+*/
 int menuVisitantes(){
   std::string aux;
   int tamano;
   parque p, auxParque;
   sendero s, auxSendero;
-  ruta r, auxRuta;
+ // ruta r, auxRuta;
   visitante v, auxVisitante;
   int i, exist;
 
@@ -1115,7 +1118,9 @@ int menuVisitantes(){
     std::cin>>i;
   }
   switch(i){
+
   case 0:
+  {
 
   std::cout<<"Por favor, introduzca el DNI del nuevo visitante";
   std::getline(cin,aux);
@@ -1148,10 +1153,11 @@ int menuVisitantes(){
 
   guardarVisitante(v);
   imprimirVisitante(v);
-
+}
   break;
 
   case 1:
+  {
   mostrarTodosVisitantes();
   std::cout<<"Por favor, introduzca el DNI del visitante a Modificar";
   std::getline(cin,aux);
@@ -1185,10 +1191,11 @@ int menuVisitantes(){
   guardarVisitante(auxVisitante);
   imprimirVisitante(auxVisitante);
 
-
+}
   break;
-
+  
   case 2:
+  {
   mostrarTodosVisitantes();
   std::cout<<"Por favor, introduzca el DNI del visitante cuya visita quiere cancelar.";
   std::getline(cin,aux);
@@ -1206,7 +1213,7 @@ int menuVisitantes(){
   std::cout<<"--- Escriba 1 si desea confirmarlo, 0 si no ---\n";
   int decis;
   std::getline(cin,aux);
-  decis = atoi(aux);
+  decis = stoi(aux);
   if(decis==1){
     borrarVisitante(auxVisitante);
   }
@@ -1217,10 +1224,13 @@ int menuVisitantes(){
       std::cout<<"Error en la confirmación, volviendo al menú\n";
       break;
     }
+  }
 
   break;
 
+
   case 3:
+  {
   mostrarTodosVisitantes();
   std::cout<<"Por favor, introduzca el DNI del visitante cuyos datos quiere ver";
   std::getline(cin,aux);
@@ -1233,20 +1243,24 @@ int menuVisitantes(){
   std::string dni=aux;
   auxVisitante=busquedaVisitante(dni);
 
-  std::list<visitante> visitantes =  ->getTodosVisitantes();
+  std::list<visitante> visitantes = getTodosVisitantes();
   for(visitante &visitante: visitantes)
   {
     if(aux==v.getDNI())
     {
-      imprimirRuta(auxVisitante);
+      imprimirVisitante(auxVisitante);
     }
+  }
+}
+  break;
+
+
+  case 4:
+  {
+    return(EXIT_SUCCESS);
   }
   break;
 
-  case 4:
-    return(EXIT_SUCCESS);
-  break;
-    }
   }
 }
 
@@ -1428,7 +1442,8 @@ int menuMonitores(){
       }
     }
     break;
-
+  }
+/*
     case 4:
 
     mostrarTodosMonitoresDNI();
@@ -1479,10 +1494,11 @@ int menuMonitores(){
       break;
     }
     break;
-
+  */
     case 5:
       return(EXIT_SUCCESS);
     break;
     }
   }
 }
+

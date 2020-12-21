@@ -4,7 +4,13 @@
 #ifndef RUTAS_H
 #define RUTAS_H
 
-#include "fileIO.h"
+//#include "fileIO.h"
+
+#include <string>
+#include <list>
+#include <fstream>
+#include <iostream>
+#include "visitantes.h"
 
 
 class ruta {
@@ -19,7 +25,8 @@ class ruta {
         std::list <visitante> grupoVisitantes_;
 
     public:
-        ruta();
+        ruta(std::string id, std::string dificultad, std::string monitor, std::string fecha,
+            std::string hora, std::string duracion, std::string bici, std::list <visitante> visitantes);
         inline std::string getIdentificador()const{return identificador_;};
         inline void setIdentidicador(std::string id){identificador_=id;};
         inline std::string getDificultad()const{return dificultad_;};

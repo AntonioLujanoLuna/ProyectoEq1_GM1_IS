@@ -12,45 +12,55 @@
 #include "visitantes.h"
 #include "rutas.h"
 #include "senderos.h"
-#include "parques.h"
-#include "impresion.h"
-#include "menus.h"
+//#include "parques.h"
+//#include "impresion.h"
 
-        int existsParque(std::string nombre);
+       /* int existsParque(std::string nombre);
         int existsSendero (std::string nombreSendero, std::string nombreParque);
         int existsRuta (std::string nombreRuta, std::string nombreSendero, std::string nombreParque);
         int existsVisitanteARuta (std::string dni, std::string nombreRuta, std::string nombreSendero, std::string nombreParque);
-        int existsVisitante(std::string dni);
+        */int existsVisitante(std::string dni);
         int existsMonitor(std::string dni);
+        /*
 
-        std::list<parque> getTodosParques();
+        std::list<parque> getTodosParques();*/
+/*
         std::list<sendero> getSenderosParque(std::string nombre);
         std::list<ruta> getRutasSendero(std::string nombre);
+        */
         std::list<visitante> getTodosVisitantes();
+        /*
         std::list<visitante> getVisitantesRuta(std::string nombreruta);
+        */
         std::list<monitor> getTodosMonitores();
-
+/*      
         void borrarParque(const parque &p);
         void borrarSendero(const sendero &s, const parque &p);
         void borrarRuta(const ruta &r, const sendero &s, const parque &p);
+        */
         void borrarMonitor(const monitor &m);
+        /*
         void borrarVisitanteRuta(const visitante &v, const ruta &r, const sendero &s, const parque &p);
+        */
         void borrarVisitante(const visitante &v);
 
-
+        /*
         void guardarParque(const parque &p);
         void guardarSendero(const sendero &s, std::string nombreParque);
         void guardarRuta(const ruta &r, std::string nombreSendero, std::string nombreParque);
         void guardarVisitanteARuta(const visitante &v, std::string idRuta, std::string nombreSendero, std::string nombreParque);
-        void guardarVisitante(const visitante &v);
+        */void guardarVisitante(const visitante &v);
         void guardarMonitor(const monitor &m);
-
+        /*
         parque busquedaParque(std::string nombre);
         sendero busquedaSendero(std::string nombreparque, std::string nombresendero);
         ruta busquedaRuta(std::string nombreparque, std::string nombresendero, std::string nombreruta);
+        */
         monitor busquedaMonitor(std::string nombre);
+         /*
+
         visitante busquedaVisitanteRuta(std::string nombreparque, std::string nombresendero, std::string nombreruta, std::string dni);
-        visitante busquedaVisitante(std::string dni);
+        */visitante busquedaVisitante(std::string dni);
 
 
 #endif

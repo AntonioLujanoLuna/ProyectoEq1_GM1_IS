@@ -7,7 +7,7 @@
 #include <ctime>
 
 
-int while(true)existsParque (std::string nombre) {
+/*int existsParque (std::string nombre) {
     std::ifstream file(_path);
     if (file) {
         int count = 0;
@@ -34,7 +34,7 @@ int while(true)existsParque (std::string nombre) {
         return -2;
     }
 }
-
+*/
 int existsMonitor (std::string dni){
         std::ifstream file("monitores.txt");
     if (file) {
@@ -62,7 +62,7 @@ int existsMonitor (std::string dni){
         return -2;
     }
 }
-
+/*
 int existsSendero (std::string nombreSendero, std::string nombreParque) {
     std::ifstream file(nombreParque + "_senderos.txt");
     if (file) {
@@ -146,7 +146,7 @@ int existsVisitanteARuta (std::string dni, std::string nombreRuta, std::string n
         return -2;
     }
 }
-
+*/
 int existsVisitante(std::string dni){
 std::ifstream file("visitantes.txt");
     if (file) {
@@ -175,7 +175,7 @@ std::ifstream file("visitantes.txt");
     }
 }
 
-
+/*
 std::list<parque> getTodosParques () {
     std::list<parque> parques;
 
@@ -262,7 +262,7 @@ std::list<monitor> getTodosMonitores(){
         std::cerr << "couldn't open <" << _path << ">" << std::endl;
     }
     return monitores;
-}
+}*/
 
 
 std::list<sendero> getSenderosParque (std::string nombre) {
@@ -289,9 +289,12 @@ std::list<sendero> getSenderosParque (std::string nombre) {
             c.setDescripcion(aux);
 
             getline(file, aux);
-            c.setDisponibilidad(disponibilidad);
+            if (aux=="true")
+                c.setDisponibilidad(true);
+            else
+                c.setDisponibilidad(false);
 
-            c.setRutas(getRutasSendero(p.getNombre() + "_" + s.getNombre());
+            c.setRutas(getRutasSendero(this->getNombre() + "_" + c.getNombre());
 
             senderos.push_back(c);
         }
@@ -351,6 +354,7 @@ std::list<ruta> getRutasSendero (std::string nombresendero) {
     return rutas;
 }
 
+/*
 std::list<visitante> getVisitantesRuta(std::string nombreruta){
     std::list<visitante> visitantes;
     std::string fichero = nombreruta + ".txt";
@@ -1056,3 +1060,4 @@ visitante busquedaVisitante(std::string dni){
         }
     }
 }
+*/

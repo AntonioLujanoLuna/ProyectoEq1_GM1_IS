@@ -8,16 +8,18 @@
 #include <string>
 #include <list>
 
-int menuAdmin();
-int menuMonitor();
+void menuAdmin();
+void menuMonitor();
 
 bool comprobarAdmin();
 bool comprobarMonitor();
-
+/*
 int menuParques();
 int menuSenderos();
+*/
 int menuVisitantes();
 int menuMonitores();
-int menuRutas();
+
+//int menuRutas();
 
 #endif

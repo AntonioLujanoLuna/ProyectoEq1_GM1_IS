@@ -4,7 +4,12 @@
 #ifndef SENDEROS_H
 #define SENDEROS_H
 
-#include "fileIO.h"
+//#include "fileIO.h"
+#include <string>
+#include <list>
+#include <fstream>
+#include <iostream>
+#include "rutas.h"
 
 
 class sendero {
@@ -16,7 +21,9 @@ class sendero {
         std::list <ruta> rutas_;
 
     public:
-        sendero();
+        sendero(){}
+        sendero(std::string nombre,std::string longitud,
+    std::string descripcion, bool disponibilidad, std::list <ruta> rutas);
         inline std::string getNombre()const{return nombre_;};
         inline void setNombre(std::string nombre){nombre_=nombre;};
         inline std::string getLongitud()const{return longitud_;};

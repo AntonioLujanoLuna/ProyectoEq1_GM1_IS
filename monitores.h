@@ -1,10 +1,17 @@
-//monitores.h
+//monitores.h#include <string>
+#include <list>
+#include <fstream>
+#include <iostream>
 //proyecto IS
 
 #ifndef MONITORES_H
 #define MONITORES_H
 
-#include "fileIO.h"
+//#include "fileIO.h"
+#include <string>
+#include <list>
+#include <fstream>
+#include <iostream>
 
 
 class monitor {
@@ -16,7 +23,8 @@ class monitor {
   std::string condicion_;
   bool disponibilidad_;
     public:
-        monitor();
+        monitor(std::string DNI, std::string nombreCompleto, std::string Tlfn, std::string fechaDeNacimiento, std::string condicion,
+            bool disponibilidad);
         inline std::string getDNI(){return DNI_;};
         inline void setDNI(std::string dni){DNI_=dni;};
         inline std::string getNombreCompleto(){return nombreCompleto_;};
