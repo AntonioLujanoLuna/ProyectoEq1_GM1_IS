@@ -31,7 +31,6 @@ class monitor {
         inline void setCondicion(string condicion){condicion_=condicion;};
         inline bool getDisponibilidad(){return disponibilidad_;};
         inline void setDisponibilidad(bool disponibilidad){disponibilidad_=disponibilidad;};
-        void imprimirMonitor();
-        void mostrarTodosMonitoresDNI();
+
 };
 #endif

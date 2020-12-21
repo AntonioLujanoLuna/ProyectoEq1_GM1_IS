@@ -13,12 +13,13 @@
 #include "rutas.h"
 #include "visitantes.h"
 #include "monitores.h"
+#include "impresion.h"
 
 class FileIO {
     private:
         static FileIO* _instance; //Singleton instance
         std::string _path;
-        
+
         FileIO (std::string path) {
             _path = path;
             std::ifstream ifs(_path);
@@ -44,13 +45,13 @@ class FileIO {
         int existsVisitante(std::string dni);
         int existsMonitor(std::string dni);
 
-        std::list<parque> getTodosParques(); 
+        std::list<parque> getTodosParques();
         std::list<sendero> getSenderosParque(std::string nombre);
         std::list<ruta> getRutasSendero(std::string nombre);
         std::list<visitante> getTodosVisitantes();
         std::list<visitante> getVisitantesRuta(std::string nombreruta);
         std::list<monitor> getTodosMonitores();
-        
+
         void borrarParque(const parque &p);
         void borrarSendero(const sendero &s, const parque &p);
         void borrarRuta(const ruta &r, const sendero &s, const parque &p);
@@ -59,8 +60,8 @@ class FileIO {
         void borrarVisitante(const visitante &v);
 
 
-        void guardarParque(const parque &p);         
-        void guardarSendero(const sendero &p, std::string nombreParque); 
+        void guardarParque(const parque &p);
+        void guardarSendero(const sendero &p, std::string nombreParque);
         void guardarRuta(const ruta &r, std::string nombreSendero, std::string nombreParque);
         void guardarVisitanteARuta(const visitante &v, std::string idRuta, std::string nombreSendero, std::string nombreParque);
         void guardarVisitante(const visitante &v);

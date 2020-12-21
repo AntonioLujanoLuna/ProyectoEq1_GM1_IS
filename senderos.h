@@ -30,8 +30,7 @@ class sendero {
         inline void setDisponibilidad(int disponibilidad){disponibilidad_=disponibilidad;};
         list <ruta> getRutas()const{return rutas_;};
         void setRutas(list<ruta> rutas){rutas_=rutas;};
-        void imprimirSendero(const parque &p);
-        void mostrarRutasAsociadas(const parque &p);
+        
 };
 
 

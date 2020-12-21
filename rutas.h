@@ -39,8 +39,7 @@ class ruta {
         inline void setBicicleta(string bici){bicicleta_=bici;};
         inline list <visitante> getGrupoVisitante()const{return grupoVisitantes_;};
         inline void setGrupoVisitantes(list<visitante> visitantes){grupoVisitantes_=visitantes;};
-        void imprimirRuta(const sendero &s, const parque &p);
-        void mostarVisitantesAsociados(const sendero &s, const parque &p);
+
 };
 
 #endif
