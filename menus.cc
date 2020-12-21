@@ -1,15 +1,6 @@
 //menus.cc
 //proyecto IS
-#include "menus.h"
-#include "parques.h"
-#include "senderos.h"
-#include "rutas.h"
-#include "monitores.h"
-#include "visitantes.h"
 #include "fileIO.h"
-#include "extra.h"
-#include <list>
-#include <string>
 
 using namespace std;
 using namespace FileIO;
