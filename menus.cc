@@ -327,7 +327,7 @@ int menuParques(){
       if(decis==0){
         cout<<"Operación abortada\n";
       }
-      else if{
+      else {
         cout<<"Error en la confirmación, volviendo al menú\n";
       }
     }
@@ -575,7 +575,7 @@ int menuSenderos(){
       if(decis==0){
         cout<<"Operación abortada\n";
       }
-      else if{
+      else {
         cout<<"Error en la confirmación, volviendo al menú\n";
       }
     }
@@ -968,7 +968,7 @@ int menuRutas(){
     if(decis==0){
       break;
     }
-    else if{
+    else {
         cout<<"Error en la confirmación, volviendo al menú\n";
         break;
     }
@@ -1217,7 +1217,7 @@ int menuVisitantes(){
   if(decis==0){
     break;
   }
-  else if{
+  else {
       cout<<"Error en la confirmación, volviendo al menú\n";
       break;
     }
@@ -1424,7 +1424,7 @@ int menuMonitores(){
     string dniMonitor=aux;
     auxMonitor=FileIO::getInstance->busquedaMonitor(dniMonitor);
 
-    list<monitor> monitores = FileIO::getInstance->getTodosMonitores();
+    list<monitor> monitores = FileIO::getInstance()->getTodosMonitores();
     for(monitor &monitor: monitores)
     {
       if(aux==m.getDNI())
@@ -1439,35 +1439,34 @@ int menuMonitores(){
     mostrarTodosMonitoresDNI();
     cout<<"Por favor, introduzca el DNI del monitor que desea eliminar\n";
     getline(cin,aux);
-    exist = FileIO::getInstance->existsMonitor(aux);
+    exist = FileIO::getInstance()->existsMonitor(aux);
 
     do{
       cout<<"No existe un monitor con ese DNI. Por favor, introduzca el DNI del monitor cuyos datos quiere eliminar.\n";
       getline(cin,aux);
-      exist = FileIO::getInstance->existsMonitor(aux);
+      exist = FileIO::getInstance()->existsMonitor(aux);
     }while(exist < 0);
     string dniMonitor=aux;
-    auxMonitor=FileIO::getInstance->busquedaMonitor(dniMonitor);
+    auxMonitor=FileIO::getInstance()->busquedaMonitor(dniMonitor);
 
     cout<<"--- ¿Esta seguro de que desea eliminar ? ---\n";
     cout<<"--- Escriba 1 si desea confirmarlo, 0 si no ---\n";
     int decis;
-    string aux2 = aux;
     getline(cin,aux);
     decis = atoi(aux);
     if(decis==1){
-      FileIO::getInstance->borrarMonitor(auxMonitor);
+      FileIO::getInstance()->borrarMonitor(auxMonitor);
 
-      list<parque> parques=getInstance()->getTodosParques();
+      list<parque> parques=FileIO::getInstance()->getTodosParques();
     for(parque &parque: parques)
     {
-      list<sendero> senderos=getInstance()->getSenderosParque();
+      list<sendero> senderos=getInstance()->getSenderosParque(parque.getNombre());
     for(sendero &sendero: senderos)
     {
-        list <ruta> rutas=getInstance()->getRutasSendero();
+        list <ruta> rutas=getInstance()->getRutasSendero(parque.getNombre() + "_" + sendero.getNombre());
       for(ruta &ruta: rutas)
       {
-	        if(ruta.getMonitorAsociado() == aux2 )
+	        if(ruta.getMonitorAsociado() == dniMonitor )
 	        {
 	        	borrarRuta(ruta, sendero, parque)
 	        }
@@ -1480,7 +1479,7 @@ int menuMonitores(){
     if(decis==0){
       break;
     }
-    else if{
+    else {
       cout<<"Error en la confirmación, volviendo al menú\n";
       break;
     }
