@@ -7,8 +7,8 @@ std::std::list//menus.cc
 #include "monitores.h"
 #include "visitantes.h"
 #include "fileIO.h"
-#include <std::list>
-#include <std::string>
+#include <list>
+#include <string>
 
 using namespace FileIO;
 
