@@ -11,14 +11,15 @@ class parque {
     private:
         std::string nombre_;
         std::string fechaNombramientoParque_;
-        int tamano_;
+        std::string tamano_;
         std::string premios_;
         std::string descripcion_;
         bool disponibilidad_;
         std::list <sendero> senderos_;
+
+
     public:
-        parque(std::string nombre="", std::string fechaNombramientoParque="",
-            int tamano=0, std::string premios="", std::string descripcion="", bool disponibilidad=true);
+        parque();
         inline std::string getNombre()const{return nombre_;};
         inline void setNombre(std::string nombre){nombre_=nombre;};
         inline void setSenderos(std::list<sendero> senderos){senderos_=senderos;};
@@ -26,7 +27,7 @@ class parque {
         inline void setFechaNombramientoParque(std::string fechaNombramiento){fechaNombramientoParque_=fechaNombramiento;};
         inline std::string getFechaNombramientoParque()const{return fechaNombramientoParque_;};
         inline int getTamano()const{return tamano_;};
-        inline void setTamano(int tamano){tamano_=tamano;};
+        inline void setTamano(std::string tamano){tamano_=tamano;};
         inline std::string getPremios()const{return premios_;};
         inline void setPremios(std::string premios){premios_=premios;};
         inline std::string getDescripcion()const{return descripcion_;};

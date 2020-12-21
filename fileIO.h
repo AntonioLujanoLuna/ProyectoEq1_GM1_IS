@@ -16,29 +16,6 @@
 #include "impresion.h"
 #include "menus.h"
 
-class FileIO {
-    private:
-        static FileIO* _instance; //Singleton instance
-        std::string _path;
-
-        FileIO (std::string path) {
-            _path = path;
-            std::ifstream ifs(_path);
-            if (!ifs) {
-                std::ofstream ofs(_path);
-            }
-        }
-
-    public:
-        static FileIO* getInstance();
-
-        std::string getPath () const {
-            return _path;
-        }
-        void setPath (std::string path) {
-            _path = path;
-        }
-
         int existsParque(std::string nombre);
         int existsSendero (std::string nombreSendero, std::string nombreParque);
         int existsRuta (std::string nombreRuta, std::string nombreSendero, std::string nombreParque);
@@ -74,6 +51,6 @@ class FileIO {
         monitor busquedaMonitor(std::string nombre);
         visitante busquedaVisitanteRuta(std::string nombreparque, std::string nombresendero, std::string nombreruta, std::string dni);
         visitante busquedaVisitante(std::string dni);
-};
+
 
 #endif

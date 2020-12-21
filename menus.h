@@ -12,7 +12,7 @@ int menuAdmin();
 int menuMonitor();
 
 bool comprobarAdmin();
-bool comprobarMonitor(bool es_Monitor);
+bool comprobarMonitor();
 
 int menuParques();
 int menuSenderos();

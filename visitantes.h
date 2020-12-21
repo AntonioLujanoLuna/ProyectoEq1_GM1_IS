@@ -17,8 +17,7 @@ private:
       std::string FechaDeNacimiento_;
       std::string condicion_;
 public:
-        visitante(std::string DNI="", std::string nombreCompleto = "", std::string Tlfn = "",
-            std::string fechaDeNacimiento = "", std::string condicion = "");
+        visitante();
         inline std::string getDNI()const{return DNI_;};
         inline void setDNI(std::string dni){DNI_=dni;};
         inline std::string getNombreCompleto()const{return nombreCompleto_;};

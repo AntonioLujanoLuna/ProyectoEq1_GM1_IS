@@ -16,8 +16,7 @@ class monitor {
   std::string condicion_;
   bool disponibilidad_;
     public:
-        monitor(std::string DNI="", std::tring nombreCompleto = "", std::string Tlfn="", std::string fechaDeNacimiento="01/01/2000", std::string condicion="",
-         bool disponibilidad = true);
+        monitor();
         inline std::string getDNI(){return DNI_;};
         inline void setDNI(std::string dni){DNI_=dni;};
         inline std::string getNombreCompleto(){return nombreCompleto_;};

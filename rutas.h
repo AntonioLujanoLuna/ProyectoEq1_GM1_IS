@@ -19,8 +19,7 @@ class ruta {
         std::list <visitante> grupoVisitantes_;
 
     public:
-        ruta(std::string id="", std::string dificultad = "2", std::string monitor = "",
-            std::string fecha = "", std::string hora = "", int duracion = 0, std::string bici = true);
+        ruta();
         inline std::string getIdentificador()const{return identificador_;};
         inline void setIdentidicador(std::string id){identificador_=id;};
         inline std::string getDificultad()const{return dificultad_;};

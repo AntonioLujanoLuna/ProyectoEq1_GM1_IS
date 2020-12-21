@@ -10,7 +10,45 @@ std::std::list//menus.cc
 #include <list>
 #include <string>
 
-using namespace FileIO;
+using namespace
+
+
+bool comprobarAdmin(){
+  std::string password,aux;
+  for (int i = 0; i<3; i++){
+    std::cout<<" Por favor, introduzca su contraseña.\n";
+    std::getline(cin,aux);
+    if (password == "admingestionJA"){
+        std::cout<<"Contraseña correcta\n";
+        return true;
+    }
+    else {
+        std::cout<<" Contraseña incorrecta.";
+        printf("Quedan %d intentos", 3-i);
+    }
+  }
+  std::cout<<"Maximo numero de intentos permitido alcanzado\n";
+  return false;
+}
+
+bool comprobarMonitor(){
+  std::string dni,aux;
+  for (int i = 0; i<3; i++){
+    std::cout<<" Por favor, introduzca su DNI.\n";
+    std::getline(cin,aux);
+    std::list<monitor> monitores = getTodosMonitores();
+    for(monitor &monitor : monitores){
+      if(monitor.getDNI() == dni){
+        std::cout<<"DNI correcto\n";
+        return true;
+      }
+    }
+    std::cout<<"DNI no encontrado, quedan " << 3-i << "%d intentos\n";
+  }
+  std::cout<<"Maximo numero de intentos permitido alcanzado\n";
+  return false;
+}
+
 
 int menuPrincipal(){
   int login;
@@ -20,13 +58,10 @@ int menuPrincipal(){
   std::cout<<"--- 0) Entrar al Sistema como Administrador. ---\n";
   std::cout<<"--- 1) Entrar al Sistema como Monitor. ---\n";
   std::cout<<"--- 2) Salir del programa ---\n";
-  cin>>login;
+  std::cin>>login;
 
   switch(login){
-    while(login<0||login>2){
-      std::cout<<"Opcion invalida. Por favor, seleccione una opcion valida. \n";
-      cin>>login;
-    }
+
 
   case 0:
     if(!comprobarAdmin()){
@@ -54,8 +89,14 @@ int menuPrincipal(){
   case 2:
     return 0;
   break;
+
+  default:
+    std::cout<<"Opcion invalida. Por favor, seleccione una opcion valida. \n";
+    std::cin>>login;
+  break;
+
   }
-}
+  }
 
 int menuAdmin(){
     int opc;
@@ -66,13 +107,9 @@ int menuAdmin(){
       std::cout<<"--- 2) Gestion de Visitantes. ---\n";
       std::cout<<"--- 3) Gestion de Monitores. ---\n";
       std::cout<<"--- 4) Salir del menu. ---\n";
-      cin>>opc;
+      std::cin>>opc;
 
     switch(opc){
-      while(opc<0||opc>4){
-        std::cout<<" Opcion invalida. Por favor, seleccione una opcion valida. \n";
-        cin>>opc;
-      }
 
       case 0:
         menuParques();
@@ -94,8 +131,12 @@ int menuAdmin(){
         menuPrincipal();
         break;
 
+      default:
+        std::cout<<" Opcion invalida. Por favor, seleccione una opcion valida. \n";
+        std::cin>>opc;
+      break;
+      }
     }
-}
 
 int menuMonitor(){
   int seleccion;
@@ -103,13 +144,9 @@ int menuMonitor(){
   std::cout<<"--- Por favor, seleccione a que gestion desea acceder. ---\n";
   std::cout<<"--- 0) Gestion de Rutas. ---\n";
   std::cout<<"--- 1) Salir del menu ---\n";
-  cin>>seleccion;
+  std::cin>>seleccion;
 
     switch(seleccion){
-      while(seleccion<0||seleccion>1){
-        std::cout<<"Opcion invalida. Por favor seleccione una opcion valida \n";
-        cin>>seleccion;
-      }
 
     case 0:
       menuRutas();
@@ -118,51 +155,20 @@ int menuMonitor(){
     case 1:
       menuPrincipal();
       break;
-  }
-}
 
-bool comprobarAdmin(){
-  std::string password;
-  for (int i = 0; i<3; i++){
-    std::cout<<" Por favor, introduzca su contraseña.\n";
-    std::getline(cin,aux);
-    if (password == "admingestionJA"){
-        std::cout<<"Contraseña correcta\n";
-        return true;
-    }
-    else {
-        std::cout<<" Contraseña incorrecta.";
-        printf("Quedan %d intentos", 3-i);
+    default:
+      std::cout<<"Opcion invalida. Por favor seleccione una opcion valida \n";
+      std::cin>>seleccion;
+    break;
     }
   }
-  std::cout<<"Maximo numero de intentos permitido alcanzado\n"
-  return false;
-}
-
-bool comprobarMonitor(){
-  std::string dni;
-  for (int i = 0; i<3; i++){
-    std::cout<<" Por favor, introduzca su DNI.\n";
-    std::getline(cin,aux);
-    std::list<monitor> monitores = FileIO::getInstance()->getTodosMonitores();
-    for(monitor &monitor : monitores){
-      if(monitor.getDNI() == dni){
-        std::cout<<"DNI correcto\n";
-        return true;
-      }
-    }
-    std::cout<<"DNI no encontrado, quedan " << 3-i << "%d intentos\n";
-  }
-  std::cout<<"Maximo numero de intentos permitido alcanzado\n"
-  return false;
-}
 
 int menuParques(){
     int i;
     std::string aux;
     int tamano;
     parque p, auxParque;
-    while(){
+    while(true){
 
     std::cout<<"   --- Gestion de Parques --- \n";
     std::cout<<"--- Seleccione la opcion a la que desee acceder. --- \n";
@@ -172,11 +178,11 @@ int menuParques(){
     std::cout<<"--- 3) Eliminar un Parque Natural. --- \n";
     std::cout<<"--- 4) Mostrar los datos de un Parque Natural ya introducido. --- \n";
     std::cout<<"--- 5) Volver al menu Principal --- \n";
-    cin>>i;
+    std::cin>>i;
 
     while(i<0||i>5){
       std::cout<<" Opcion invalida. Por favor, seleccione una opcion valida.\n";
-      cin>>i;
+      std::cin>>i;
     }
     switch(i){
 
@@ -189,29 +195,29 @@ int menuParques(){
 
 
       do{
-          std::cout<<"Ya existe un parque con ese nombre. Por favor, introduzca otro nombre para el parque.\n"
+          std::cout<<"Ya existe un parque con ese nombre. Por favor, introduzca otro nombre para el parque.\n";
           std::getline(cin,aux);
-      }while(FileIO::getInstance()->busquedaParque(aux)<0);
+      }while(existsParque(aux)<0);
 
       std::cout<<"--- Por favor, introduzca la fecha del nombramiento del parque natural --- \n";
       std::getline(cin,aux);
       p.setFechaNombramientoParque(aux);
 
       std::cout<<"--- Por favor, introduzca el tamaño del parque natural en kilometros cuadrados --- \n";
-      std::getline(cin,tamano);
-      p.setTamano(tamano);
+      std::getline(cin,aux);
+      p.setTamano(aux);
 
       std::cout<<"--- Por favor, introduzca el nombre de los premios otorgados al parque natural, separado por comas --- \n";
       std::getline(cin,aux);
       p.setPremios(aux);
 
       std::cout<<"--- Por favor, introduzca una breve descripcion del nuevo parque natural --- \n";
-      cstd::getline(cin,aux);
+      std::getline(cin,aux);
       p.setDescripcion(aux);
 
       p.setDisponibilidad(true);
 
-      FileIO::getInstance()->guardarParque(p);
+      guardarParque(p);
       imprimirParque(p);
 
 
@@ -225,7 +231,7 @@ int menuParques(){
       std::cout<<"--- Por favor, introduzca el nombre del parque natural --- \n";
       std::getline(cin, aux);
 
-      if(FileIO::getInstance()->existsParque(aux) < 0) {
+      if(existsParque(aux) < 0) {
         std::cout<<"El parque que desea modificar no existe\n Volviendo al menú\n";
         break;
       }
@@ -237,7 +243,7 @@ int menuParques(){
         p.setFechaNombramientoParque(aux);
 
         std::cout<<"--- Por favor, introduzca el tamaño del parque natural en kilometros cuadrados --- \n";
-        cin>>tamano;
+        std::cin>>tamano;
         p.setTamano(tamano);
 
         std::cout<<"--- Por favor, introduzca el nombre de los premios otorgados al parque natural, separado por comas --- \n";
@@ -250,7 +256,7 @@ int menuParques(){
 
         p.setDisponibilidad(true);
 
-        FileIO::getInstance()->guardarParque(p);
+        guardarParque(p);
         imprimirParque(p);
       }
     break;
@@ -259,24 +265,24 @@ int menuParques(){
       mostrarNombresParques();
       std::cout<<"--- Por favor, introduzca el nombre del parque natural a cambiar disponibilidad\n";
       std::getline(cin,aux);
-      if(FileIO::getInstance()->existsParque(aux) < 0) {
+      if(existsParque(aux) < 0) {
         std::cout<<"El parque que desea dar de baja no existe\n Volviendo al menú\n";
         break;
       }
-      auxParque=FileIO::getInstance()->busquedaParque(aux);
+
       else{
-        p.setNombre(aux);
+        auxParque=busquedaParque(aux);
         std::cout<<"Introduzca 1 si quiere que el parque este disponible y 0 en caso contrario"<<endl;
-        std::getline(cin,tamano);
+        std::cin>>tamano;
           while(tamano>1 || tamano<0){
             std::cout<<"ERROR, numero no valido. Debe introducir 1 o 0"<<endl;
-            std::getline(cin,tamano);
+            std::cin>>tamano;
           }
 
           if(tamano=1)
           {
-            p.setDisponibilidad(true);
-            if(p.getDisponibilidad()==false)
+            auxParque.setDisponibilidad(true);
+            if(auxParque.getDisponibilidad()==false)
               {
                 std::cout<<"ERROR al cambiar la disponibilidad del parque."<<endl;
                 break;
@@ -288,8 +294,8 @@ int menuParques(){
           }
           else if(tamano=0)
           {
-            p.setDisponibilidad(false);
-            if(p.getDisponibilidad()==true)
+            auxParque.setDisponibilidad(false);
+            if(auxParque.getDisponibilidad()==true)
               {
                 std::cout<<"ERROR al cambiar la disponibilidad del parque."<<endl;
                 break;
@@ -299,7 +305,7 @@ int menuParques(){
                 std::cout<<"Disponibilidad cambiada con exito."<<endl;
               }
           }
-        FileIO::getInstance()->guardarParque(auxParque);
+        guardarParque(auxParque);
         break;
       }
 
@@ -308,11 +314,11 @@ int menuParques(){
     mostrarNombresParques();
     std::cout<<"Introduzca el nombre del parque que quiere borrar"<<endl;
     std::getline(cin,aux);
-    if(FileIO::getInstance()->existsParque(aux) < 0) {
+    if(existsParque(aux) < 0) {
         std::cout<<"El parque que desea borrar no existe\n Volviendo al menú\n";
         break;
       }
-    auxParque=FileIO::getInstance()->busquedaParque(aux);
+    auxParque=busquedaParque(aux);
     else{
       p.setNombre(aux);
       std::cout<<"--- ¿Esta seguro de que desea borrar el parque? ---\n";
@@ -321,7 +327,7 @@ int menuParques(){
       std::getline(cin,aux);
       decis = atoi(aux);
       if(decis==1){
-        FileIO::getInstance()->borrarParque(auxParque);
+        borrarParque(auxParque);
       }
       if(decis==0){
         std::cout<<"Operación abortada\n";
@@ -337,14 +343,14 @@ int menuParques(){
       mostrarNombresParques();
       std::cout<<"Introduzca el nombre del parque que quiere mostrar por pantalla."<<endl;
       std::getline(cin,aux);
-        if(FileIO::getInstance()->existsParque(aux) < 0) {
+        if(existsParque(aux) < 0) {
           std::cout<<"El parque que desea mostrar no existe\n Volviendo al menú\n";
           break;
         }
-      auxParque=FileIO::getInstance()->busquedaParque(aux);
+      auxParque=busquedaParque(aux);
       std::cout<<"--- A continuacion se mostrarán los datos del parque existente --- \n";
 
-      std::list<parque> parques=getInstance()()->GetTodosParques();
+      std::list<parque> parques=->GetTodosParques();
       for(parque &parque: parques){
         p=parque;
         if(aux==p.getNombre())
@@ -370,7 +376,7 @@ int menuSenderos(){
   parque p, auxParque;
   sendero s, auxSendero;
 
-  while(){
+  while(true){
 
     std::cout<<"   --- Gestion de Senderos --- \n";
     std::cout<<"--- Seleccione la opcion a la que desee acceder. --- \n";
@@ -380,11 +386,11 @@ int menuSenderos(){
     std::cout<<"--- 3) Eliminar un Sendero. --- \n";
     std::cout<<"--- 4) Mostrar los datos de un Sendero ya introducido. --- \n";
     std::cout<<"--- 5) Volver al Menu Principal. --- \n";
-    cin>>i;
+    std::cin>>i;
 
     while(i<0||i>5){
       std::cout<<" Opcion invalida. Por favor, seleccione una opcion valida.\n";
-      cin>>i;
+      std::cin>>i;
     }
     switch(i){
     case 0:
@@ -393,29 +399,29 @@ int menuSenderos(){
     mostrarNombresParques();
     std::cout<<"--- Por favor, introduzca el nombre del parque cuyos senderos quiere ver. --- \n";
     std::getline(cin,nomParque);
-    if(FileIO::getInstance()->existsParque(nomParque)<0){
+    if(existsParque(nomParque)<0){
       std::cout<<" El parque indicado no existe. Volviendo al menu\n";
       break;
     }
-    auxParque=FileIO::getInstance()->busquedaParque(nomParque);
+    auxParque=busquedaParque(nomParque);
     else{
-      p = FileIO::busquedaParque(nomParque);
+      p = busquedaParque(nomParque);
       mostrarSenderosAsociados();
       std::cout<<"--- Por favor, introduzca el nombre del nuevo sendero. --- \n";
       std::getline(cin,aux);
     }
-      if((exist = FileIO::getInstance()->existsSendero(aux, auxParque))>=0){
+      if((exist = existsSendero(aux, auxParque))>=0){
       do{
         std::cout<<" Ya existe un sendero con ese nombre. Introduzca otro nombre para el nuevo sendero. \n";
         std::getline(cin,aux);
-        exist = FileIO::getInstance()->existsSendero(aux, nomParque);
+        exist = existsSendero(aux, nomParque);
         }
       while(exist >=0);
 
       s.setNombre(aux);
 
       std::cout<<"--- Por favor, introduzca la longitud del nuevo sendero --- \n";
-      std::getline(cin,tamano);
+      std::cin>>tamano
       s.setLongitud(tamano);
 
       std::cout<<"--- Por favor, introduzca una breve descripcion del sendero --- \n";
@@ -424,7 +430,7 @@ int menuSenderos(){
 
       s.setDisponibilidad(true);
 
-      FileIO::getInstance()->guardarSendero(s, nomParque);
+      guardarSendero(s, nomParque);
       imprimirSendero(auxParque, s);
     }
     break;
@@ -436,27 +442,27 @@ int menuSenderos(){
     std::cout<<"--- Por favor, introduzca el nombre del parque cuyo sendero desea modificar. --- \n";
     std::getline(cin,nomParque);
 
-    if(FileIO::getInstance()->existsParque(nomParque)<0){
+    if(existsParque(nomParque)<0){
       std::cout<<" El parque indicado no existe. Volviendo al menu\n";
       break;
     }
-    auxParque=FileIO::getInstance()->busquedaParque(nomParque);
+    auxParque=busquedaParque(nomParque);
     else{
       mostrarSenderosAsociados(nomParque);
       std::cout<<"--- Por favor, introduzca el nombre del sendero a modificar. --- \n";
       std::getline(cin,aux);
-      if((exist = FileIO::getInstance()->existsSendero(aux, nomParque))<0){
+      if((exist = existsSendero(aux, nomParque))<0){
       do{
         std::cout<<" No existe un sendero con ese nombre. Introduzca otro nombre para el nuevo sendero. \n";
         std::getline(cin,aux);
-        exist = FileIO::getInstance()->existsSendero(aux, nomParque);
+        exist = existsSendero(aux, nomParque);
         }
       while(exist <0);
 
       s.setNombre(aux);
 
       std::cout<<"--- Por favor, introduzca la nueva longitud del sendero --- \n";
-      std::getline(cin,tamano);
+      std::std::cin>>tamano;
       s.setLongitud(tamano);
 
       std::cout<<"--- Por favor, introduzca una breve descripcion del sendero --- \n";
@@ -465,7 +471,7 @@ int menuSenderos(){
 
       s.setDisponibilidad(true);
 
-      FileIO::getInstance()->guardarSendero(s, nomParque);
+      guardarSendero(s, nomParque);
       imprimirSendero(auxParque, s);
     }
     break;
@@ -476,39 +482,37 @@ int menuSenderos(){
     std::cout<<"--- Por favor, introduzca el nombre del parque cuyo sendero desea modificar. --- \n";
     std::getline(cin,nomParque);
 
-    if(FileIO::getInstance()->existsParque(nomParque)<0){
+    if(existsParque(nomParque)<0){
       std::cout<<" El parque indicado no existe. Volviendo al menu\n";
       break;
     }
-    auxParque=FileIO::getInstance()->busquedaParque(nomParque);
+    auxParque=busquedaParque(nomParque);
     else{
       mostrarSenderosAsociados(nomParque);
       std::getline(cin,aux);
       std::cout<<"--- Por favor, introduzca el nombre del sendero a dar de baja/alta. --- \n";
       std::getline(cin,aux);
 
-      if((exist = FileIO::getInstance()->existsSendero(aux, nomParque))<0){
+      if((exist = existsSendero(aux, nomParque))<0){
       do{
         std::cout<<" No existe un sendero con ese nombre. Introduzca otro nombre para el nuevo sendero. \n";
         std::getline(cin,aux);
-        exist = FileIO::getInstance()->existsSendero(aux, nomParque);
+        exist = existsSendero(aux, nomParque);
         }
       while(exist <0);
-      auxSendero=FileIO::getInstance()->busquedaSendero(nomParque,aux);
-
-      s.setNombre(aux);
+      auxSendero=busquedaSendero(nomParque,aux);
 
       std::cout<<"Introduzca 1 si quiere que el parque este disponible y 0 en caso contrario"<<endl;
-      std::getline(cin,tamano);
+      std::cin>>tamano;
         while(tamano>1 || tamano<0)
         {
           std::cout<<"ERROR, numero no valido. Debe introducir 1 o 0"<<endl;
-          std::getline(cin,tamano);
+          std::cin>>tamano
         }
         if(tamano=1)
         {
-          s.setDisponibilidad(true);
-          if(s.getDisponibilidad()==false)
+          auxSendero.setDisponibilidad(true);
+          if(auxSendero.getDisponibilidad()==false)
           {
             std::cout<<"ERROR al cambiar la disponibilidad del sendero."<<endl;
             break;
@@ -520,8 +524,8 @@ int menuSenderos(){
         }
         else if(tamano=0)
         {
-          s.setDisponibilidad(false);
-          if(s.getDisponibilidad()==true)
+          auxSendero.setDisponibilidad(false);
+          if(auxSendero.getDisponibilidad()==true)
           {
             std::cout<<"ERROR al cambiar la disponibilidad del sendero."<<endl;
             break;
@@ -531,7 +535,7 @@ int menuSenderos(){
             std::cout<<"Disponibilidad cambiada con exito."<<endl;
           }
         }
-      FileIO::getInstance()->guardarSendero(auxSendero, nomParque);
+      guardarSendero(auxSendero, nomParque);
     }
 
     break;
@@ -543,25 +547,25 @@ int menuSenderos(){
     std::cout<<"--- Por favor, introduzca el nombre del parque cuyo sendero desea modificar. --- \n";
     std::getline(cin,nomParque);
 
-    if(FileIO::getInstance()->existsParque(nomParque)<0){
+    if(existsParque(nomParque)<0){
       std::cout<<" El parque indicado no existe. Volviendo al menu\n";
       break;
     }
-    auxParque=FileIO::getInstance()->busquedaParque(nomParque);
+    auxParque=busquedaParque(nomParque);
     else{
       mostrarSenderosAsociados(nomParque);
       std::getline(cin,aux);
       std::cout<<"--- Por favor, introduzca el nombre del sendero a borrar. --- \n";
       std::getline(cin,aux);
 
-      if((exist = FileIO::getInstance()->existsSendero(aux, nomParque))<0){
+      if((exist = existsSendero(aux, nomParque))<0){
       do{
         std::cout<<" No existe un sendero con ese nombre. Introduzca otro nombre para el nuevo sendero. \n";
         std::getline(cin,aux);
-        exist = FileIO::getInstance()->existsSendero(aux, nomParque);
+        exist = existsSendero(aux, nomParque);
         }
       while(exist <0);
-      auxSendero=FileIO::getInstance()->busquedaSendero(nomParque,aux);
+      auxSendero=busquedaSendero(nomParque,aux);
 
       std::cout<<"--- ¿Esta seguro de que desea borrar el sendero? ---\n";
       std::cout<<"--- Escriba 1 si desea confirmarlo, 0 si no ---\n";
@@ -569,7 +573,7 @@ int menuSenderos(){
       std::getline(cin,aux);
       decis = atoi(aux);
       if(decis==1){
-        FileIO::getInstance()->borrarSenderos(auxSendero,auxParque);
+        borrarSenderos(auxSendero,auxParque);
       }
       if(decis==0){
         std::cout<<"Operación abortada\n";
@@ -587,26 +591,26 @@ int menuSenderos(){
     std::cout<<"--- Por favor, introduzca el nombre del parque cuyos senderos desea modificar. --- \n";
     std::getline(cin,nomParque);
 
-    if(FileIO::getInstance()->existsParque(nomParque)<0){
+    if(existsParque(nomParque)<0){
       std::cout<<" El parque indicado no existe. Volviendo al menu\n";
       break;
     }
-    auxParque=FileIO::getInstance()->busquedaParque(nomParque);
+    auxParque=busquedaParque(nomParque);
     else{
       mostrarSenderosAsociados(nomParque);
       std::cout<<"--- Por favor, introduzca el nombre del sendero a modificar. --- \n";
       std::getline(cin,aux);
 
-      if((exist = FileIO::getInstance()->existsSendero(aux, nomParque))<0){
+      if((exist = existsSendero(aux, nomParque))<0){
       do{
         std::cout<<" No existe un sendero con ese nombre. Introduzca otro nombre para el nuevo sendero. \n";
         std::getline(cin,aux);
-        exist = FileIO::getInstance()->existsSendero(aux, nomParque);
+        exist = existsSendero(aux, nomParque);
         }
-        auxSendero=FileIO::getInstance()->busquedaSendero(nomParque,aux);
+        auxSendero=busquedaSendero(nomParque,aux);
       while(exist <0);
           parque aux;
-          std::list<parque> parques = getInstance()->getTodosParques();
+          std::list<parque> parques = getTodosParques();
           for(parque &parque : parques){
             if(nomParque == parque.getNombre()){
               aux = parque;
@@ -637,7 +641,7 @@ int menuRutas(){
   visitante v,auxVisitante;
   int i;
 
-  while(){
+  while(true){
 
   std::cout<<"   --- Gestion de Rutas --- \n";
   std::cout<<"--- Seleccione la opcion a la que desee acceder. --- \n";
@@ -648,11 +652,11 @@ int menuRutas(){
   std::cout<<"--- 4) Mostrar los datos de una ruta ya introducida. --- \n";
   std::cout<<"--- 5) Asignar un visitante ya introducido a una ruta. --- \n";
   std::cout<<"--- 6) Volver al menu Principal. --- \n";
-  cin>>i;
+  std::cin>>i;
 
   while(i<0||i>6){
     std::cout<<" Opcion invalida. Por favor, seleccione una opcion valida.\n";
-    cin>>i;
+    std::cin>>i;
   }
   switch(i){
 
@@ -662,25 +666,25 @@ int menuRutas(){
     mostrarNombresParques();
     std::cout<<"--- Por favor, introduzca el nombre del parque cuyos senderos quiere ver. --- \n";
     std::getline(cin,nomParque);
-    exist = FileIO::getInstance()->existsParque(nomParque);
+    exist = existsParque(nomParque);
     do{
       std::cout<<" El parque no existe. Por favor, introduzca el nombre del parque cuyos senderos quiere ver. \n";
       std::getline(cin,nomParque);
-      exist = FileIO::getInstance()->existsParque(nomParque);
+      exist = existsParque(nomParque);
     }
     while(exist<0);
-    auxParque=FileIO::getInstance()->busquedaParque(nomParque);
+    auxParque=busquedaParque(nomParque);
 
     mostrarSenderosAsociados(nomParque);
     std::cout<<"--- Por favor, introduzca el nombre del sendero. --- \n";
     std::getline(cin,aux);
-    exist = FileIO::getInstance()->existsSendero(aux, nomParque);
+    exist = existsSendero(aux, nomParque);
     do{
       std::cout<<" El sendero no existe. Por favor, introduzca el nombre del sendero cuyas rutas quiere ver. \n";
       std::getline(cin,aux);
-      exist = FileIO::getInstance()->existsSendero(aux, nomParque);
+      exist = existsSendero(aux, nomParque);
     }
-    auxSendero=FileIO::getInstance()->busquedaSendero(nomParque,aux);
+    auxSendero=busquedaSendero(nomParque,aux);
 
     while(exist <0);
     s.setNombre(aux);
@@ -688,13 +692,13 @@ int menuRutas(){
     mostrarRutasAsociadas(nomsendero, nomParque);
     std::cout<<"--- Por favor, introduzca el nombre de la ruta. --- \n";
     std::getline(cin,aux);
-    exist = FileIO::getInstance()->existsRuta (aux, nomsendero, nomParque);
+    exist = existsRuta (aux, nomsendero, nomParque);
     do{
       std::cout<<" Ya existe una ruta con ese nombre. Por favor, introduzca otro nombre para la ruta. \n";
       std::getline(cin,aux);
-      FileIO::getInstance()->existsRuta (aux, nomsendero, nomParque);
+      existsRuta (aux, nomsendero, nomParque);
     }
-    while(FileIO::getInstance()->existsRuta (aux, nomsendero, nomParque)=>0);
+    while(existsRuta (aux, nomsendero, nomParque)=>0);
     r.setIdentidicador(aux);
     std::string id = aux;
 
@@ -706,7 +710,7 @@ int menuRutas(){
 
     std::cout<<"--- Por favor, introduzca el DNI del monitor que guia la ruta. --- \n";
     std::getline(cin,aux);
-    if(fileIO::existsMonitor(aux) < 0){
+    if(existsMonitor(aux) < 0){
       std::cout<<"El monitor indicado no existe, volviendo al menu\n";
       break;
     }
@@ -731,14 +735,14 @@ int menuRutas(){
     r.setHora(aux);
 
     std::cout<<"--- Por favor, introduzca la duracion estimada de la ruta en minutos --- \n";
-    std::getline(cin,tamano);
+    std::cin>>tamano;
     r.setDuracionEstimada(tamano);
 
     std::cout<<"--- Por favor, indique si la ruta se puede realizar en bicicleta o no. --- \n";
     std::getline(cin,aux);
     r.setBicicleta(aux);
 
-    FileIO::getInstance()->guardarRuta(r, nomsendero,nomParque);
+    guardarRuta(r, nomsendero,nomParque);
     imprimirRuta(r, nomsendero, nomParque);
 
     break;
@@ -749,42 +753,42 @@ int menuRutas(){
     mostrarNombresParques();
     std::cout<<"--- Por favor, introduzca el nombre del parque cuyos senderos quiere ver. --- \n";
     std::getline(cin,nomParque);
-    exist = FileIO::getInstance()->existsParque(nomParque);
+    exist = existsParque(nomParque);
     do{
       std::cout<<" El parque no existe. Por favor, introduzca el nombre del parque cuyos senderos quiere ver. \n";
       std::getline(cin,nomParque);
-      exist = FileIO::getInstance()->existsParque(nomParque);
+      exist = existsParque(nomParque);
     }
     while(exist<0);
-    auxParque=FileIO::getInstance()->busquedaParque(nomParque);
+    auxParque=busquedaParque(nomParque);
 
     mostrarSenderosAsociados(nomParque);
     std::cout<<"--- Por favor, introduzca el nombre del sendero. --- \n";
     std::getline(cin,aux);
-    exist = FileIO::getInstance()->existsSendero(aux, nomParque);
+    exist = existsSendero(aux, nomParque);
     do{
       std::cout<<" El sendero no existe. Por favor, introduzca el nombre del sendero cuyas rutas quiere ver. \n";
       std::getline(cin,aux);
-      exist = FileIO::getInstance()->existsSendero(aux, nomParque);
+      exist = existsSendero(aux, nomParque);
     }
     while(exist<0);
     s.setNombre(aux);
-    auxSendero=FileIO::getInstance()->busquedaSendero(nomParque,aux);
+    auxSendero=busquedaSendero(nomParque,aux);
 
     std::string nomsendero=aux;
     mostrarRutasAsociadas(nomsendero, nomParque);
     std::cout<<"--- Por favor, introduzca el nombre de la ruta. --- \n";
     std::getline(cin,aux);
-    exist = FileIO::getInstance()->existsRuta (aux, nomsendero, nomParque);
+    exist = existsRuta (aux, nomsendero, nomParque);
     do{
       std::cout<<" No existe la ruta. Por favor, introduzca el nombre de la ruta. \n";
       std::getline(cin,aux);
-      exist = FileIO::getInstance()->existsRuta (aux, nomsendero, nomParque);
+      exist = existsRuta (aux, nomsendero, nomParque);
     }
     while(exist<0);
     r.setIdentidicador(aux);
     std::string id=aux;
-    auxRuta=FileIO::getInstance()->busquedaRuta(nomParque,nomsendero,id);
+    auxRuta=busquedaRuta(nomParque,nomsendero,id);
 
     std::cout<<"--- Por favor, introduzca la dificultad de la ruta. --- \n";
     std::getline(cin,aux);
@@ -792,7 +796,7 @@ int menuRutas(){
 
     std::cout<<"--- Por favor, introduzca el nombre del monitor que guia la ruta. --- \n";
     std::getline(cin,aux);
-    if(fileIO::existsMonitor(aux) < 0){
+    if(existsMonitor(aux) < 0){
       std::cout<<"El monitor indicado no existe, volviendo al menu\n";
       break;
     }
@@ -818,14 +822,14 @@ int menuRutas(){
     r.setHora(aux);
 
     std::cout<<"--- Por favor, introduzca la duracion estimada de la ruta en minutos --- \n";
-    std::getline(cin,tamano);
+    std::cin>>tamano;
     r.setDuracionEstimada(tamano);
 
     std::cout<<"--- Por favor, indique si la ruta se puede realizar en bicicleta o no. --- \n";
     std::getline(cin,aux);
     r.setBicicleta(aux);
 
-    FileIO::getInstance()->guardarRuta(r, nomsendero,nomParque);
+    guardarRuta(r, nomsendero,nomParque);
     imprimirRuta(r, auxSendero, auxParque);
 
     break;
@@ -835,46 +839,44 @@ int menuRutas(){
     mostrarNombresParques();
     std::cout<<"--- Por favor, introduzca el nombre del parque cuyos senderos quiere ver. --- \n";
     std::getline(cin,nomParque);
-    exist = FileIO::getInstance()->existsParque(nomParque);
+    exist = existsParque(nomParque);
     do{
       std::cout<<" El parque no existe. Por favor, introduzca el nombre del parque cuyos senderos quiere ver. \n";
       std::getline(cin,nomParque);
-      exist = FileIO::getInstance()->existsParque(nomParque);
+      exist = existsParque(nomParque);
     }
     while(exist <0);
-    auxParque=FileIO::getInstance()->busquedaParque(nomParque);
+    auxParque=busquedaParque(nomParque);
 
 
     mostrarSenderosAsociados(nomParque);
     std::cout<<"--- Por favor, introduzca el nombre del sendero. --- \n";
     std::getline(cin,aux);
-    exist = FileIO::getInstance()->existsSendero(aux, nomParque);
+    exist = existsSendero(aux, nomParque);
     do{
       std::cout<<" El sendero no existe. Por favor, introduzca el nombre del sendero cuyas rutas quiere ver. \n";
       std::getline(cin,aux);
-      exist = FileIO::getInstance()->existsSendero(aux, nomParque);
+      exist = existsSendero(aux, nomParque);
     }
     while(exist <0);
-    s.setNombre(aux);
-    auxSendero=FileIO::getInstance()->busquedaSendero(nomParque,aux);
+    auxSendero=busquedaSendero(nomParque,aux);
 
     std::string nomsendero=aux;
     mostrarRutasAsociadas(nomsendero, nomParque);
     std::cout<<"--- Por favor, introduzca el nombre de la ruta. --- \n";
     std::getline(cin,aux);
-    exist = FileIO::getInstance()->existsRuta (aux, nomsendero, nomParque);
+    exist = existsRuta (aux, nomsendero, nomParque);
     do{
       std::cout<<" No existe la ruta. Por favor, introduzca el nombre de la ruta. \n";
       std::getline(cin,aux);
-      exist = FileIO::getInstance()->existsRuta (aux, nomsendero, nomParque);
+      exist = existsRuta (aux, nomsendero, nomParque);
     }
     while(exist <0);
-    r.setIdentidicador(aux);
     std::string id=aux;
-    auxRuta=FileIO::getInstance()->busquedaRuta(nomParque,nomsendero,id);
+    auxRuta=busquedaRuta(nomParque,nomsendero,id);
 
     std::cout<<"Introduzca 1 si quiere finalizar la ruta y 0 en caso contrario"<<endl;
-    std::getline(cin,tamano);
+    std::cin>>tamano;
       while(tamano>1 || tamano<0)
       {
         std::cout<<"ERROR, numero no valido. Debe introducir 1 o 0"<<endl;
@@ -882,8 +884,8 @@ int menuRutas(){
       }
       if(tamano=1)
       {
-        r.setDisponibilidad(true);
-        if(r.getDisponibilidad()==false)
+        auxRuta.setDisponibilidad(true);
+        if(auxRuta.getDisponibilidad()==false)
          {
            std::cout<<"ERROR al finalizar la ruta."<<endl;
           break;
@@ -895,8 +897,8 @@ int menuRutas(){
       }
       else if(tamano=0)
       {
-        r.setDisponibilidad(false);
-        if(r.getDisponibilidad()==true)
+        auxRuta.setDisponibilidad(false);
+        if(auxRuta.getDisponibilidad()==true)
          {
            std::cout<<"ERROR al finalizar la ruta."<<endl;
           break;
@@ -906,7 +908,7 @@ int menuRutas(){
            std::cout<<"Disponibilidad cambiada con exito."<<endl;
          }
       }
-    FileIO::getInstance()->guardarRuta(auxRuta, nomsendero,nomParque);
+    guardarRuta(auxRuta, nomsendero,nomParque);
     break;
 
     case 3:
@@ -915,45 +917,44 @@ int menuRutas(){
     mostrarNombresParques();
     std::cout<<"--- Por favor, introduzca el nombre del parque cuyos senderos quiere ver. --- \n";
     cstd::getline(cin,nomParque);
-    exist = FileIO::getInstance()->existsParque(nomParque);
+    exist = existsParque(nomParque);
     do{
       std::cout<<" El parque no existe. Por favor, introduzca el nombre del parque cuyos senderos quiere ver. \n";
       std::getline(cin,nomParque);
-      exist = FileIO::getInstance()->existsParque(nomParque);
+      exist = existsParque(nomParque);
     }
     while(exist <0);
 
-    auxParque=FileIO::getInstance()->busquedaParque(nomParque);
+    auxParque=busquedaParque(nomParque);
 
 
     mostrarSenderosAsociados(nomParque);
     std::cout<<"--- Por favor, introduzca el nombre del sendero. --- \n";
     std::getline(cin,aux);
-    exist = FileIO::getInstance()->existsSendero(aux, nomParque);
+    exist = existsSendero(aux, nomParque);
     do{
       std::cout<<" El sendero no existe. Por favor, introduzca el nombre del sendero cuyas rutas quiere ver. \n";
     std::getline(cin,aux);
-      exist = FileIO::getInstance()->existsSendero(aux, nomParque);
+      exist = existsSendero(aux, nomParque);
     }
     while(exist<0);
     s.setNombre(aux);
 
-    auxSendero=FileIO::getInstance()->busquedaSendero(nomParque,aux);
+    auxSendero=busquedaSendero(nomParque,aux);
 
     std::string nomsendero=aux;
     mostrarRutasAsociadas(nomsendero, nomParque);
     std::cout<<"--- Por favor, introduzca el nombre de la ruta. --- \n";
     std::getline(cin,aux);
-    exist = FileIO::getInstance()->existsRuta (aux, nomsendero, nomParque);
+    exist = existsRuta (aux, nomsendero, nomParque);
     do{
       std::cout<<" No existe la ruta. Por favor, introduzca el nombre de la ruta. \n";
       std::getline(cin,aux);
-      exist = FileIO::getInstance()->existsRuta (aux, nomsendero, nomParque);
+      exist = existsRuta (aux, nomsendero, nomParque);
     }
     while(exist<0);
-    r.setIdentidicador(aux);
     std::string id=aux;
-    auxRuta=FileIO::getInstance()->busquedaRuta(nomParque,nombreSendero,id);
+    auxRuta=busquedaRuta(nomParque,nombreSendero,id);
 
     std::cout<<"--- ¿Esta seguro de que desea borrar la ruta? ---\n";
     std::cout<<"--- Escriba 1 si desea confirmarlo, 0 si no ---\n";
@@ -961,7 +962,7 @@ int menuRutas(){
     std::getline(cin,aux);
     decis = atoi(aux);
     if(decis==1){
-      FileIO::getInstance()->borrarRuta(auxRuta, auxSendero, auxParque);
+      borrarRuta(auxRuta, auxSendero, auxParque);
       break;
     }
     if(decis==0){
@@ -976,45 +977,44 @@ int menuRutas(){
     std::string nomParque;
     mostrarNombresParques();
     std::cout<<"--- Por favor, introduzca el nombre del parque cuyos senderos quiere ver. --- \n";
-    cin>>nomParque;
-    exist = FileIO::getInstance()->existsParque(nomParque);
+    std::cin>>nomParque;
+    exist = existsParque(nomParque);
     do{
       std::cout<<" El parque no existe. Por favor, introduzca el nombre del parque cuyos senderos quiere ver. \n";
-      cin>>nomParque;
-      exist = FileIO::getInstance()->existsParque(nomParque);
+      std::cin>>nomParque;
+      exist = existsParque(nomParque);
     }
     while(exist <0);
-    auxParque=FileIO::getInstance()->busquedaParque(nomParque);
+    auxParque=busquedaParque(nomParque);
 
     mostrarSenderosAsociados(nomParque);
     std::cout<<"--- Por favor, introduzca el nombre del sendero. --- \n";
-    cin>>aux;
-    exist = FileIO::getInstance()->existsSendero(aux, nomParque);
+    std::cin>>aux;
+    exist = existsSendero(aux, nomParque);
     do{
       std::cout<<" El sendero no existe. Por favor, introduzca el nombre del sendero cuyas rutas quiere ver. \n";
-      cin>>aux;
-      exist = FileIO::getInstance()->existsSendero(aux, nomParque);
+      std::cin>>aux;
+      exist = existsSendero(aux, nomParque);
     }
     while(exist <0);
-    s.setNombre(aux);
-    auxSendero=FileIO::getInstance()->busquedaSendero(nomParque,nombreSendero);
+
+    auxSendero=busquedaSendero(nomParque,nombreSendero);
 
     std::string nomsendero=aux;
     mostrarRutasAsociadas(nomsendero, nomParque);
     std::cout<<"--- Por favor, introduzca el nombre de la ruta. --- \n";
-    cin>>aux;
-    exist = FileIO::getInstance()->existsRuta (aux, nomsendero, nomParque);
+    std::cin>>aux;
+    exist = existsRuta (aux, nomsendero, nomParque);
     do{
       std::cout<<" No existe la ruta. Por favor, introduzca el nombre de la ruta. \n";
 
-      cin>>aux;
-      exist = FileIO::getInstance()->existsRuta (aux, nomsendero, nomParque);
+      std::cin>>aux;
+      exist = existsRuta (aux, nomsendero, nomParque);
     }
     while(exist <0);
-    r.setIdentidicador(aux);
     std::string id=aux;
-    auxRuta=FileIO::getInstance()->busquedaRuta(nomParque,nombreSendero,id);
-    std::list<ruta> rutas = getInstance()->getRutasSendero(nomParque + "_" + nomsendero + "_" + id);
+    auxRuta=busquedaRuta(nomParque,nombreSendero,id);
+    std::list<ruta> rutas = getRutasSendero(nomParque + "_" + nomsendero + "_" + id);
     for(ruta &ruta: rutas)
     {
       if(id==auxRuta.getIdentificador())
@@ -1030,53 +1030,50 @@ int menuRutas(){
     mostrarTodosVisitantesDNI();
     std::cout<<"--- Por favor, introduzca el DNI del visitante. --- \n";
     std::getline(cin,aux);
-    exist = FileIO::getInstance()->existsVisitante(aux);
+    exist = existsVisitante(aux);
     do{
       std::cout<<" El visitante no existe. Por favor, introduzca el DNI del visitante. \n";
       std::getline(cin,aux);
-      exist = FileIO::getInstance()->existsVisitante(aux);
+      exist = existsVisitante(aux);
     }
     while(exist <0);
-    v.setDNI(aux);
     std::string dni_=aux;
-    auxVisitante=FileIO::getInstance()->busquedaVisitante(aux);
+    auxVisitante=busquedaVisitante(aux);
 
     std::string nomParque;
     mostrarNombresParques();
     std::cout<<"--- Por favor, introduzca el nombre del parque cuyos senderos quiere ver. --- \n";
     std::getline(cin,nomParque);
-    exist = FileIO::getInstance()->existsParque(nomParque);
+    exist = existsParque(nomParque);
     do{
       std::cout<<" El parque no existe. Por favor, introduzca el nombre del parque cuyos senderos quiere ver. \n";
       std::getline(cin,nomParque);
-      exist = FileIO::getInstance()->existsParque(nomParque);
+      exist = existsParque(nomParque);
     }
     while(exist<0);
 
     mostrarSenderosAsociados(nomParque);
     std::cout<<"--- Por favor, introduzca el nombre del sendero. --- \n";
     std::getline(cin,aux);
-    exist = FileIO::getInstance()->existsSendero(aux, nomParque);
+    exist = existsSendero(aux, nomParque);
     do{
       std::cout<<" El sendero no existe. Por favor, introduzca el nombre del sendero cuyas rutas quiere ver. \n";
       std::getline(cin,aux);
-      exist = FileIO::getInstance()->existsSendero(aux, nomParque);
+      exist = existsSendero(aux, nomParque);
     }
     while(exist<0);
-    s.setNombre(aux);
 
     std::string nomsendero=aux;
     mostrarRutasAsociadas(nomsendero, nomParque);
     std::cout<<"--- Por favor, introduzca el nombre de la ruta. --- \n";
     std::getline(cin,aux);
-    exist = FileIO::getInstance()->existsRuta (aux, nomsendero, nomParque);
+    exist = existsRuta (aux, nomsendero, nomParque);
     do{
       std::cout<<" No existe la ruta. Por favor, introduzca el nombre de la ruta. \n";
       std::getline(cin,aux);
-      exist = FileIO::getInstance()->existsRuta (aux, nomsendero, nomParque);
+      exist = existsRuta (aux, nomsendero, nomParque);
     }
     while(exist<0);
-    r.setIdentidicador(aux);
     std::string id=aux;
 
     guardarVisitanteARuta(auxVisitante);
@@ -1101,7 +1098,7 @@ int menuVisitantes(){
   visitante v, auxVisitante;
   int i, exist;
 
-  while(){
+  while(true){
 
   std::cout<<"   --- Gestion de Visitantes --- \n";
   std::cout<<"--- Seleccione la opcion a la que desee acceder. --- \n";
@@ -1110,28 +1107,28 @@ int menuVisitantes(){
   std::cout<<"--- 2) Cancelar visita. --- \n";
   std::cout<<"--- 3) Mostrar los datos de un visitante ya introducido. --- \n";
   std::cout<<"--- 4) Volver al menu principal. --- \n";
-  cin>>i;
+  std::cin>>i;
 
 
   while(i<0||i>5){
     std::cout<<" Opcion invalida. Por favor, seleccione una opcion valida.\n";
-    cin>>i;
+    std::cin>>i;
   }
   switch(i){
   case 0:
 
   std::cout<<"Por favor, introduzca el DNI del nuevo visitante";
   std::getline(cin,aux);
-  exist = FileIO::getInstance()->existsVisitante(aux);
+  exist = existsVisitante(aux);
 
   do{
     std::cout<<"Ya existe un visitante con ese DNI. Por favor, introduzca otro DNI para el nuevo visitante";
     std::getline(cin,aux);
-    exist = FileIO::getInstance()->existsVisitante(aux);
+    exist = existsVisitante(aux);
   }while(exist >= 0);
   std::string dni=aux;
   v.setDNI(aux);
-  auxVisitante=FileIO::getInstance()->busquedaVisitante(dni);
+  auxVisitante=busquedaVisitante(dni);
 
   std::cout<<"--- Por favor, introduzca el nombre completo del nuevo visitante. --- \n";
   std::getline(cin,aux);
@@ -1149,7 +1146,7 @@ int menuVisitantes(){
   std::getline(cin,aux);
   v.setCondicion(aux);
 
-  FileIO::getInstance()->guardarVisitante(v);
+  guardarVisitante(v);
   imprimirVisitante(v);
 
   break;
@@ -1158,16 +1155,16 @@ int menuVisitantes(){
   mostrarTodosVisitantes();
   std::cout<<"Por favor, introduzca el DNI del visitante a Modificar";
   std::getline(cin,aux);
-  exist = FileIO::getInstance()->existsVisitante(aux);
+  exist = existsVisitante(aux);
 
   do{
     std::cout<<"No existe ningun visitante con ese DNI. Por favor, introduzca el DNI del visitante.";
     std::getline(cin,aux);
-    exist = FileIO::getInstance()->existsVisitante(aux);
+    exist = existsVisitante(aux);
   }while(exist <0);
   std::string dni=aux;
   v.setDNI(aux);
-  auxVisitante=FileIO::getInstance()->busquedaVisitante(dni);
+  auxVisitante=busquedaVisitante(dni);
 
   std::cout<<"--- Por favor, introduzca el nombre completo del visitante. --- \n";
   std::getline(cin, aux);
@@ -1185,7 +1182,7 @@ int menuVisitantes(){
   std::getline(cin, aux);
   v.setCondicion(aux);
 
-  FileIO::getInstance()->guardarVisitante(auxVisitante);
+  guardarVisitante(auxVisitante);
   imprimirVisitante(auxVisitante);
 
 
@@ -1195,15 +1192,15 @@ int menuVisitantes(){
   mostrarTodosVisitantes();
   std::cout<<"Por favor, introduzca el DNI del visitante cuya visita quiere cancelar.";
   std::getline(cin,aux);
-  exist = FileIO::getInstance()->existsVisitante(aux);
+  exist = existsVisitante(aux);
 
   do{
     std::cout<<"No existe ningun visitante con ese DNI. Por favor, introduzca el DNI del visitante.";
     std::getline(cin,aux);
-    exist = FileIO::getInstance()->existsVisitante(aux);
+    exist = existsVisitante(aux);
   }while(exist < 0);
   std::string dni=aux;
-  auxVisitante=FileIO::getInstance()->busquedaVisitante(dni);
+  auxVisitante=busquedaVisitante(dni);
 
   std::cout<<"--- ¿Esta seguro de que desea cancelar la visita? ---\n";
   std::cout<<"--- Escriba 1 si desea confirmarlo, 0 si no ---\n";
@@ -1211,7 +1208,7 @@ int menuVisitantes(){
   std::getline(cin,aux);
   decis = atoi(aux);
   if(decis==1){
-    FileIO::getInstance()->borrarVisitante(auxVisitante);
+    borrarVisitante(auxVisitante);
   }
   if(decis==0){
     break;
@@ -1227,16 +1224,16 @@ int menuVisitantes(){
   mostrarTodosVisitantes();
   std::cout<<"Por favor, introduzca el DNI del visitante cuyos datos quiere ver";
   std::getline(cin,aux);
-  exist = FileIO::getInstance()->existsVisitante(aux);
+  exist = existsVisitante(aux);
   do{
     std::cout<<"No existe ningun visitante con ese DNI. Por favor, introduzca el DNI del visitante.";
     std::getline(cin,aux);
-    exist = FileIO::getInstance()->existsVisitante(aux);
+    exist = existsVisitante(aux);
   }while(exist < 0);
   std::string dni=aux;
-  auxVisitante=FileIO::getInstance()->busquedaVisitante(dni);
+  auxVisitante=busquedaVisitante(dni);
 
-  std::list<visitante> visitantes = getInstance() ->getTodosVisitantes();
+  std::list<visitante> visitantes =  ->getTodosVisitantes();
   for(visitante &visitante: visitantes)
   {
     if(aux==v.getDNI())
@@ -1263,7 +1260,7 @@ int menuMonitores(){
   monitor m, auxMonitor;
   int i;
 
-  while(){
+  while(true){
   std::cout<<"   --- Gestion de Monitores --- \n";
   std::cout<<"--- Seleccione la opcion a la que desee acceder. --- \n";
   std::cout<<"--- 0) Añadir un nuevo monitor. --- \n";
@@ -1272,11 +1269,11 @@ int menuMonitores(){
   std::cout<<"--- 3) Mostrar los datos de un monitor ya introducido. --- \n";
   std::cout<<"--- 4) Eliminar un monitor del sistema. --- \n";
   std::cout<<"--- 5) Volver al menu principal. --- \n";
-  cin>>i;
+  std::cin>>i;
 
   while(i<0||i>5){
     std::cout<<" Opcion invalida. Por favor, seleccione una opcion valida.\n";
-    cin>>i;
+    std::cin>>i;
   }
   switch(i){
 
@@ -1284,17 +1281,17 @@ int menuMonitores(){
 
     std::cout<<"Por favor, introduzca el DNI del nuevo monitor";
     std::getline(cin,aux);
-    exist = FileIO::getInstance()->existsMonitor(aux);
+    exist = existsMonitor(aux);
 
     do{
       std::cout<<"Ya existe un monitor con ese DNI. Por favor, introduzca otro DNI para el nuevo monitor";
       std::getline(cin,aux);
-      exist = FileIO::getInstance()->existsMonitor(aux);
+      exist = existsMonitor(aux);
     }while(exist >= 0);
 
     m.setDNI(aux);
     std::string dniMonitor=aux;
-    auxMonitor=FileIO::getInstance()->busquedaMonitor(dniMonitor);
+    auxMonitor=busquedaMonitor(dniMonitor);
 
     std::cout<<"--- Por favor, introduzca el nombre completo del Monitor. --- \n";
     std::getline(cin,aux);
@@ -1314,7 +1311,7 @@ int menuMonitores(){
 
     m.setDisponibilidad(true);
 
-    FileIO::getInstance()->guardarMonitor(m);
+    guardarMonitor(m);
     imprimirMonitor(m);
     break;
 
@@ -1322,16 +1319,16 @@ int menuMonitores(){
 
     std::cout<<"Por favor, introduzca el DNI del monitor";
     std::getline(cin,aux);
-    exist = FileIO::getInstance()->existsMonitor(aux);
+    exist = existsMonitor(aux);
 
     do{
       std::cout<<"No existe un monitor con ese DNI. Por favor, introduzca el DNI del monitor cuyos datos quiere modificar.";
       std::getline(cin,aux);
-      exist = FileIO::getInstance()->existsMonitor(aux);
+      exist = existsMonitor(aux);
     }while(exist < 0);
 
     std::string dniMonitor=aux;
-    auxMonitor=FileIO::getInstance()->busquedaMonitor(dniMonitor);
+    auxMonitor=busquedaMonitor(dniMonitor);
 
     std::cout<<"--- Por favor, introduzca el nombre completo del Monitor. --- \n";
     std::getline(cin,aux);
@@ -1351,7 +1348,7 @@ int menuMonitores(){
 
     m.setDisponibilidad(true);
 
-    FileIO::getInstance()->guardarMonitor(auxMonitor);
+    guardarMonitor(auxMonitor);
     imprimirMonitor(auxMonitor);
 
     break;
@@ -1360,28 +1357,27 @@ int menuMonitores(){
 
     std::cout<<"Por favor, introduzca el DNI del monitor";
     std::getline(cin,aux);
-    exist = FileIO::getInstance()->existsMonitor(aux);
+    exist = existsMonitor(aux);
 
     do{
       std::cout<<"No existe un monitor con ese DNI. Por favor, introduzca el DNI del monitor cuyos datos quiere modificar.";
       std::getline(cin,aux);
-      exist = FileIO::getInstance()->existsMonitor(aux);
+      exist = existsMonitor(aux);
     }while(exist < 0);
-    m.setDNI(aux);
     std::string dniMonitor=aux;
-    auxMonitor=FileIO::getInstance()->busquedaMonitor(dniMonitor);
+    auxMonitor=busquedaMonitor(dniMonitor);
 
     std::cout<<"Introduzca 1 si quiere que el monitor este disponible y 0 en caso contrario"<<endl;
-    std::getline(cin,tamano);
+    std::cin>>tamano;
       while(tamano>1 || tamano<0)
       {
         std::cout<<"ERROR, numero no valido. Debe introducir 1 o 0"<<endl;
-        std::getline(cin,tamano);
+        std::cin>>tamano;
       }
       if(tamano=1)
       {
-        m.setDisponibilidad(true);
-        if(m.getDisponibilidad()==false)
+        auxMonitor.setDisponibilidad(true);
+        if(auxMonitor.getDisponibilidad()==false)
          {
            std::cout<<"ERROR al cambiar la disponibilidad del monitor."<<endl;
            break;
@@ -1393,8 +1389,8 @@ int menuMonitores(){
       }
       else if(tamano=0)
       {
-        m.setDisponibilidad(false);
-        if(m.getDisponibilidad()==true)
+        auxMonitor.setDisponibilidad(false);
+        if(auxMonitor.getDisponibilidad()==true)
          {
            std::cout<<"ERROR al cambiar la disponibilidad del monitor."<<endl;
            break;
@@ -1404,7 +1400,7 @@ int menuMonitores(){
            std::cout<<"Disponibilidad cambiada con exito."<<endl;
          }
       }
-      FileIO::getInstance()->guardarMonitor(auxMonitor);
+      guardarMonitor(auxMonitor);
       break;
 
     case 3:
@@ -1412,21 +1408,21 @@ int menuMonitores(){
     mostrarTodosMonitoresDNI();
     std::cout<<"Por favor, introduzca el DNI del monitor";
     std::getline(cin,aux);
-    exist = FileIO::getInstance()->existsMonitor(aux);
+    exist = existsMonitor(aux);
 
     do{
       std::cout<<"No existe un monitor con ese DNI. Por favor, introduzca el DNI del monitor cuyos datos quiere mostrar.\n";
       std::getline(cin,aux);
-      exist = FileIO::getInstance()->existsMonitor(aux);
+      exist = existsMonitor(aux);
     }while(exist<0);
 
     std::string dniMonitor=aux;
-    auxMonitor=FileIO::getInstance()->busquedaMonitor(dniMonitor);
+    auxMonitor=busquedaMonitor(dniMonitor);
 
-    std::list<monitor> monitores = FileIO::getInstance()()->getTodosMonitores();
+    std::list<monitor> monitores = ->getTodosMonitores();
     for(monitor &monitor: monitores)
     {
-      if(aux==m.getDNI())
+      if(aux==monitor.getDNI())
       {
         imprimirMonitor(auxMonitor);
       }
@@ -1438,15 +1434,15 @@ int menuMonitores(){
     mostrarTodosMonitoresDNI();
     std::cout<<"Por favor, introduzca el DNI del monitor que desea eliminar\n";
     std::getline(cin,aux);
-    exist = FileIO::getInstance()()->existsMonitor(aux);
+    exist = ->existsMonitor(aux);
 
     do{
       std::cout<<"No existe un monitor con ese DNI. Por favor, introduzca el DNI del monitor cuyos datos quiere eliminar.\n";
       std::getline(cin,aux);
-      exist = FileIO::getInstance()()->existsMonitor(aux);
+      exist = ->existsMonitor(aux);
     }while(exist < 0);
     std::string dniMonitor=aux;
-    auxMonitor=FileIO::getInstance()()->busquedaMonitor(dniMonitor);
+    auxMonitor=->busquedaMonitor(dniMonitor);
 
     std::cout<<"--- ¿Esta seguro de que desea eliminar ? ---\n";
     std::cout<<"--- Escriba 1 si desea confirmarlo, 0 si no ---\n";
@@ -1454,15 +1450,15 @@ int menuMonitores(){
     std::getline(cin,aux);
     decis = atoi(aux);
     if(decis==1){
-      FileIO::getInstance()()->borrarMonitor(auxMonitor);
+      borrarMonitor(auxMonitor);
 
-      std::list<parque> parques=FileIO::getInstance()()->getTodosParques();
+      std::list<parque> parques=->getTodosParques();
     for(parque &parque: parques)
     {
-      std::list<sendero> senderos=getInstance()()->getSenderosParque(parque.getNombre());
+      std::list<sendero> senderos=->getSenderosParque(parque.getNombre());
     for(sendero &sendero: senderos)
     {
-        list <ruta> rutas=getInstance()()->getRutasSendero(parque.getNombre() + "_" + sendero.getNombre());
+        list <ruta> rutas=->getRutasSendero(parque.getNombre() + "_" + sendero.getNombre());
       for(ruta &ruta: rutas)
       {
 	        if(ruta.getMonitorAsociado() == dniMonitor )

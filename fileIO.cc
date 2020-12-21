@@ -6,17 +6,8 @@
 #include <limits>
 #include <ctime>
 
-FileIO* FileIO::_instance = NULL;
 
-FileIO* FileIO::getInstance () {
-    if (_instance == NULL) {
-        _instance = new FileIO("parques.txt"); //Archivo de parques default
-    }
-
-    return _instance;
-}
-
-int FileIO::existsParque (std::string nombre) {
+int while(true)existsParque (std::string nombre) {
     std::ifstream file(_path);
     if (file) {
         int count = 0;
@@ -44,7 +35,7 @@ int FileIO::existsParque (std::string nombre) {
     }
 }
 
-int FileIO::existsMonitor (std::string dni){
+int existsMonitor (std::string dni){
         std::ifstream file("monitores.txt");
     if (file) {
         int count = 0;
@@ -72,7 +63,7 @@ int FileIO::existsMonitor (std::string dni){
     }
 }
 
-int FileIO::existsSendero (std::string nombreSendero, std::string nombreParque) {
+int existsSendero (std::string nombreSendero, std::string nombreParque) {
     std::ifstream file(nombreParque + "_senderos.txt");
     if (file) {
         int count = 0;
@@ -100,7 +91,7 @@ int FileIO::existsSendero (std::string nombreSendero, std::string nombreParque) 
     }
 }
 
-int FileIO::existsRuta (std::string nombreRuta, std::string nombreSendero, std::string nombreParque){
+int existsRuta (std::string nombreRuta, std::string nombreSendero, std::string nombreParque){
         std::ifstream file(nombreParque + "_" + nombreSendero + "_rutas.txt");
     if (file) {
         int count = 0;
@@ -128,7 +119,7 @@ int FileIO::existsRuta (std::string nombreRuta, std::string nombreSendero, std::
     }
 }
 
-int FileIO::existsVisitanteARuta (std::string dni, std::string nombreRuta, std::string nombreSendero, std::string nombreParque){
+int existsVisitanteARuta (std::string dni, std::string nombreRuta, std::string nombreSendero, std::string nombreParque){
     std::ifstream file(nombreParque + "_" + nombreSendero + "_" + nombreRuta + ".txt");
     if (file) {
         int count = 0;
@@ -156,7 +147,7 @@ int FileIO::existsVisitanteARuta (std::string dni, std::string nombreRuta, std::
     }
 }
 
-int FileIO::existsVisitante(std::string dni){
+int existsVisitante(std::string dni){
 std::ifstream file("visitantes.txt");
     if (file) {
         int count = 0;
@@ -185,7 +176,7 @@ std::ifstream file("visitantes.txt");
 }
 
 
-std::list<parque> FileIO::getTodosParques () {
+std::list<parque> getTodosParques () {
     std::list<parque> parques;
 
     std::ifstream file(_path);
@@ -229,7 +220,7 @@ std::list<parque> FileIO::getTodosParques () {
     return parques;
 }
 
-std::list<monitor> FileIO::getTodosMonitores(){
+std::list<monitor> getTodosMonitores(){
     std::list<monitor> monitores;
 
     std::ifstream file("monitores.txt");
@@ -274,7 +265,7 @@ std::list<monitor> FileIO::getTodosMonitores(){
 }
 
 
-std::list<sendero> FileIO::getSenderosParque (std::string nombre) {
+std::list<sendero> getSenderosParque (std::string nombre) {
     std::list<sendero> senderos;
     std::string nombresendero = nombre +"_senderos";
     std::ifstream file(nombresendero + ".txt");
@@ -312,7 +303,7 @@ std::list<sendero> FileIO::getSenderosParque (std::string nombre) {
     return senderos;
 }
 
-std::list<ruta> FileIO::getRutasSendero (std::string nombresendero) {
+std::list<ruta> getRutasSendero (std::string nombresendero) {
     std::list<ruta> rutas;
     std::string nombreruta = nombresendero + "_rutas";
     std::ifstream file(nombreruta + ".txt");
@@ -360,7 +351,7 @@ std::list<ruta> FileIO::getRutasSendero (std::string nombresendero) {
     return rutas;
 }
 
-std::list<visitante> FileIO::getVisitantesRuta(std::string nombreruta){
+std::list<visitante> getVisitantesRuta(std::string nombreruta){
     std::list<visitante> visitantes;
     std::string fichero = nombreruta + ".txt";
     std::ifstream file(fichero);
@@ -391,7 +382,7 @@ std::list<visitante> FileIO::getVisitantesRuta(std::string nombreruta){
     return rutas;
 }
 
-std::list<visitante> FileIO::getTodosVisitantes(){
+std::list<visitante> getTodosVisitantes(){
     std::list<visitante> visitantes;
 
     std::ifstream file("visitantes.txt");
@@ -430,7 +421,7 @@ std::list<visitante> FileIO::getTodosVisitantes(){
     return visitantes;
 }
 
-void FileIO::borrarParque (const parque &p) {
+void borrarParque (const parque &p) {
     std::string nombreParque = p.getNombre();
     std::string sys = "rm " + nombreParque + "*.txt";
     system(sys);
@@ -452,7 +443,7 @@ void FileIO::borrarParque (const parque &p) {
     }
 }
 
- void FileIO::borrarMonitor (const monitor &m){
+ void borrarMonitor (const monitor &m){
     std::list<monitor> monitores = getInstance()->getTodosMonitores();
     std::ofstream file("monitores.txt");
     if (file) {
@@ -512,7 +503,7 @@ void FileIO::borrarParque (const parque &p) {
 
 }
 
-void FileIO::borrarSendero (const sendero &s, const parque &p) {
+void borrarSendero (const sendero &s, const parque &p) {
     std::string nombreParque = p.getNombre();
     std::string nombreSendero = s.getNombre();
     std::string sys = "rm " + nombreParque + "_" + nombreSendero + "*.txt";
@@ -533,7 +524,7 @@ void FileIO::borrarSendero (const sendero &s, const parque &p) {
     }
 }
 
-void FileIO::borrarRuta(const ruta &r, const sendero &s, const parque &p){
+void borrarRuta(const ruta &r, const sendero &s, const parque &p){
     std::string nombreParque = p.getNombre();
     std::string nombreSendero = s.getNombre();
     std::string nommbreRuta = r.getIdentificador();
@@ -559,7 +550,7 @@ void FileIO::borrarRuta(const ruta &r, const sendero &s, const parque &p){
     }
 }
 
-void FileIO::borrarVisitante(const visitante &v){
+void borrarVisitante(const visitante &v){
     std::list<visitante> visitantes = getInstance()->getTodosVisitantes();
     std::ofstream file("visitantes.txt");
     if (file) {
@@ -611,7 +602,7 @@ void FileIO::borrarVisitante(const visitante &v){
     }
 }
 
-void FileIO::borrarVisitanteRuta(const visitante &v, const ruta &r, const sendero &s, const parque &p){
+void borrarVisitanteRuta(const visitante &v, const ruta &r, const sendero &s, const parque &p){
     std::string nombreParque = p.getNombre();
     std::string nombreSendero = s.getNombre();
     std::string nommbreRuta = r.getIdentificador();
@@ -632,7 +623,7 @@ void FileIO::borrarVisitanteRuta(const visitante &v, const ruta &r, const sender
     }
 }
 
-void FileIO::guardarParque (const parque &p) {
+void guardarParque (const parque &p) {
     int result = existsParque(p.getNombre());
     if (result >= 0) {
         std::list<parque> parques = getInstance()->getTodosParques();
@@ -741,7 +732,7 @@ void FileIO::guardarParque (const parque &p) {
     }
 }
 
-void FileIO::guardarSendero (const sendero &s, std::string nombreParque) {
+void guardarSendero (const sendero &s, std::string nombreParque) {
     int result = existsSendero(s.getNombre(), nombreParque);
     if (result >=0){
         std::list<sendero> senderos = getInstance()->getSenderosParque(nombreParque);
@@ -824,7 +815,7 @@ void FileIO::guardarSendero (const sendero &s, std::string nombreParque) {
     }
 }
 
-void FileIO::guardarRuta(const ruta &r, std::string nombreSendero, std::string nombreParque){
+void guardarRuta(const ruta &r, std::string nombreSendero, std::string nombreParque){
 int result = existsRuta(r.getIdentificador(), nombreSendero, nombreParque);
     if (result >=0){
         std::list<ruta> rutas = getInstance()->getRutasSendero(p.getNombre() + "_" + s.getNombre());
@@ -884,7 +875,7 @@ int result = existsRuta(r.getIdentificador(), nombreSendero, nombreParque);
     }
 }
 
-void FileIO::guardarVisitante(const visitante &v){
+void guardarVisitante(const visitante &v){
     int result = existsVisitante(v.getDNI());
     if (result >=0){
         std::list<visitante> visitantes = getInstance()->getTodosVisitantes();
@@ -916,7 +907,7 @@ void FileIO::guardarVisitante(const visitante &v){
     }
 }
 
-void FileIO::guardarVisitanteARuta(const visitante &v, std::string idRuta, std::string nombreSendero, std::string nombreParque){
+void guardarVisitanteARuta(const visitante &v, std::string idRuta, std::string nombreSendero, std::string nombreParque){
 int result = existsVisitanteARuta(v.getDNI(), idRuta, nombreSendero, nombreParque);
     if (result >=0){
         std::list<visitante> visitantes = getInstance()->getVisitantesRuta(nombreParque + "_" + nombreSendero + "_" + idRuta);
@@ -948,7 +939,7 @@ int result = existsVisitanteARuta(v.getDNI(), idRuta, nombreSendero, nombreParqu
     }
 }
 
-void FileIO::guardarMonitor(const monitor &m){
+void guardarMonitor(const monitor &m){
     int result existsMonitor(m.getDNI());
     if(result >= 0){
         std::list<monitor> monitores = getInstance()->getTodosMonitores();
@@ -982,7 +973,7 @@ void FileIO::guardarMonitor(const monitor &m){
     }
 }
 
-parque FileIO::busquedaParque(std::string nombre){
+parque busquedaParque(std::string nombre){
     std::list<parque> parques = getInstance->getTodosParques();
     for(parque &parque : parques){
         if(parque.getNombre() == nombre){
@@ -991,7 +982,7 @@ parque FileIO::busquedaParque(std::string nombre){
     }
 }
 
-sendero FileIO::busquedaSendero(std::string nombreparque, std::string nombresendero){
+sendero busquedaSendero(std::string nombreparque, std::string nombresendero){
     std::list<parque> parques = getInstance->getTodosParques();
         for(parque &parque : parques){
             if(parque.getNombre() == nombreparque){
@@ -1005,7 +996,7 @@ sendero FileIO::busquedaSendero(std::string nombreparque, std::string nombresend
         }
 }
 
-ruta FileIO::busquedaRuta(std::string nombreparque, std::string nombresendero, std::string nombreruta) {
+ruta busquedaRuta(std::string nombreparque, std::string nombresendero, std::string nombreruta) {
     std::list<parque> parques = getInstance->getTodosParques();
         for(parque &parque : parques){
             if(parque.getNombre() == nombreparque){
@@ -1024,7 +1015,7 @@ ruta FileIO::busquedaRuta(std::string nombreparque, std::string nombresendero, s
         }
 }
 
-monitor FileIO::busquedaMonitor(std::string dni){
+monitor busquedaMonitor(std::string dni){
     std::list<monitor> monitores = getInstance->getTodosMonitores();
     for(monitor &monitor : monitores){
         if (monitor.getDNI() == dni){
@@ -1033,7 +1024,7 @@ monitor FileIO::busquedaMonitor(std::string dni){
     }
 }
 
-visitante FileIO::busquedaVisitanteRuta(std::string nombreparque, std::string nombresendero, std::string nombreruta, std::string dni){
+visitante busquedaVisitanteRuta(std::string nombreparque, std::string nombresendero, std::string nombreruta, std::string dni){
     std::list<parque> parques = getInstance->getTodosParques();
         for(parque &parque : parques){
             if(parque.getNombre() == nombreparque){
@@ -1057,7 +1048,7 @@ visitante FileIO::busquedaVisitanteRuta(std::string nombreparque, std::string no
         }
 }
 
-visitante FileIO::busquedaVisitante(std::string dni){
+visitante busquedaVisitante(std::string dni){
     std::list<visitante> visitantes = getInstance->getTodosVisitantes();
     for(visitante &visitante : visitantes){
         if (visitante.getDNI() == dni){
