@@ -1,6 +1,15 @@
 //menus.cc
 //proyecto IS
+#include "menus.h"
+#include "parques.h"
+#include "senderos.h"
+#include "rutas.h"
+#include "monitores.h"
+#include "visitantes.h"
 #include "fileIO.h"
+#include "extra.h"
+#include <list>
+#include <string>
 
 using namespace std;
 using namespace FileIO;
@@ -1388,10 +1397,30 @@ int menuMonitores(){
     cout<<"--- ¿Esta seguro de que desea eliminar ? ---\n";
     cout<<"--- Escriba 1 si desea confirmarlo, 0 si no ---\n";
     int decis;
+    string aux2 = aux;
     getline(cin,aux);
     decis = atoi(aux);
     if(decis==1){
       FileIO::getInstance->borrarMonitor(&m);
+
+      list<parque> parques=getInstance()->getTodosParques();
+    for(parque &parque: parques)
+    {
+      list<sendero> senderos=getInstance()->getSenderosParque();
+    for(sendero &sendero: senderos)
+    {
+        list <ruta> rutas=getInstance()->getRutasSendero();
+      for(ruta &ruta: rutas)
+      {
+	        if(ruta.getMonitorAsociado() == aux2 )
+	        {
+	        	borrarRuta(ruta, sendero, parque)
+	        }
+    	}
+      }
+    }
+
+
     }
     if(decis==0){
       break;
