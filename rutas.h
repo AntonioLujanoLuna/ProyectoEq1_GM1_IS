@@ -21,7 +21,7 @@ class ruta {
         list <visitante> grupoVisitantes_;
 
     public:
-        ruta(string id="", string dificultad = 2, string monitor = "",
+        ruta(string id="", string dificultad = "2", string monitor = "",
             string fecha = "", string hora = "", int duracion = 0, bool bici = true);
         inline string getIdentificador()const{return identificador_;};
         inline void setIdentidicador(string id){identificador_=id;};

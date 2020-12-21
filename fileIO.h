@@ -14,7 +14,6 @@
 #include "senderos.h"
 #include "parques.h"
 #include "impresion.h"
-#include "extra.h"
 #include "menus.h"
 
 class FileIO {
@@ -63,7 +62,7 @@ class FileIO {
 
 
         void guardarParque(const parque &p);
-        void guardarSendero(const sendero &p, std::string nombreParque);
+        void guardarSendero(const sendero &s, std::string nombreParque);
         void guardarRuta(const ruta &r, std::string nombreSendero, std::string nombreParque);
         void guardarVisitanteARuta(const visitante &v, std::string idRuta, std::string nombreSendero, std::string nombreParque);
         void guardarVisitante(const visitante &v);

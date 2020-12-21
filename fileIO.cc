@@ -249,7 +249,7 @@ std::list<monitor> FileIO::getTodosMonitores(){
             p.setNombreCompleto(aux);
 
             getline(file, aux);
-            p.setNumeroDeTlfn(std::stoi(aux));
+            p.setNumeroDeTlfn(aux);
 
             getline(file, aux);
             p.setFechaDeNacimiento(aux);

@@ -7,7 +7,6 @@
 #include "monitores.h"
 #include "visitantes.h"
 #include "fileIO.h"
-#include "extra.h"
 #include <list>
 #include <string>
 
