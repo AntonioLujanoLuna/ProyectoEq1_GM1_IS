@@ -7,38 +7,36 @@
 #include "fileIO.h"
 
 
-using namespace std;
-
 class ruta {
     private:
-        string identificador_;
-        string dificultad_;
-        string monitorAsociado_;
-        string fecha_;
-        string hora_;
-        string duracionEstimada_;
-        string bicicleta_;
-        list <visitante> grupoVisitantes_;
+        std::string identificador_;
+        std::string dificultad_;
+        std::string monitorAsociado_;
+        std::string fecha_;
+        std::string hora_;
+        std::string duracionEstimada_;
+        std::string bicicleta_;
+        std::list <visitante> grupoVisitantes_;
 
     public:
-        ruta(string id="", string dificultad = "2", string monitor = "",
-            string fecha = "", string hora = "", int duracion = 0, bool bici = true);
-        inline string getIdentificador()const{return identificador_;};
-        inline void setIdentidicador(string id){identificador_=id;};
-        inline string getDificultad()const{return dificultad_;};
-        inline void setDificultad(string dificultad){dificultad_=dificultad;};
-        inline string getMonitorAsociado()const{return monitorAsociado_;};
-        inline void setMonitorAsociado(string DNI){monitorAsociado_=DNI;};
-        inline string getFecha()const{return fecha_;};
-        inline void setFecha(string fecha){fecha_=fecha;};
-        inline string getHora()const{return hora_;};
-        inline void setHora(string hora){hora_=hora;};
-        inline string getDuracionEstimada()const{return duracionEstimada_;};
-        inline void setDuracionEstimada(string duracion){duracionEstimada_=duracion;};
-        inline string getBicicleta()const{return bicicleta_;};
-        inline void setBicicleta(string bici){bicicleta_=bici;};
-        inline list <visitante> getGrupoVisitante()const{return grupoVisitantes_;};
-        inline void setGrupoVisitantes(list<visitante> visitantes){grupoVisitantes_=visitantes;};
+        ruta(std::string id="", std::string dificultad = "2", std::string monitor = "",
+            std::string fecha = "", std::string hora = "", int duracion = 0, std::string bici = true);
+        inline std::string getIdentificador()const{return identificador_;};
+        inline void setIdentidicador(std::string id){identificador_=id;};
+        inline std::string getDificultad()const{return dificultad_;};
+        inline void setDificultad(std::string dificultad){dificultad_=dificultad;};
+        inline std::string getMonitorAsociado()const{return monitorAsociado_;};
+        inline void setMonitorAsociado(std::string DNI){monitorAsociado_=DNI;};
+        inline std::string getFecha()const{return fecha_;};
+        inline void setFecha(std::string fecha){fecha_=fecha;};
+        inline std::string getHora()const{return hora_;};
+        inline void setHora(std::string hora){hora_=hora;};
+        inline void setDuracionEstimada(std::string duracion){duracionEstimada_=duracion;};
+        inline std::string getDuracionEstimada()const{return duracionEstimada_;};
+        inline std::string getBicicleta()const{return bicicleta_;};
+        inline void setBicicleta(std::string bici){bicicleta_=bici;};
+        inline std::list <visitante> getGrupoVisitante()const{return grupoVisitantes_;};
+        inline void setGrupoVisitantes(std::list<visitante> visitantes){grupoVisitantes_=visitantes;};
 
 };
 

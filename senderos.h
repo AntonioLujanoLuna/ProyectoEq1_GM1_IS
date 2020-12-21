@@ -6,31 +6,28 @@
 
 #include "fileIO.h"
 
-
-using namespace std;
-
 class sendero {
     private:
-        string nombre_;
+        std::string nombre_;
         int longitud_;
-        string descripcion_;
-        int disponibilidad_;
-        list <ruta> rutas_;
+        std::string descripcion_;
+        bool disponibilidad_;
+        std::list <ruta> rutas_;
 
     public:
-        sendero(string nombre="", int longitud=0, string descripcion="",
-            bool disponibilidad=true);
-        inline string getNombre()const{return nombre_;};
-        inline void setNombre(string nombre){nombre_=nombre;};
+        sendero(std::string nombre="", int longitud=0, std::string descripcion="",
+            std::bool disponibilidad=true);
+        inline std::string getNombre()const{return nombre_;};
+        inline void setNombre(std::string nombre){nombre_=nombre;};
         inline int getLongitud()const{return longitud_;};
-        inline void setLongitud(int longitud){longitud_=longitud;};
-        inline string getDescripcion()const{return descripcion_;};
-        inline void setDescripcion(string descripcion){descripcion_=descripcion;};
-        inline int getDisponibilidad()const{return disponibilidad_;};
-        inline void setDisponibilidad(int disponibilidad){disponibilidad_=disponibilidad;};
-        list <ruta> getRutas()const{return rutas_;};
-        void setRutas(list<ruta> rutas){rutas_=rutas;};
-        
+        inline std::string getDescripcion()const{return descripcion_;};
+        inline void setDescripcion(std::string descripcion){descripcion_=descripcion;};
+        inline void setLongitud(std::int longitud){longitud_=longitud;};
+        inline bool getDisponibilidad()const{return disponibilidad_;};
+        inline void setDisponibilidad(bool disponibilidad){disponibilidad_=disponibilidad;};
+        std::list <ruta> getRutas()const{return rutas_;};
+        void setRutas(std::list<ruta> rutas){rutas_=rutas;};
+
 };
 
 

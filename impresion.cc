@@ -5,7 +5,7 @@
 
 void mostrarSenderosAsociados(const parque &p){
 
-  list<sendero> senderos=getInstance()->getSenderosParque(p.getNombre());
+  std::list<sendero> senderos=getInstance()->getSenderosParque(p.getNombre());
   for(sendero &sendero: senderos)
   {
     std::cout<<sendero.getNombre()<<endl;
@@ -14,21 +14,21 @@ void mostrarSenderosAsociados(const parque &p){
 }
 
 void imprimirParque(const parque &p){
-cout<<"DATOS DEL PARQUE: \n";
-cout<<"NOMBRE: "<<p.getNombre()<<endl;
-cout<<"FECHA DE NOMBRAMIENTO: "<<p.getFechaNombramientoParque()<<endl;
-cout<<"TAMANO: "<<p.getTamano()<<endl;
-cout<<"PREMIOS: "<<p.getPremios()<<endl;
-cout<<"DESCRIPCION: "<<p.getDescripcion()<<endl;
-cout<<"DISPONIBILIDAD: "<<p.getDisponibilidad()<<endl;
-cout<<"SENDEROS ASOCIADOS: \n";
+std::cout<<"DATOS DEL PARQUE: \n";
+std::cout<<"NOMBRE: "<<p.getNombre()<<endl;
+std::cout<<"FECHA DE NOMBRAMIENTO: "<<p.getFechaNombramientoParque()<<endl;
+std::cout<<"TAMANO: "<<p.getTamano()<<endl;
+std::cout<<"PREMIOS: "<<p.getPremios()<<endl;
+std::cout<<"DESCRIPCION: "<<p.getDescripcion()<<endl;
+std::cout<<"DISPONIBILIDAD: "<<p.getDisponibilidad()<<endl;
+std::cout<<"SENDEROS ASOCIADOS: \n";
 mostrarSenderosAsociados(p);
 
 }
 
 
 void mostrarRutasAsociadas(const sendero &s, const parque &p){
-  list<ruta> rutas=getInstance()->getRutasSendero(p.getNombre() + "_" + s.getSendero());
+  std::list<ruta> rutas=getInstance()->getRutasSendero(p.getNombre() + "_" + s.getSendero());
   for(ruta &ruta: rutas)
   {
     std::cout<<ruta.getNombre()<<endl;
@@ -37,12 +37,12 @@ void mostrarRutasAsociadas(const sendero &s, const parque &p){
 }
 
 void imprimirSendero(const sendero &s, const parque &p){
-cout<<"DATOS DEL SENDERO: \n";
-cout<<"NOMBRE: "<<s.getNombre()<<endl;
-cout<<"LONGITUD: "<<s.getLongitud()<<endl;
-cout<<"DESCRIPCION: "<<s.getDescripcion()<<endl;
-cout<<"DISPONIBILIDAD: "<<s.getDisponibilidad()<<endl;
-cout<<"RUTAS ASOCIADAS: \n";
+std::cout<<"DATOS DEL SENDERO: \n";
+std::cout<<"NOMBRE: "<<s.getNombre()<<endl;
+std::cout<<"LONGITUD: "<<s.getLongitud()<<endl;
+std::cout<<"DESCRIPCION: "<<s.getDescripcion()<<endl;
+std::cout<<"DISPONIBILIDAD: "<<s.getDisponibilidad()<<endl;
+std::cout<<"RUTAS ASOCIADAS: \n";
 this->mostrarRutasAsociadas(s, p);
 
 }
@@ -50,7 +50,7 @@ this->mostrarRutasAsociadas(s, p);
 
 void mostarVisitantesAsociados(const ruta &r, const sendero &s, const parque &p){
 
-  list<visitante> visitantes=getInstance()->getVisitantesRuta(p.getNombre() + "_" + s.getNombre() + "_" + this->getIdentificador());
+  std::list<visitante> visitantes=getInstance()->getVisitantesRuta(p.getNombre() + "_" + s.getNombre() + "_" + this->getIdentificador());
   for(visitante &visitantes: visitantes)
   {
     std::cout<<visitante.getNombreCompleto()<<endl;
@@ -60,30 +60,30 @@ void mostarVisitantesAsociados(const ruta &r, const sendero &s, const parque &p)
 }
 
 void imprimirRuta(const ruta &r, const sendero &s, const parque &p){
-  cout<<"DATOS DE LA RUTA: \n";
-  cout<<"IDENTIFICADOR: "<<r.getIdentificador()<<endl;
-  cout<<"DIFICULTAD: "<<r.getDificultad()<<endl;
-  cout<<"MONITOR ASOCIADO: "<<r.getMonitorAsociado()<<endl;
-  cout<<"FECHA: "<<r.getFecha()<<endl;
-  cout<<"HORA: "<<r.getHora()<<endl;
-  cout<<"DURACION ESTIMADA: "<<r.getDuracionEstimada()<<endl;
-  cout<<"BICICLETA: "<<r.getBicicleta() << endl;
+  std::cout<<"DATOS DE LA RUTA: \n";
+  std::cout<<"IDENTIFICADOR: "<<r.getIdentificador()<<endl;
+  std::cout<<"DIFICULTAD: "<<r.getDificultad()<<endl;
+  std::cout<<"MONITOR ASOCIADO: "<<r.getMonitorAsociado()<<endl;
+  std::cout<<"FECHA: "<<r.getFecha()<<endl;
+  std::cout<<"HORA: "<<r.getHora()<<endl;
+  std::cout<<"DURACION ESTIMADA: "<<r.getDuracionEstimada()<<endl;
+  std::cout<<"BICICLETA: "<<r.getBicicleta() << endl;
   this->mostrarVisitantesAsociados(r, s, p);
 }
 
 
 void imprimirVisitante(const visitante &v){
-  cout<<"DATOS DEL VISITANTE: \n";
-  cout<<"DNI: "<<v.getDNI()<<endl;
-  cout<<"NOMBRE: "<<c.getNombreCompleto()<<endl;
-  cout<<"FECHA DE NACIMIENTO: "<<v.getFechaDeNacimiento()<<endl;
-  cout<<"NUMERO DE TELEFONO: "<<v.getNumeroDeTlfn()<<endl;
-  cout<<"CONDICION: "<<v.getCondicion()<<endl;
+  std::cout<<"DATOS DEL VISITANTE: \n";
+  std::cout<<"DNI: "<<v.getDNI()<<endl;
+  std::cout<<"NOMBRE: "<<c.getNombreCompleto()<<endl;
+  std::cout<<"FECHA DE NACIMIENTO: "<<v.getFechaDeNacimiento()<<endl;
+  std::cout<<"NUMERO DE TELEFONO: "<<v.getNumeroDeTlfn()<<endl;
+  std::cout<<"CONDICION: "<<v.getCondicion()<<endl;
 }
 
 void mostrarTodosVisitantes(){
 
-  list<visitante> visitantes=getInstance()->getTodosVisitantes();
+  std::list<visitante> visitantes=getInstance()->getTodosVisitantes();
   for(visitante &visitante: visitantes)
   {
     std::cout<<visitante.getNombreCompleto()<<endl;
@@ -92,7 +92,7 @@ void mostrarTodosVisitantes(){
 
 void mostrarTodosVisitantesDNI(){
 
-  list<visitante> visitantes=getInstance()->getTodosVisitantes();
+  std::list<visitante> visitantes=getInstance()->getTodosVisitantes();
   for(visitante &visitante: visitantes)
   {
     std::cout<<visitante.getDNI()<<endl;
@@ -100,18 +100,18 @@ void mostrarTodosVisitantesDNI(){
 }
 
 void imprimirMonitor(const monitor &m){
-  cout<<"DATOS DEL MONITOR: \n";
-  cout<<"DNI: "<<m.getDNI()<<endl;
-  cout<<"NOMBRE COMPLETO: "<<m.getNombreCompleto()<<endl;
-  cout<<"FECHA DE NACIMIENTO: "<<m.getFechaDeNacimiento()<<endl;
-  cout<<"NUMERO DE TELEFONO: "<<m.getNumeroDeTlfn()<<endl;
-  cout<<"CONDICION: "<<m.getCondicion()<<endl;
-  cout<<"DISPONIBILIDAD: "<<m.getDisponibilidad()<<endl;
+  std::cout<<"DATOS DEL MONITOR: \n";
+  std::cout<<"DNI: "<<m.getDNI()<<endl;
+  std::cout<<"NOMBRE COMPLETO: "<<m.getNombreCompleto()<<endl;
+  std::cout<<"FECHA DE NACIMIENTO: "<<m.getFechaDeNacimiento()<<endl;
+  std::cout<<"NUMERO DE TELEFONO: "<<m.getNumeroDeTlfn()<<endl;
+  std::cout<<"CONDICION: "<<m.getCondicion()<<endl;
+  std::cout<<"DISPONIBILIDAD: "<<m.getDisponibilidad()<<endl;
 }
 
 void mostrarTodosMonitoresDNI(){
 
-  list<monitor> monitores=getInstance()->getTodosMonitores();
+  std::list<monitor> monitores=getInstance()->getTodosMonitores();
   for(monitor &monitor: monitores)
   {
     std::cout<<monitor.getDNI()<<endl;
@@ -202,7 +202,7 @@ bool horaValida (const std::string &str) {
 }
 
 void mostrarNombresParques(){
-  list<parque> parques=getInstance()->GetTodosParques();
+  std::list<parque> parques=getInstance()->GetTodosParques();
   for(parque &parque: parques)
   {
     std::cout<<parque.getNombre()<<endl;

@@ -276,7 +276,7 @@ std::list<monitor> FileIO::getTodosMonitores(){
 
 std::list<sendero> FileIO::getSenderosParque (std::string nombre) {
     std::list<sendero> senderos;
-    string nombresendero = nombre +"_senderos";
+    std::string nombresendero = nombre +"_senderos";
     std::ifstream file(nombresendero + ".txt");
     if (file) {
         while (!file.eof()) {
@@ -314,7 +314,7 @@ std::list<sendero> FileIO::getSenderosParque (std::string nombre) {
 
 std::list<ruta> FileIO::getRutasSendero (std::string nombresendero) {
     std::list<ruta> rutas;
-    string nombreruta = nombresendero + "_rutas";
+    std::string nombreruta = nombresendero + "_rutas";
     std::ifstream file(nombreruta + ".txt");
     if (file) {
         while (!file.eof()) {
@@ -362,7 +362,7 @@ std::list<ruta> FileIO::getRutasSendero (std::string nombresendero) {
 
 std::list<visitante> FileIO::getVisitantesRuta(std::string nombreruta){
     std::list<visitante> visitantes;
-    string fichero = nombreruta + ".txt";
+    std::string fichero = nombreruta + ".txt";
     std::ifstream file(fichero);
     if (file) {
         while (!file.eof()) {
@@ -982,7 +982,7 @@ void FileIO::guardarMonitor(const monitor &m){
     }
 }
 
-parque FileIO::busquedaParque(string nombre){
+parque FileIO::busquedaParque(std::string nombre){
     std::list<parque> parques = getInstance->getTodosParques();
     for(parque &parque : parques){
         if(parque.getNombre() == nombre){
@@ -991,7 +991,7 @@ parque FileIO::busquedaParque(string nombre){
     }
 }
 
-sendero FileIO::busquedaSendero(string nombreparque, string nombresendero){
+sendero FileIO::busquedaSendero(std::string nombreparque, std::string nombresendero){
     std::list<parque> parques = getInstance->getTodosParques();
         for(parque &parque : parques){
             if(parque.getNombre() == nombreparque){
@@ -1005,7 +1005,7 @@ sendero FileIO::busquedaSendero(string nombreparque, string nombresendero){
         }
 }
 
-ruta FileIO::busquedaRuta(string nombreparque, string nombresendero, string nombreruta) {
+ruta FileIO::busquedaRuta(std::string nombreparque, std::string nombresendero, std::string nombreruta) {
     std::list<parque> parques = getInstance->getTodosParques();
         for(parque &parque : parques){
             if(parque.getNombre() == nombreparque){
@@ -1024,7 +1024,7 @@ ruta FileIO::busquedaRuta(string nombreparque, string nombresendero, string nomb
         }
 }
 
-monitor FileIO::busquedaMonitor(string dni){
+monitor FileIO::busquedaMonitor(std::string dni){
     std::list<monitor> monitores = getInstance->getTodosMonitores();
     for(monitor &monitor : monitores){
         if (monitor.getDNI() == dni){
@@ -1033,7 +1033,7 @@ monitor FileIO::busquedaMonitor(string dni){
     }
 }
 
-visitante FileIO::busquedaVisitanteRuta(string nombreparque, string nombresendero, string nombreruta, string dni){
+visitante FileIO::busquedaVisitanteRuta(std::string nombreparque, std::string nombresendero, std::string nombreruta, std::string dni){
     std::list<parque> parques = getInstance->getTodosParques();
         for(parque &parque : parques){
             if(parque.getNombre() == nombreparque){
@@ -1057,7 +1057,7 @@ visitante FileIO::busquedaVisitanteRuta(string nombreparque, string nombresender
         }
 }
 
-visitante FileIO::busquedaVisitante(string dni){
+visitante FileIO::busquedaVisitante(std::string dni){
     std::list<visitante> visitantes = getInstance->getTodosVisitantes();
     for(visitante &visitante : visitantes){
         if (visitante.getDNI() == dni){

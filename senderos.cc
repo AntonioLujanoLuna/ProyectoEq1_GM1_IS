@@ -3,8 +3,8 @@
 
 #include "senderos.h"
 
-sendero::sendero(string nombre,int longitud,
-    string descripcion, int disponibilidad, list <ruta> rutas){
+sendero::sendero(std::string nombre,int longitud,
+    std::string descripcion, bool disponibilidad, std::list <ruta> rutas){
             setNombre(nombre);
             setLongitud(longitud);
             setDescripcion(descripcion);

@@ -3,7 +3,7 @@
 
 #include "monitores.h"
 
-       monitor::monitor(string DNI, string nombreCompleto, string Tlfn, string fechaDeNacimiento, string condicion,
+       monitor::monitor(std::string DNI, std::string nombreCompleto, std::string Tlfn, std::std::string fechaDeNacimiento, std::string condicion,
             bool disponibilidad){
 		setDNI(DNI);
 		setNombreCompleto(nombreCompleto);
@@ -13,5 +13,3 @@
 		setDisponibilidad(disponibilidad);
 
      	}
-
-    
