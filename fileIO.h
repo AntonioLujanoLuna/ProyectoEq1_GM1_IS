@@ -8,12 +8,14 @@
 #include <list>
 #include <fstream>
 #include <iostream>
+#include "monitores.h"
+#include "visitantes.h"
+#include "rutas.h"
 #include "senderos.h"
 #include "parques.h"
-#include "rutas.h"
-#include "visitantes.h"
-#include "monitores.h"
 #include "impresion.h"
+#include "extra.h"
+#include "menus.h"
 
 class FileIO {
     private:
